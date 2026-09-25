@@ -1,0 +1,99 @@
+{
+  "version": 1,
+  "runId": "2026-09-25T22-05-36-911-rc5o14",
+  "projectId": "feeda-paw-hc0hpt",
+  "startedAt": "2026-09-25T22:05:35.653890Z",
+  "finishedAt": "2026-09-25T22:05:36.941047Z",
+  "flutterFlowAIVersion": "0.0.41",
+  "dartVersion": "3.10.7",
+  "environment": {
+    "os": "windows",
+    "cwd": "[REDACTED_PATH]",
+    "dryRun": false,
+    "pushed": false,
+    "refreshContext": true,
+    "preFlightFreshness": false,
+    "baseUrl": "[REDACTED_URL]"
+  },
+  "projectTarget": {
+    "type": "existing",
+    "requestedProjectId": "feeda-paw-hc0hpt",
+    "resolvedProjectId": "feeda-paw-hc0hpt"
+  },
+  "source": {
+    "mode": "paths",
+    "fileCount": 1,
+    "files": [
+      "edit.dart"
+    ],
+    "explicitPaths": [
+      "[REDACTED_PATH]"
+    ],
+    "localArchivePath": ".flutterflow/history/2026-09-25T22-05-36-911-rc5o14",
+    "uploaded": false
+  },
+  "tasks": [
+    {
+      "name": "compileDslApp",
+      "status": "failed",
+      "startedAt": "2026-09-25T22:05:36.727812Z",
+      "finishedAt": "2026-09-25T22:05:36.908032Z",
+      "durationMs": 178,
+      "error": "Bad state: Action output \"newRun\" is a list of Postgres rows, so field \"id\" cannot be read directly. Use PostgresRead(<table>, query: ..., outputAs: 'newRun') for a single row, then read ActionOutput('newRun')['id']."
+    }
+  ],
+  "diagnostics": [],
+  "commit": {
+    "attempted": false,
+    "created": false,
+    "commitMessage": "Feed a Paw: the team signs in, and a round can be started and finished"
+  },
+  "workspaceStateSnapshot": {
+    "projectId": "feeda-paw-hc0hpt",
+    "lastUpdated": "2026-09-25T22:05:36.919893Z",
+    "lastRun": {
+      "timestamp": "2026-09-25T22:05:36.919893Z",
+      "tasks": [
+        {
+          "name": "compileDslApp",
+          "status": "failed"
+        }
+      ],
+      "pushed": false
+    },
+    "instructionBundle": {
+      "mode": "full",
+      "templateSha256": "fbb431c336275ad73c3045d0b890faca89e37aa16b004e1e3668d7ec16e50172",
+      "bytes": 40161,
+      "lines": 404
+    },
+    "pageDsl": false
+  },
+  "recoveryHints": {
+    "version": 1,
+    "timestamp": "2026-09-25T22:05:36.927933Z",
+    "projectId": "feeda-paw-hc0hpt",
+    "status": "failed",
+    "completedTasks": [],
+    "failedTasks": [
+      {
+        "name": "compileDslApp",
+        "error": "Bad state: Action output \"newRun\" is a list of Postgres rows, so field \"id\" cannot be read directly. Use PostgresRead(<table>, query: ..., outputAs: 'newRun') for a single row, then read ActionOutput('newRun')['id'].",
+        "validationErrors": []
+      }
+    ],
+    "skippedTasks": [],
+    "diagnostics": [],
+    "recoveryHints": [
+      "Task \"compileDslApp\" failed: Bad state: Action output \"newRun\" is a list of Postgres rows, so field \"id\" cannot be read directly. Use PostgresRead(<table>, query: ..., outputAs: 'newRun') for a single row, then read ActionOutput('newRun')['id'].. Fix the error and re-run."
+    ],
+    "attemptedCommitMessage": "Feed a Paw: the team signs in, and a round can be started and finished"
+  },
+  "paths": {
+    "journalPath": ".flutterflow/runs.jsonl",
+    "lastRunArtifactPath": ".flutterflow/last_run.json",
+    "recoveryHintsPath": ".flutterflow/recovery.json",
+    "localSourceArchivePath": ".flutterflow/history/2026-09-25T22-05-36-911-rc5o14",
+    "localPlanArchivePath": ".flutterflow/history/2026-09-25T22-05-36-911-rc5o14/plan.md"
+  }
+}

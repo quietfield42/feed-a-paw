@@ -138,7 +138,7 @@ void buildStarterEditFlow(App app) {
 
   // Made before the driver's page links to them: pages are created in reverse
   // navigation order.
-  final stopPage = app.page(
+  app.page(
     'StopPage',
     route: '/stop',
     description: 'What was served at one place.',
@@ -209,7 +209,7 @@ void buildStarterEditFlow(App app) {
     ),
   );
 
-  final pickupPage = app.page(
+  app.page(
     'PickupPage',
     route: '/pickup',
     description: 'Meat collected on the way.',
@@ -314,7 +314,7 @@ void buildStarterEditFlow(App app) {
             Button(
               'Back to the feeding',
               name: 'BackToTodayButton',
-              onTap: Navigate(ff.Pages.todayPage),
+              onTap: Navigate('TodayPage'),
             ),
           ],
         ),
@@ -393,13 +393,13 @@ void buildStarterEditFlow(App app) {
               'Log a stop',
               name: 'LogStopButton',
               visible: State('onTheRoad'),
-              onTap: Navigate(stopPage),
+              onTap: Navigate('StopPage'),
             ),
             Button(
               'Log a pickup',
               name: 'LogPickupButton',
               visible: State('onTheRoad'),
-              onTap: Navigate(pickupPage),
+              onTap: Navigate('PickupPage'),
             ),
             Button(
               'Finish the round',

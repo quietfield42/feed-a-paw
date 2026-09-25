@@ -1,0 +1,99 @@
+{
+  "version": 1,
+  "runId": "2026-09-25T22-07-54-931-3uf74r",
+  "projectId": "feeda-paw-hc0hpt",
+  "startedAt": "2026-09-25T22:07:52.898392Z",
+  "finishedAt": "2026-09-25T22:07:54.966745Z",
+  "flutterFlowAIVersion": "0.0.41",
+  "dartVersion": "3.10.7",
+  "environment": {
+    "os": "windows",
+    "cwd": "[REDACTED_PATH]",
+    "dryRun": false,
+    "pushed": false,
+    "refreshContext": true,
+    "preFlightFreshness": false,
+    "baseUrl": "[REDACTED_URL]"
+  },
+  "projectTarget": {
+    "type": "existing",
+    "requestedProjectId": "feeda-paw-hc0hpt",
+    "resolvedProjectId": "feeda-paw-hc0hpt"
+  },
+  "source": {
+    "mode": "paths",
+    "fileCount": 1,
+    "files": [
+      "edit.dart"
+    ],
+    "explicitPaths": [
+      "[REDACTED_PATH]"
+    ],
+    "localArchivePath": ".flutterflow/history/2026-09-25T22-07-54-931-3uf74r",
+    "uploaded": false
+  },
+  "tasks": [
+    {
+      "name": "compileDslApp",
+      "status": "failed",
+      "startedAt": "2026-09-25T22:07:54.655586Z",
+      "finishedAt": "2026-09-25T22:07:54.923285Z",
+      "durationMs": 267,
+      "error": "Invalid argument(s): Page \"DriverPage\" not found in project. Available pages: AboutPage, PickupPage, StopPage, TodayPage. Hint: create pages in reverse navigation order (target before source)."
+    }
+  ],
+  "diagnostics": [],
+  "commit": {
+    "attempted": false,
+    "created": false,
+    "commitMessage": "Feed a Paw: logging a stop and a butcher pickup"
+  },
+  "workspaceStateSnapshot": {
+    "projectId": "feeda-paw-hc0hpt",
+    "lastUpdated": "2026-09-25T22:07:54.937901Z",
+    "lastRun": {
+      "timestamp": "2026-09-25T22:07:54.937901Z",
+      "tasks": [
+        {
+          "name": "compileDslApp",
+          "status": "failed"
+        }
+      ],
+      "pushed": false
+    },
+    "instructionBundle": {
+      "mode": "full",
+      "templateSha256": "fbb431c336275ad73c3045d0b890faca89e37aa16b004e1e3668d7ec16e50172",
+      "bytes": 40161,
+      "lines": 404
+    },
+    "pageDsl": false
+  },
+  "recoveryHints": {
+    "version": 1,
+    "timestamp": "2026-09-25T22:07:54.946932Z",
+    "projectId": "feeda-paw-hc0hpt",
+    "status": "failed",
+    "completedTasks": [],
+    "failedTasks": [
+      {
+        "name": "compileDslApp",
+        "error": "Invalid argument(s): Page \"DriverPage\" not found in project. Available pages: AboutPage, PickupPage, StopPage, TodayPage. Hint: create pages in reverse navigation order (target before source).",
+        "validationErrors": []
+      }
+    ],
+    "skippedTasks": [],
+    "diagnostics": [],
+    "recoveryHints": [
+      "Task \"compileDslApp\" failed: Invalid argument(s): Page \"DriverPage\" not found in project. Available pages: AboutPage, PickupPage, StopPage, TodayPage. Hint: create pages in reverse navigation order (target before source).. Fix the error and re-run."
+    ],
+    "attemptedCommitMessage": "Feed a Paw: logging a stop and a butcher pickup"
+  },
+  "paths": {
+    "journalPath": ".flutterflow/runs.jsonl",
+    "lastRunArtifactPath": ".flutterflow/last_run.json",
+    "recoveryHintsPath": ".flutterflow/recovery.json",
+    "localSourceArchivePath": ".flutterflow/history/2026-09-25T22-07-54-931-3uf74r",
+    "localPlanArchivePath": ".flutterflow/history/2026-09-25T22-07-54-931-3uf74r/plan.md"
+  }
+}

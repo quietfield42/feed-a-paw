@@ -135,144 +135,6 @@ Options:
 }
 
 void buildStarterEditFlow(App app) {
-
-  // Made before the driver's page links to them: pages are created in reverse
-  // navigation order.
-  final stopPage = app.page(
-    'StopPage',
-    route: '/stop',
-    description: 'What was served at one place.',
-    state: {
-      'runId': string.withDefault(''),
-      'spotId': string.withDefault(''),
-      'meals': int_.withDefault(0),
-      'seen': int_.withDefault(0),
-      'note': string.withDefault(''),
-    },
-    body: Scaffold(
-      appBar: AppBar(title: 'A stop'),
-      body: Container(
-        padding: 20,
-        child: Column(
-          crossAxis: CrossAxis.start,
-          spacing: 14,
-          children: [
-            Text(
-              'Log it as you leave, while it is fresh.',
-              name: 'StopWords',
-              color: Colors.secondaryText,
-            ),
-            TextField(
-              name: 'SpotField',
-              label: 'Which place',
-              onChanged: SetState('spotId', const TextValue()),
-            ),
-            TextField(
-              name: 'MealsField',
-              label: 'Meals served',
-              keyboard: Keyboard.number,
-              onChanged: SetState('meals', const TextValue()),
-            ),
-            TextField(
-              name: 'SeenField',
-              label: 'Animals seen',
-              keyboard: Keyboard.number,
-              onChanged: SetState('seen', const TextValue()),
-            ),
-            TextField(
-              name: 'StopNoteField',
-              label: 'Anything worth saying',
-              onChanged: SetState('note', const TextValue()),
-            ),
-            Button(
-              'Save this stop',
-              name: 'SaveStopButton',
-              onTap: [
-                PostgresCreate(
-                  ff.Tables.feedRunStops,
-                  fields: {
-                    'run_id': State('runId'),
-                    'spot_id': State('spotId'),
-                    'meals_served': State('meals'),
-                    'animals_seen': State('seen'),
-                    'note': State('note'),
-                    'arrived_at': const Global(GlobalProperty.currentTimestamp),
-                  },
-                ),
-                Snackbar('Stop saved.'),
-                const NavigateBack(),
-              ],
-            ),
-          ],
-        ),
-      ),
-    ),
-  );
-
-  final pickupPage = app.page(
-    'PickupPage',
-    route: '/pickup',
-    description: 'Meat collected on the way.',
-    state: {
-      'runId': string.withDefault(''),
-      'butcher': string.withDefault(''),
-      'kilos': double_.withDefault(0),
-      'note': string.withDefault(''),
-    },
-    body: Scaffold(
-      appBar: AppBar(title: 'A pickup'),
-      body: Container(
-        padding: 20,
-        child: Column(
-          crossAxis: CrossAxis.start,
-          spacing: 14,
-          children: [
-            Text(
-              'What the butcher put aside this morning.',
-              name: 'PickupWords',
-              color: Colors.secondaryText,
-            ),
-            TextField(
-              name: 'ButcherField',
-              label: 'Which butcher',
-              onChanged: SetState('butcher', const TextValue()),
-            ),
-            TextField(
-              name: 'KilosField',
-              label: 'Kilos',
-              keyboard: Keyboard.number,
-              onChanged: SetState('kilos', const TextValue()),
-            ),
-            TextField(
-              name: 'PickupNoteField',
-              label: 'Note',
-              onChanged: SetState('note', const TextValue()),
-            ),
-            Button(
-              'Save the pickup',
-              name: 'SavePickupButton',
-              onTap: [
-                PostgresCreate(
-                  ff.Tables.feedCollections,
-                  fields: {
-                    'run_id': State('runId'),
-                    'butcher_name': State('butcher'),
-                    'kilos': State('kilos'),
-                    'collected_by': const AuthUser(AuthUserField.userId),
-                    'note': State('note'),
-                  },
-                ),
-                Snackbar('Pickup saved.'),
-                const NavigateBack(),
-              ],
-            ),
-          ],
-        ),
-      ),
-    ),
-  );
-
-
   // Signing in is for the team only: drivers, feeders, whoever writes the
   // stories. A supporter never needs an account.
   final signIn = app.page(
@@ -314,7 +176,7 @@ void buildStarterEditFlow(App app) {
             Button(
               'Back to the feeding',
               name: 'BackToTodayButton',
-              onTap: Navigate(ff.Pages.todayPage),
+              onTap: Navigate('TodayPage'),
             ),
           ],
         ),
@@ -363,28 +225,7 @@ void buildStarterEditFlow(App app) {
                     'started_at': const Global(GlobalProperty.currentTimestamp),
                   },
                 ),
-                // The row comes back as a list, so the day's run is read
-                // straight back to get its id.
-                PostgresRead(
-                  ff.Tables.feedRuns,
-                  outputAs: 'todayRun',
-                  query: PostgresQuerySpec(
-                    filters: [
-                      PostgresFilter(
-                        'driver_id',
-                        relation: PostgresFilterRelation.equalTo,
-                        value: const AuthUser(AuthUserField.userId),
-                      ),
-                      PostgresFilter(
-                        'status',
-                        relation: PostgresFilterRelation.equalTo,
-                        value: 'running',
-                      ),
-                    ],
-                    isSingleRow: true,
-                  ),
-                ),
-                SetState('runId', ActionOutput('todayRun')['id']),
+                SetState('runId', ActionOutput('newRun')['id']),
                 SetState('onTheRoad', true),
                 Snackbar('The round has started.'),
               ],
@@ -393,13 +234,13 @@ void buildStarterEditFlow(App app) {
               'Log a stop',
               name: 'LogStopButton',
               visible: State('onTheRoad'),
-              onTap: Navigate(stopPage),
+              onTap: Navigate('StopPage'),
             ),
             Button(
               'Log a pickup',
               name: 'LogPickupButton',
               visible: State('onTheRoad'),
-              onTap: Navigate(pickupPage),
+              onTap: Navigate('PickupPage'),
             ),
             Button(
               'Finish the round',

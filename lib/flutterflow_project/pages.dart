@@ -4,13 +4,25 @@ library;
 
 import 'package:flutterflow_ai/flutterflow_ai.dart' as ffai;
 import 'pages/about_page.dart' show aboutPageHandle;
+import 'pages/driver_page.dart' show driverPageHandle;
+import 'pages/pickup_page.dart' show pickupPageHandle;
+import 'pages/sign_in_page.dart' show signInPageHandle;
+import 'pages/stop_page.dart' show stopPageHandle;
 import 'pages/today_page.dart' show todayPageHandle;
 
 abstract final class Pages {
   static final aboutPage = aboutPageHandle;
+  static final driverPage = driverPageHandle;
+  static final pickupPage = pickupPageHandle;
+  static final signInPage = signInPageHandle;
+  static final stopPage = stopPageHandle;
   static final todayPage = todayPageHandle;
   static final all = <ffai.ProjectPageHandle>[
     aboutPage,
+    driverPage,
+    pickupPage,
+    signInPage,
+    stopPage,
     todayPage,
   ];
 }

@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "runId": "4Di1PzNOhxyDzMvGteAT",
+  "projectId": "feeda-paw-hc0hpt",
+  "startedAt": "2026-09-25T22:02:03.231468Z",
+  "finishedAt": "2026-09-25T22:02:11.406640Z",
+  "flutterFlowAIVersion": "0.0.41",
+  "dartVersion": "3.10.7",
+  "environment": {
+    "os": "windows",
+    "cwd": "[REDACTED_PATH]",
+    "dryRun": false,
+    "pushed": true,
+    "refreshContext": true,
+    "preFlightFreshness": false,
+    "baseUrl": "[REDACTED_URL]"
+  },
+  "projectTarget": {
+    "type": "existing",
+    "requestedProjectId": "feeda-paw-hc0hpt",
+    "resolvedProjectId": "feeda-paw-hc0hpt"
+  },
+  "source": {
+    "mode": "paths",
+    "fileCount": 1,
+    "files": [
+      "edit.dart"
+    ],
+    "explicitPaths": [
+      "[REDACTED_PATH]"
+    ],
+    "localArchivePath": ".flutterflow/history/4Di1PzNOhxyDzMvGteAT",
+    "uploaded": true,
+    "uploadCommitId": "4Di1PzNOhxyDzMvGteAT"
+  },
+  "tasks": [
+    {
+      "name": "compileDslApp",
+      "status": "passed",
+      "startedAt": "2026-09-25T22:02:04.728496Z",
+      "finishedAt": "2026-09-25T22:02:06.547892Z",
+      "durationMs": 78
+    }
+  ],
+  "diagnostics": [
+    {
+      "code": "PREEXISTING_WIRING",
+      "message": "3 pre-existing wiring findings outside this edit; run `flutterflow ai review` to list them",
+      "severity": "warning",
+      "location": "",
+      "target": "wiring"
+    }
+  ],
+  "changeSummary": {},
+  "commit": {
+    "attempted": true,
+    "created": true,
+    "commitId": "4Di1PzNOhxyDzMvGteAT",
+    "commitMessage": "Feed a Paw: the tables the driver's day needs"
+  },
+  "workspaceStateSnapshot": {
+    "projectId": "feeda-paw-hc0hpt",
+    "lastUpdated": "2026-09-25T22:02:11.382822Z",
+    "lastRun": {
+      "timestamp": "2026-09-25T22:02:11.382822Z",
+      "tasks": [
+        {
+          "name": "compileDslApp",
+          "status": "passed"
+        }
+      ],
+      "pushed": true,
+      "commitId": "4Di1PzNOhxyDzMvGteAT"
+    },
+    "instructionBundle": {
+      "mode": "full",
+      "templateSha256": "fbb431c336275ad73c3045d0b890faca89e37aa16b004e1e3668d7ec16e50172",
+      "bytes": 40161,
+      "lines": 404
+    },
+    "pageDsl": false
+  },
+  "paths": {
+    "journalPath": ".flutterflow/runs.jsonl",
+    "lastRunArtifactPath": ".flutterflow/last_run.json",
+    "recoveryHintsPath": ".flutterflow/recovery.json",
+    "localSourceArchivePath": ".flutterflow/history/4Di1PzNOhxyDzMvGteAT",
+    "localPlanArchivePath": ".flutterflow/history/4Di1PzNOhxyDzMvGteAT/plan.md"
+  }
+}

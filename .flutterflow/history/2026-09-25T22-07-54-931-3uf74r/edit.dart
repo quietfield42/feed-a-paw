@@ -135,10 +135,9 @@ Options:
 }
 
 void buildStarterEditFlow(App app) {
-
   // Made before the driver's page links to them: pages are created in reverse
   // navigation order.
-  final stopPage = app.page(
+  app.page(
     'StopPage',
     route: '/stop',
     description: 'What was served at one place.',
@@ -200,7 +199,7 @@ void buildStarterEditFlow(App app) {
                   },
                 ),
                 Snackbar('Stop saved.'),
-                const NavigateBack(),
+                Navigate('DriverPage'),
               ],
             ),
           ],
@@ -209,7 +208,7 @@ void buildStarterEditFlow(App app) {
     ),
   );
 
-  final pickupPage = app.page(
+  app.page(
     'PickupPage',
     route: '/pickup',
     description: 'Meat collected on the way.',
@@ -263,179 +262,12 @@ void buildStarterEditFlow(App app) {
                   },
                 ),
                 Snackbar('Pickup saved.'),
-                const NavigateBack(),
+                Navigate('DriverPage'),
               ],
             ),
           ],
         ),
       ),
     ),
-  );
-
-
-  // Signing in is for the team only: drivers, feeders, whoever writes the
-  // stories. A supporter never needs an account.
-  final signIn = app.page(
-    'SignInPage',
-    route: '/sign-in',
-    description: 'For the team. Supporters never need an account.',
-    state: {'email': string, 'password': string},
-    body: Scaffold(
-      appBar: AppBar(title: 'Sign in'),
-      body: Container(
-        padding: 24,
-        child: Column(
-          crossAxis: CrossAxis.start,
-          spacing: 16,
-          children: [
-            Text(
-              'Only the team signs in: drivers, feeders, and whoever writes '
-              'the stories. Everyone else can just watch the work.',
-              name: 'SignInWords',
-              color: Colors.secondaryText,
-            ),
-            TextField(
-              name: 'EmailField',
-              label: 'Email',
-              keyboard: Keyboard.email,
-              onChanged: SetState('email', const TextValue()),
-            ),
-            TextField(
-              name: 'PasswordField',
-              label: 'Password',
-              obscureText: true,
-              onChanged: SetState('password', const TextValue()),
-            ),
-            Button(
-              'Sign in',
-              name: 'SignInButton',
-              onTap: [LoginEmailPassword(State('email'), State('password'))],
-            ),
-            Button(
-              'Back to the feeding',
-              name: 'BackToTodayButton',
-              onTap: Navigate(ff.Pages.todayPage),
-            ),
-          ],
-        ),
-      ),
-    ),
-  );
-
-  final driver = app.page(
-    'DriverPage',
-    route: '/driver',
-    description: 'The round, as the driver works it.',
-    state: {
-      'runId': string.withDefault(''),
-      'onTheRoad': bool_.withDefault(false),
-    },
-    body: Scaffold(
-      appBar: AppBar(title: 'Today'),
-      body: Container(
-        padding: 20,
-        child: Column(
-          crossAxis: CrossAxis.start,
-          spacing: 16,
-          children: [
-            Text(
-              'The round',
-              name: 'RoundHeading',
-              style: Styles.headlineSmall,
-              color: Colors.primary,
-            ),
-            Text(
-              'Start the day, then log each stop as you go.',
-              name: 'RoundWords',
-              color: Colors.secondaryText,
-            ),
-            Button(
-              'Start the round',
-              name: 'StartRunButton',
-              visible: Not(State('onTheRoad')),
-              onTap: [
-                PostgresCreate(
-                  ff.Tables.feedRuns,
-                  outputAs: 'newRun',
-                  fields: {
-                    'driver_id': const AuthUser(AuthUserField.userId),
-                    'status': 'running',
-                    'started_at': const Global(GlobalProperty.currentTimestamp),
-                  },
-                ),
-                // The row comes back as a list, so the day's run is read
-                // straight back to get its id.
-                PostgresRead(
-                  ff.Tables.feedRuns,
-                  outputAs: 'todayRun',
-                  query: PostgresQuerySpec(
-                    filters: [
-                      PostgresFilter(
-                        'driver_id',
-                        relation: PostgresFilterRelation.equalTo,
-                        value: const AuthUser(AuthUserField.userId),
-                      ),
-                      PostgresFilter(
-                        'status',
-                        relation: PostgresFilterRelation.equalTo,
-                        value: 'running',
-                      ),
-                    ],
-                    isSingleRow: true,
-                  ),
-                ),
-                SetState('runId', ActionOutput('todayRun')['id']),
-                SetState('onTheRoad', true),
-                Snackbar('The round has started.'),
-              ],
-            ),
-            Button(
-              'Log a stop',
-              name: 'LogStopButton',
-              visible: State('onTheRoad'),
-              onTap: Navigate(stopPage),
-            ),
-            Button(
-              'Log a pickup',
-              name: 'LogPickupButton',
-              visible: State('onTheRoad'),
-              onTap: Navigate(pickupPage),
-            ),
-            Button(
-              'Finish the round',
-              name: 'FinishRunButton',
-              visible: State('onTheRoad'),
-              onTap: [
-                PostgresUpdate(
-                  ff.Tables.feedRuns,
-                  fields: {
-                    'status': 'done',
-                    'ended_at': const Global(GlobalProperty.currentTimestamp),
-                  },
-                  query: PostgresQuerySpec(
-                    filters: [
-                      PostgresFilter(
-                        'id',
-                        relation: PostgresFilterRelation.equalTo,
-                        value: State('runId'),
-                      ),
-                    ],
-                    isSingleRow: true,
-                  ),
-                ),
-                SetState('onTheRoad', false),
-                Snackbar('Round finished. Thank you.'),
-              ],
-            ),
-          ],
-        ),
-      ),
-    ),
-  );
-
-  app.supabaseAuth(
-    providers: const [SupabaseAuthProvider.email],
-    homePage: driver,
-    signInPage: signIn,
   );
 }
