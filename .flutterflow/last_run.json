@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "timestamp": "2026-09-25T15:40:51.806538Z",
+  "projectId": "feeda-paw-hc0hpt",
+  "success": true,
+  "noOp": false,
+  "pushed": true,
+  "dryRun": false,
+  "commitId": "tBLByGlDU2EAagor6VnK",
+  "commitMessage": "Feed a Paw: the counter, the stories and the Support button",
+  "tasks": [
+    {
+      "name": "compileDslApp",
+      "success": true,
+      "skipped": false,
+      "durationMs": 371,
+      "validationErrors": [
+        "This color could use the theme's \"Info\" color instead of a hardcoded value.",
+        "This color could use the theme's \"Info\" color instead of a hardcoded value.",
+        "This color could use the theme's \"Info\" color instead of a hardcoded value."
+      ]
+    }
+  ],
+  "diagnostics": [
+    {
+      "code": "VALIDATION_HARDCODED_COLOR",
+      "message": "This color could use the theme's \"Info\" color instead of a hardcoded value.",
+      "severity": "warning",
+      "location": "Button 'AboutButton' [key: Button_ikvt4ilc]",
+      "target": "widget"
+    },
+    {
+      "code": "VALIDATION_HARDCODED_COLOR",
+      "message": "This color could use the theme's \"Info\" color instead of a hardcoded value.",
+      "severity": "warning",
+      "location": "Button 'GiveButton' [key: Button_j0a5kwkc]",
+      "target": "widget"
+    },
+    {
+      "code": "VALIDATION_HARDCODED_COLOR",
+      "message": "This color could use the theme's \"Info\" color instead of a hardcoded value.",
+      "severity": "warning",
+      "location": "Button 'SupportButton' [key: Button_h75xi57u]",
+      "target": "widget"
+    }
+  ]
+}

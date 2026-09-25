@@ -1,0 +1,3 @@
+# Mirror the analysis constraints of generated_code/ so analyzer output from
+# `dart analyze .ffai_staging/` matches what the server would report on push.
+include: ../generated_code/analysis_options.yaml

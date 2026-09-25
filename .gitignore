@@ -1,0 +1,5 @@
+generated_code/
+.flutterflow/sdk/
+.flutterflow/.env
+.dart_tool/
+build/

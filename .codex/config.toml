@@ -1,0 +1,3 @@
+[mcp_servers.flutterflow_ai]
+command = "C:\\Users\\ashel\\AppData\\Roaming\\FlutterFlow\\flutterflow\\flutter\\bin\\cache\\dart-sdk\\bin\\dart.exe"
+args = ["C:\\Users\\ashel\\AppData\\Local\\FlutterFlow\\agent-workspaces\\ff-agent-feedapaw\\feedapaw\\.flutterflow/sdk/flutterflow_ai\\mcp\\server.dill", "--dir", "C:\\Users\\ashel\\AppData\\Local\\FlutterFlow\\agent-workspaces\\ff-agent-feedapaw\\feedapaw"]

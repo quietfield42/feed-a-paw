@@ -1,0 +1,22 @@
+{
+  "projectId": "feeda-paw-hc0hpt",
+  "lastUpdated": "2026-09-25T15:40:51.801374Z",
+  "lastRun": {
+    "timestamp": "2026-09-25T15:40:51.801374Z",
+    "tasks": [
+      {
+        "name": "compileDslApp",
+        "status": "passed"
+      }
+    ],
+    "pushed": true,
+    "commitId": "tBLByGlDU2EAagor6VnK"
+  },
+  "instructionBundle": {
+    "mode": "full",
+    "templateSha256": "fbb431c336275ad73c3045d0b890faca89e37aa16b004e1e3668d7ec16e50172",
+    "bytes": 40161,
+    "lines": 404
+  },
+  "pageDsl": false
+}

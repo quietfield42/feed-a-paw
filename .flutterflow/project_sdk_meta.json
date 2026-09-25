@@ -1,0 +1,52 @@
+{
+  "version": 5,
+  "projectId": "feeda-paw-hc0hpt",
+  "projectName": "Feed a Paw",
+  "file": "lib/flutterflow_project.dart",
+  "status": "fresh",
+  "generatorVersion": 3,
+  "generatedAt": "2026-09-25T15:40:51.752604Z",
+  "projectUpdatedAtMs": 1790350849280,
+  "files": {
+    "project": {
+      "path": "lib/flutterflow_project/project.dart",
+      "sha": "627456a8057d3b049b0afc3aad08c40cff6f7db195e732e82b6bb10992d38d95"
+    },
+    "schemas": {
+      "path": "lib/flutterflow_project/schemas.dart",
+      "sha": "fa73fed9390ef6fc0a9000d1fc2db5ee098a189c76813970010b78c2e370fe73"
+    },
+    "app_state": {
+      "path": "lib/flutterflow_project/app_state.dart",
+      "sha": "c20edb63e504a71a92b0c87cbc1b095099368d9bc4587c5408a220bd55f04115"
+    },
+    "apis": {
+      "path": "lib/flutterflow_project/apis.dart",
+      "sha": "7f0694a347446f7a5373421277a2ec9af10c4e33246dd5c51223d81ef625e123"
+    },
+    "theme": {
+      "path": "lib/flutterflow_project/theme.dart",
+      "sha": "6ccb3a9edfff47ff59ee312c518a5ad5d1d70ec10aaa2b23c2ed5f8e288b1cc8"
+    },
+    "page:Scaffold_7o63x918": {
+      "path": "lib/flutterflow_project/pages/about_page.dart",
+      "sha": "06306c851a4f0335d9a78a81a7e2bd478821feb07e75e815495cc2525242680b"
+    },
+    "page:Scaffold_go7ytkf6": {
+      "path": "lib/flutterflow_project/pages/today_page.dart",
+      "sha": "a2bfdc503787bcc0cf9604ac4a0c7b249769d093826e007ed5ef39a382c4fa77"
+    },
+    "pages_index": {
+      "path": "lib/flutterflow_project/pages.dart",
+      "sha": "a132246fcd26eb87f163749aedef49707cf0a7b296791c202c0863ae2427a0fd"
+    },
+    "components_index": {
+      "path": "lib/flutterflow_project/components.dart",
+      "sha": "68c280a7fb483bec4c5c53375a264ceccee8c94c396f908eedc8d8dbcd3c3504"
+    },
+    "barrel": {
+      "path": "lib/flutterflow_project.dart",
+      "sha": "9f37f10706f703a84283b79446689ddfee11917d921adc8bdccade99e4cae6ff"
+    }
+  }
+}

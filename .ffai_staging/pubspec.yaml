@@ -1,0 +1,11 @@
+name: ffai_staging
+description: Scratch sandbox for flutterflow_ai custom-code iteration. Gitignored.
+publish_to: none
+version: 0.0.1
+
+environment:
+  sdk: ">=3.7.0 <4.0.0"
+
+dependencies:
+  generated_code:
+    path: ../generated_code

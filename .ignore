@@ -1,0 +1,3 @@
+# FlutterFlow AI managed: hide vendored SDK from search
+.flutterflow/sdk/
+.flutterflow/page-dsl/

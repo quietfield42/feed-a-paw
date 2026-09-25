@@ -1,0 +1,99 @@
+{
+  "version": 1,
+  "runId": "2026-09-25T15-29-52-325-hjs2cy",
+  "projectId": "feeda-paw-hc0hpt",
+  "startedAt": "2026-09-25T15:29:50.545256Z",
+  "finishedAt": "2026-09-25T15:29:52.363795Z",
+  "flutterFlowAIVersion": "0.0.41",
+  "dartVersion": "3.10.7",
+  "environment": {
+    "os": "windows",
+    "cwd": "[REDACTED_PATH]",
+    "dryRun": false,
+    "pushed": false,
+    "refreshContext": true,
+    "preFlightFreshness": false,
+    "baseUrl": "[REDACTED_URL]"
+  },
+  "projectTarget": {
+    "type": "existing",
+    "requestedProjectId": "feeda-paw-hc0hpt",
+    "resolvedProjectId": "feeda-paw-hc0hpt"
+  },
+  "source": {
+    "mode": "paths",
+    "fileCount": 1,
+    "files": [
+      "create.dart"
+    ],
+    "explicitPaths": [
+      "[REDACTED_PATH]"
+    ],
+    "localArchivePath": ".flutterflow/history/2026-09-25T15-29-52-325-hjs2cy",
+    "uploaded": false
+  },
+  "tasks": [
+    {
+      "name": "compileDslApp",
+      "status": "failed",
+      "startedAt": "2026-09-25T15:29:52.240617Z",
+      "finishedAt": "2026-09-25T15:29:52.322428Z",
+      "durationMs": 81,
+      "error": "Invalid argument(s): A page or component named \"HomePage\" already exists."
+    }
+  ],
+  "diagnostics": [],
+  "commit": {
+    "attempted": false,
+    "created": false,
+    "commitMessage": "Feed a Paw: the counter, the stories and the Support button"
+  },
+  "workspaceStateSnapshot": {
+    "projectId": "feeda-paw-hc0hpt",
+    "lastUpdated": "2026-09-25T15:29:52.333942Z",
+    "lastRun": {
+      "timestamp": "2026-09-25T15:29:52.333942Z",
+      "tasks": [
+        {
+          "name": "compileDslApp",
+          "status": "failed"
+        }
+      ],
+      "pushed": false
+    },
+    "instructionBundle": {
+      "mode": "full",
+      "templateSha256": "fbb431c336275ad73c3045d0b890faca89e37aa16b004e1e3668d7ec16e50172",
+      "bytes": 40161,
+      "lines": 404
+    },
+    "pageDsl": false
+  },
+  "recoveryHints": {
+    "version": 1,
+    "timestamp": "2026-09-25T15:29:52.341474Z",
+    "projectId": "feeda-paw-hc0hpt",
+    "status": "failed",
+    "completedTasks": [],
+    "failedTasks": [
+      {
+        "name": "compileDslApp",
+        "error": "Invalid argument(s): A page or component named \"HomePage\" already exists.",
+        "validationErrors": []
+      }
+    ],
+    "skippedTasks": [],
+    "diagnostics": [],
+    "recoveryHints": [
+      "Task \"compileDslApp\" failed: Invalid argument(s): A page or component named \"HomePage\" already exists.. Fix the error and re-run."
+    ],
+    "attemptedCommitMessage": "Feed a Paw: the counter, the stories and the Support button"
+  },
+  "paths": {
+    "journalPath": ".flutterflow/runs.jsonl",
+    "lastRunArtifactPath": ".flutterflow/last_run.json",
+    "recoveryHintsPath": ".flutterflow/recovery.json",
+    "localSourceArchivePath": ".flutterflow/history/2026-09-25T15-29-52-325-hjs2cy",
+    "localPlanArchivePath": ".flutterflow/history/2026-09-25T15-29-52-325-hjs2cy/plan.md"
+  }
+}
