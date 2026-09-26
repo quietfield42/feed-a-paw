@@ -135,12 +135,21 @@ Options:
 }
 
 void buildStarterEditFlow(App app) {
-  // A data-backed list inside a scrolling column needs a height of its own,
-  // not shrinkWrap: FlutterFlow warns about that for good reason.
-  app.editPage(ff.Pages.stopPage, (page) {
-    page.ensureWrappedWith(
-      ff.Pages.stopPage.widgets.byKey('ListView_s17wb0qu').single,
-      Container(name: 'SpotListFrame', height: 230),
-    );
-  });
+  app.editPageOnLoad(ff.Pages.stopPage, [
+    PostgresQuery(
+      ff.Tables.feedSpots,
+      outputAs: 'loadedSpots',
+      query: PostgresQuerySpec(
+        filters: [
+          PostgresFilter(
+            'active',
+            relation: PostgresFilterRelation.equalTo,
+            value: true,
+          ),
+        ],
+        orderBys: const [PostgresOrderBy('name')],
+      ),
+    ),
+    SetState(ff.Pages.stopPage.state.spots, ActionOutput('loadedSpots')),
+  ]);
 }

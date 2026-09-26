@@ -135,12 +135,10 @@ Options:
 }
 
 void buildStarterEditFlow(App app) {
-  // A data-backed list inside a scrolling column needs a height of its own,
-  // not shrinkWrap: FlutterFlow warns about that for good reason.
-  app.editPage(ff.Pages.stopPage, (page) {
-    page.ensureWrappedWith(
-      ff.Pages.stopPage.widgets.byKey('ListView_s17wb0qu').single,
-      Container(name: 'SpotListFrame', height: 230),
-    );
+  // The stop page needs somewhere to keep the chosen place and the list to
+  // choose from, before the picker itself can be built.
+  app.editPageState(ff.Pages.stopPage, (state) {
+    state.ensureField('spotName', string.withDefault(''));
+    state.ensureField('spots', listOf(ff.Tables.feedSpots));
   });
 }

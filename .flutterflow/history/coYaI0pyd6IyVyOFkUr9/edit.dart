@@ -135,12 +135,55 @@ Options:
 }
 
 void buildStarterEditFlow(App app) {
-  // A data-backed list inside a scrolling column needs a height of its own,
-  // not shrinkWrap: FlutterFlow warns about that for good reason.
+  // A driver should tap the place, not type its id. The list comes from the
+  // spots the team keeps, and tapping one remembers it for the save below.
   app.editPage(ff.Pages.stopPage, (page) {
-    page.ensureWrappedWith(
-      ff.Pages.stopPage.widgets.byKey('ListView_s17wb0qu').single,
-      Container(name: 'SpotListFrame', height: 230),
+    page.ensureReplaced(
+      ff.Pages.stopPage.widgets.byKey('TextField_fnc1ngm5').single,
+      Column(
+        name: 'SpotPicker',
+        crossAxis: CrossAxis.start,
+        spacing: 8,
+        children: [
+          Text(
+            'Which place',
+            name: 'SpotPickerLabel',
+            style: Styles.labelMedium,
+            color: Colors.secondaryText,
+          ),
+          Text(
+            State(ff.Pages.stopPage.state.spotName),
+            name: 'ChosenSpotText',
+            style: Styles.titleMedium,
+            color: Colors.primary,
+          ),
+          ListView(
+            name: 'SpotList',
+            source: State(ff.Pages.stopPage.state.spots),
+            spacing: 6,
+            shrinkWrap: true,
+            itemBuilder: (item) => Card(
+              onTap: [
+                SetState(ff.Pages.stopPage.state.spotId, item['id']),
+                SetState(ff.Pages.stopPage.state.spotName, item['name']),
+              ],
+              child: Column(
+                crossAxis: CrossAxis.start,
+                spacing: 2,
+                children: [
+                  Text(item['name'], style: Styles.bodyLarge),
+                  Text(
+                    item['area'],
+                    style: Styles.labelSmall,
+                    color: Colors.secondaryText,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   });
+
 }
