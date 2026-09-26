@@ -19,6 +19,12 @@ final class DriverPageParams {
 
 final class DriverPageState {
   const DriverPageState();
+  ffai.ProjectStateFieldHandle get mealsToday =>
+      const ffai.ProjectStateFieldHandle(
+        name: "mealsToday",
+        key: "niadlepw",
+        typeName: "Integer",
+      );
   ffai.ProjectStateFieldHandle get onTheRoad =>
       const ffai.ProjectStateFieldHandle(
         name: "onTheRoad",
@@ -30,6 +36,12 @@ final class DriverPageState {
         name: "runId",
         key: "yhvk75er",
         typeName: "String",
+      );
+  ffai.ProjectStateFieldHandle get stopsToday =>
+      const ffai.ProjectStateFieldHandle(
+        name: "stopsToday",
+        key: "iqz3u9cr",
+        typeName: "Integer",
       );
 }
 
@@ -91,9 +103,67 @@ abstract final class DriverPageWidgets {
                     text: "Start the day, then log each stop as you go.",
                   ),
                   ffai.ProjectWidgetHandle(
+                    key: "Card_1zqo9do8",
+                    type: "Card",
+                    path: "DriverPage.body[0].children[0].children[2]",
+                    name: "TallyCard",
+                    children: <ffai.ProjectWidgetHandle>[
+                      ffai.ProjectWidgetHandle(
+                        key: "Row_ljairs14",
+                        type: "Row",
+                        path: "DriverPage.body[0].children[0].children[2].children[0]",
+                        name: "Row",
+                        children: <ffai.ProjectWidgetHandle>[
+                          ffai.ProjectWidgetHandle(
+                            key: "Column_ds3sxuef",
+                            type: "Column",
+                            path: "DriverPage.body[0].children[0].children[2].children[0].children[0]",
+                            name: "Column",
+                            children: <ffai.ProjectWidgetHandle>[
+                              ffai.ProjectWidgetHandle(
+                                key: "Text_cfgacbly",
+                                type: "Text",
+                                path: "DriverPage.body[0].children[0].children[2].children[0].children[0].children[0]",
+                                name: "StopsTodayText",
+                              ),
+                              ffai.ProjectWidgetHandle(
+                                key: "Text_664vt0o3",
+                                type: "Text",
+                                path: "DriverPage.body[0].children[0].children[2].children[0].children[0].children[1]",
+                                name: "StopsTodayLabel",
+                                text: "stops",
+                              ),
+                            ],
+                          ),
+                          ffai.ProjectWidgetHandle(
+                            key: "Column_rbf2uqle",
+                            type: "Column",
+                            path: "DriverPage.body[0].children[0].children[2].children[0].children[1]",
+                            name: "Column",
+                            children: <ffai.ProjectWidgetHandle>[
+                              ffai.ProjectWidgetHandle(
+                                key: "Text_6hvc6t1l",
+                                type: "Text",
+                                path: "DriverPage.body[0].children[0].children[2].children[0].children[1].children[0]",
+                                name: "MealsTodayText",
+                              ),
+                              ffai.ProjectWidgetHandle(
+                                key: "Text_8bk6xl4z",
+                                type: "Text",
+                                path: "DriverPage.body[0].children[0].children[2].children[0].children[1].children[1]",
+                                name: "MealsTodayLabel",
+                                text: "meals",
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  ffai.ProjectWidgetHandle(
                     key: "Button_ox047bt4",
                     type: "Button",
-                    path: "DriverPage.body[0].children[0].children[2]",
+                    path: "DriverPage.body[0].children[0].children[3]",
                     name: "StartRunButton",
                     text: "Start the round",
                     triggers: const <String>[
@@ -103,7 +173,7 @@ abstract final class DriverPageWidgets {
                   ffai.ProjectWidgetHandle(
                     key: "Button_2fog88v7",
                     type: "Button",
-                    path: "DriverPage.body[0].children[0].children[3]",
+                    path: "DriverPage.body[0].children[0].children[4]",
                     name: "LogStopButton",
                     text: "Log a stop",
                     triggers: const <String>[
@@ -113,7 +183,7 @@ abstract final class DriverPageWidgets {
                   ffai.ProjectWidgetHandle(
                     key: "Button_zmdjnht0",
                     type: "Button",
-                    path: "DriverPage.body[0].children[0].children[4]",
+                    path: "DriverPage.body[0].children[0].children[5]",
                     name: "LogPickupButton",
                     text: "Log a pickup",
                     triggers: const <String>[
@@ -123,7 +193,7 @@ abstract final class DriverPageWidgets {
                   ffai.ProjectWidgetHandle(
                     key: "Button_zfzjqb0v",
                     type: "Button",
-                    path: "DriverPage.body[0].children[0].children[5]",
+                    path: "DriverPage.body[0].children[0].children[6]",
                     name: "FinishRunButton",
                     text: "Finish the round",
                     triggers: const <String>[

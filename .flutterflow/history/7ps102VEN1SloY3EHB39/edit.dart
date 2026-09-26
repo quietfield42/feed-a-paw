@@ -135,61 +135,30 @@ Options:
 }
 
 void buildStarterEditFlow(App app) {
-  // Opening the page reads the round that is running and its tally, so the
-  // numbers are right even after the app was closed mid-street.
-  app.editPageOnLoad(ff.Pages.driverPage, [
-    PostgresRead(
-      ff.Tables.feedRuns,
-      outputAs: 'runningRun',
-      query: PostgresQuerySpec(
-        filters: [
-          PostgresFilter(
-            'driver_id',
-            relation: PostgresFilterRelation.equalTo,
-            value: const AuthUser(AuthUserField.userId),
-          ),
-          PostgresFilter(
-            'status',
-            relation: PostgresFilterRelation.equalTo,
-            value: 'running',
-          ),
-        ],
-        isSingleRow: true,
-      ),
-    ),
-    If(
-      Not(Equals(ActionOutput('runningRun')['id'], '')),
-      then: [
-        UpdateAppState.set(
-            ff.AppState.currentRunId, ActionOutput('runningRun')['id']),
-        SetState(
-            ff.Pages.driverPage.state.runId, ActionOutput('runningRun')['id']),
-        SetState(ff.Pages.driverPage.state.onTheRoad, true),
-        PostgresRead(
-          ff.Tables.feedRunTotals,
-          outputAs: 'tally',
-          query: PostgresQuerySpec(
-            filters: [
-              PostgresFilter(
-                'run_id',
-                relation: PostgresFilterRelation.equalTo,
-                value: ActionOutput('runningRun')['id'],
-              ),
-            ],
-            isSingleRow: true,
-          ),
-        ),
-        SetState(
-            ff.Pages.driverPage.state.stopsToday, ActionOutput('tally')['stops']),
-        SetState(
-            ff.Pages.driverPage.state.mealsToday, ActionOutput('tally')['meals']),
-      ],
-      orElse: [
-        UpdateAppState.set(ff.AppState.currentRunId, ''),
-        SetState(ff.Pages.driverPage.state.onTheRoad, false),
-        SetState(ff.Pages.driverPage.state.stopsToday, 0),
-        SetState(ff.Pages.driverPage.state.mealsToday, 0),
-      ],
-    ),
-  ]);
+  app.supabase(
+    url: 'https://bxoboypzumjdfkpszbkt.supabase.co',
+    anonKey: 'sb_publishable_g3AquYaNa0cwXs8jxqidqg_p1FwQCWJ',
+  );
+
+  // The database adds up the round; the app only shows it.
+  app.table(
+    'feed_run_totals',
+    fields: {
+      'run_id': const PostgresTableField(string,
+          postgresType: 'uuid', isPrimaryKey: true),
+      'driver_id': const PostgresTableField(string, postgresType: 'uuid'),
+      'day': const PostgresTableField(dateTime, postgresType: 'date'),
+      'status': const PostgresTableField(string, postgresType: 'text'),
+      'stops': const PostgresTableField(int_, postgresType: 'int8'),
+      'meals': const PostgresTableField(int_, postgresType: 'int4'),
+      'animals': const PostgresTableField(int_, postgresType: 'int4'),
+    },
+    description: 'One row per round: stops made, meals served, animals seen.',
+  );
+
+  // Somewhere to keep the day's tally while the driver is out.
+  app.editPageState(ff.Pages.driverPage, (state) {
+    state.ensureField('stopsToday', int_.withDefault(0));
+    state.ensureField('mealsToday', int_.withDefault(0));
+  });
 }

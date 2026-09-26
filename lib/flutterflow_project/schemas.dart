@@ -38,6 +38,12 @@ abstract final class Tables {
     isView: false,
     fields: FeedRunStopsFields(),
   );
+  static final feedRunTotals = ffai.ProjectTableHandle<FeedRunTotalsFields>(
+    name: "feed_run_totals",
+    description: "",
+    isView: false,
+    fields: FeedRunTotalsFields(),
+  );
   static final feedRuns = ffai.ProjectTableHandle<FeedRunsFields>(
     name: "feed_runs",
     description: "",
@@ -66,6 +72,7 @@ abstract final class Tables {
     feedCollections,
     feedFund,
     feedRunStops,
+    feedRunTotals,
     feedRuns,
     feedSpots,
     feedStories,
@@ -435,6 +442,127 @@ final class FeedRunStopsFields extends MapBase<String, ffai.PostgresTableField> 
     "run_id" => this.runId,
     "skipped_reason" => this.skippedReason,
     "spot_id" => this.spotId,
+    _ => null,
+  };
+
+  @override
+  void operator []=(String key, ffai.PostgresTableField value) =>
+      throw UnsupportedError('Generated project SDK fields are read-only.');
+
+  @override
+  void clear() => throw UnsupportedError('Generated project SDK fields are read-only.');
+
+  @override
+  ffai.PostgresTableField? remove(Object? key) =>
+      throw UnsupportedError('Generated project SDK fields are read-only.');
+}
+
+final class FeedRunTotalsFields extends MapBase<String, ffai.PostgresTableField> {
+  late final animals = ffai.ProjectTableFieldHandle(
+    name: "animals",
+    key: "jy7ugxvd",
+    typeName: "Integer",
+    type: ffai.int_,
+    description: "",
+    postgresType: "int4",
+    foreignKey: null,
+    isPrimaryKey: false,
+    isRequired: false,
+    hasDefault: false,
+  );
+  late final day = ffai.ProjectTableFieldHandle(
+    name: "day",
+    key: "lquvw2ux",
+    typeName: "DateTime",
+    type: ffai.dateTime,
+    description: "",
+    postgresType: "date",
+    foreignKey: null,
+    isPrimaryKey: false,
+    isRequired: false,
+    hasDefault: false,
+  );
+  late final driverId = ffai.ProjectTableFieldHandle(
+    name: "driver_id",
+    key: "q5ox4uot",
+    typeName: "String",
+    type: ffai.string,
+    description: "",
+    postgresType: "uuid",
+    foreignKey: null,
+    isPrimaryKey: false,
+    isRequired: false,
+    hasDefault: false,
+  );
+  late final meals = ffai.ProjectTableFieldHandle(
+    name: "meals",
+    key: "twrigaxw",
+    typeName: "Integer",
+    type: ffai.int_,
+    description: "",
+    postgresType: "int4",
+    foreignKey: null,
+    isPrimaryKey: false,
+    isRequired: false,
+    hasDefault: false,
+  );
+  late final runId = ffai.ProjectTableFieldHandle(
+    name: "run_id",
+    key: "8nqdkho4",
+    typeName: "String",
+    type: ffai.string,
+    description: "",
+    postgresType: "uuid",
+    foreignKey: null,
+    isPrimaryKey: true,
+    isRequired: false,
+    hasDefault: false,
+  );
+  late final status = ffai.ProjectTableFieldHandle(
+    name: "status",
+    key: "gy0kvmv9",
+    typeName: "String",
+    type: ffai.string,
+    description: "",
+    postgresType: "text",
+    foreignKey: null,
+    isPrimaryKey: false,
+    isRequired: false,
+    hasDefault: false,
+  );
+  late final stops = ffai.ProjectTableFieldHandle(
+    name: "stops",
+    key: "bpavdqga",
+    typeName: "Integer",
+    type: ffai.int_,
+    description: "",
+    postgresType: "int8",
+    foreignKey: null,
+    isPrimaryKey: false,
+    isRequired: false,
+    hasDefault: false,
+  );
+
+  @override
+  Iterable<String> get keys => const <String>[
+    "animals",
+    "day",
+    "driver_id",
+    "meals",
+    "run_id",
+    "status",
+    "stops",
+  ];
+
+  @override
+  ffai.PostgresTableField? operator [](Object? key) => switch (key) {
+    "animals" => this.animals,
+    "day" => this.day,
+    "driver_id" => this.driverId,
+    "meals" => this.meals,
+    "run_id" => this.runId,
+    "status" => this.status,
+    "stops" => this.stops,
     _ => null,
   };
 

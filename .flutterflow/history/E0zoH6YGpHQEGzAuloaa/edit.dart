@@ -135,61 +135,55 @@ Options:
 }
 
 void buildStarterEditFlow(App app) {
-  // Opening the page reads the round that is running and its tally, so the
-  // numbers are right even after the app was closed mid-street.
-  app.editPageOnLoad(ff.Pages.driverPage, [
-    PostgresRead(
-      ff.Tables.feedRuns,
-      outputAs: 'runningRun',
-      query: PostgresQuerySpec(
-        filters: [
-          PostgresFilter(
-            'driver_id',
-            relation: PostgresFilterRelation.equalTo,
-            value: const AuthUser(AuthUserField.userId),
-          ),
-          PostgresFilter(
-            'status',
-            relation: PostgresFilterRelation.equalTo,
-            value: 'running',
-          ),
-        ],
-        isSingleRow: true,
-      ),
-    ),
-    If(
-      Not(Equals(ActionOutput('runningRun')['id'], '')),
-      then: [
-        UpdateAppState.set(
-            ff.AppState.currentRunId, ActionOutput('runningRun')['id']),
-        SetState(
-            ff.Pages.driverPage.state.runId, ActionOutput('runningRun')['id']),
-        SetState(ff.Pages.driverPage.state.onTheRoad, true),
-        PostgresRead(
-          ff.Tables.feedRunTotals,
-          outputAs: 'tally',
-          query: PostgresQuerySpec(
-            filters: [
-              PostgresFilter(
-                'run_id',
-                relation: PostgresFilterRelation.equalTo,
-                value: ActionOutput('runningRun')['id'],
-              ),
-            ],
-            isSingleRow: true,
-          ),
+  // What the driver has done so far today, added up by the database and shown
+  // under the heading.
+  app.editPage(ff.Pages.driverPage, (page) {
+    page.ensureInsertedAfter(
+      ff.Pages.driverPage.widgets.byKey('Text_afarirt3').single,
+      Card(
+        name: 'TallyCard',
+        child: Row(
+          spacing: 20,
+          children: [
+            Column(
+              crossAxis: CrossAxis.start,
+              spacing: 2,
+              children: [
+                Text(
+                  State(ff.Pages.driverPage.state.stopsToday),
+                  name: 'StopsTodayText',
+                  style: Styles.headlineSmall,
+                  color: Colors.primary,
+                ),
+                Text(
+                  'stops',
+                  name: 'StopsTodayLabel',
+                  style: Styles.labelSmall,
+                  color: Colors.secondaryText,
+                ),
+              ],
+            ),
+            Column(
+              crossAxis: CrossAxis.start,
+              spacing: 2,
+              children: [
+                Text(
+                  State(ff.Pages.driverPage.state.mealsToday),
+                  name: 'MealsTodayText',
+                  style: Styles.headlineSmall,
+                  color: Colors.secondary,
+                ),
+                Text(
+                  'meals',
+                  name: 'MealsTodayLabel',
+                  style: Styles.labelSmall,
+                  color: Colors.secondaryText,
+                ),
+              ],
+            ),
+          ],
         ),
-        SetState(
-            ff.Pages.driverPage.state.stopsToday, ActionOutput('tally')['stops']),
-        SetState(
-            ff.Pages.driverPage.state.mealsToday, ActionOutput('tally')['meals']),
-      ],
-      orElse: [
-        UpdateAppState.set(ff.AppState.currentRunId, ''),
-        SetState(ff.Pages.driverPage.state.onTheRoad, false),
-        SetState(ff.Pages.driverPage.state.stopsToday, 0),
-        SetState(ff.Pages.driverPage.state.mealsToday, 0),
-      ],
-    ),
-  ]);
+      ),
+    );
+  });
 }
