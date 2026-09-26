@@ -5,6 +5,14 @@ library;
 import 'package:flutterflow_ai/flutterflow_ai.dart' as ffai;
 
 abstract final class AppState {
-  static const all = <ffai.ProjectAppStateFieldHandle>[];
+  static const currentRunId = ffai.ProjectAppStateFieldHandle(
+    name: "currentRunId",
+    key: "hd1mrilm",
+    typeName: "String",
+    persisted: true,
+  );
+  static const all = <ffai.ProjectAppStateFieldHandle>[
+    currentRunId,
+  ];
 }
 

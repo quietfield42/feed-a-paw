@@ -139,17 +139,17 @@ void buildStarterEditFlow(App app) {
   // the phone remembers. Before this they were saved against nothing.
   app.editPage(ff.Pages.stopPage, (page) {
     page.ensureActions(
-      ff.Pages.stopPage.widgets.byKey('Button_6xdknv8c').single,
+      page.findByName('SaveStopButton'),
       triggerType: FFActionTriggerType.ON_TAP,
       actions: [
         PostgresCreate(
           ff.Tables.feedRunStops,
           fields: {
-            'run_id': AppState(ff.AppState.currentRunId),
-            'spot_id': State(ff.Pages.stopPage.state.spotId),
-            'meals_served': State(ff.Pages.stopPage.state.meals),
-            'animals_seen': State(ff.Pages.stopPage.state.seen),
-            'note': State(ff.Pages.stopPage.state.note),
+            'run_id': AppState('currentRunId'),
+            'spot_id': State('spotId'),
+            'meals_served': State('meals'),
+            'animals_seen': State('seen'),
+            'note': State('note'),
             'arrived_at': const Global(GlobalProperty.currentTimestamp),
           },
         ),
@@ -161,17 +161,17 @@ void buildStarterEditFlow(App app) {
 
   app.editPage(ff.Pages.pickupPage, (page) {
     page.ensureActions(
-      ff.Pages.pickupPage.widgets.byKey('Button_h50rc8xs').single,
+      page.findByName('SavePickupButton'),
       triggerType: FFActionTriggerType.ON_TAP,
       actions: [
         PostgresCreate(
           ff.Tables.feedCollections,
           fields: {
-            'run_id': AppState(ff.AppState.currentRunId),
-            'butcher_name': State(ff.Pages.pickupPage.state.butcher),
-            'kilos': State(ff.Pages.pickupPage.state.kilos),
+            'run_id': AppState('currentRunId'),
+            'butcher_name': State('butcher'),
+            'kilos': State('kilos'),
             'collected_by': const AuthUser(AuthUserField.userId),
-            'note': State(ff.Pages.pickupPage.state.note),
+            'note': State('note'),
           },
         ),
         Snackbar('Pickup saved.'),
@@ -183,7 +183,7 @@ void buildStarterEditFlow(App app) {
   // Starting a round now also remembers it on the phone.
   app.editPage(ff.Pages.driverPage, (page) {
     page.ensureActions(
-      ff.Pages.driverPage.widgets.byKey('Button_ox047bt4').single,
+      page.findByName('StartRunButton'),
       triggerType: FFActionTriggerType.ON_TAP,
       actions: [
         PostgresCreate(
@@ -213,15 +213,15 @@ void buildStarterEditFlow(App app) {
             isSingleRow: true,
           ),
         ),
-        UpdateAppState.set(ff.AppState.currentRunId, ActionOutput('startedRun')['id']),
-        SetState(ff.Pages.driverPage.state.runId, ActionOutput('startedRun')['id']),
-        SetState(ff.Pages.driverPage.state.onTheRoad, true),
+        UpdateAppState.set('currentRunId', ActionOutput('startedRun')['id']),
+        SetState('runId', ActionOutput('startedRun')['id']),
+        SetState('onTheRoad', true),
         Snackbar('The round has started.'),
       ],
     );
 
     page.ensureActions(
-      ff.Pages.driverPage.widgets.byKey('Button_zfzjqb0v').single,
+      page.findByName('FinishRunButton'),
       triggerType: FFActionTriggerType.ON_TAP,
       actions: [
         PostgresUpdate(
@@ -235,14 +235,14 @@ void buildStarterEditFlow(App app) {
               PostgresFilter(
                 'id',
                 relation: PostgresFilterRelation.equalTo,
-                value: AppState(ff.AppState.currentRunId),
+                value: AppState('currentRunId'),
               ),
             ],
             isSingleRow: true,
           ),
         ),
-        UpdateAppState.set(ff.AppState.currentRunId, ''),
-        SetState(ff.Pages.driverPage.state.onTheRoad, false),
+        UpdateAppState.set('currentRunId', ''),
+        SetState('onTheRoad', false),
         Snackbar('Round finished. Thank you.'),
       ],
     );

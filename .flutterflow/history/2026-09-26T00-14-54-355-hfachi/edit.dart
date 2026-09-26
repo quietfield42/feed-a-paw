@@ -145,7 +145,7 @@ void buildStarterEditFlow(App app) {
         PostgresCreate(
           ff.Tables.feedRunStops,
           fields: {
-            'run_id': AppState(ff.AppState.currentRunId),
+            'run_id': AppState('currentRunId'),
             'spot_id': State(ff.Pages.stopPage.state.spotId),
             'meals_served': State(ff.Pages.stopPage.state.meals),
             'animals_seen': State(ff.Pages.stopPage.state.seen),
@@ -167,7 +167,7 @@ void buildStarterEditFlow(App app) {
         PostgresCreate(
           ff.Tables.feedCollections,
           fields: {
-            'run_id': AppState(ff.AppState.currentRunId),
+            'run_id': AppState('currentRunId'),
             'butcher_name': State(ff.Pages.pickupPage.state.butcher),
             'kilos': State(ff.Pages.pickupPage.state.kilos),
             'collected_by': const AuthUser(AuthUserField.userId),
@@ -213,7 +213,7 @@ void buildStarterEditFlow(App app) {
             isSingleRow: true,
           ),
         ),
-        UpdateAppState.set(ff.AppState.currentRunId, ActionOutput('startedRun')['id']),
+        UpdateAppState.set('currentRunId', ActionOutput('startedRun')['id']),
         SetState(ff.Pages.driverPage.state.runId, ActionOutput('startedRun')['id']),
         SetState(ff.Pages.driverPage.state.onTheRoad, true),
         Snackbar('The round has started.'),
@@ -235,13 +235,13 @@ void buildStarterEditFlow(App app) {
               PostgresFilter(
                 'id',
                 relation: PostgresFilterRelation.equalTo,
-                value: AppState(ff.AppState.currentRunId),
+                value: AppState('currentRunId'),
               ),
             ],
             isSingleRow: true,
           ),
         ),
-        UpdateAppState.set(ff.AppState.currentRunId, ''),
+        UpdateAppState.set('currentRunId', ''),
         SetState(ff.Pages.driverPage.state.onTheRoad, false),
         Snackbar('Round finished. Thank you.'),
       ],

@@ -40,6 +40,9 @@ abstract final class DriverPageWidgets {
       type: "Scaffold",
       path: "DriverPage",
       name: "DriverPage",
+      triggers: const <String>[
+        "ON_INIT_STATE",
+      ],
       slots: <String, List<ffai.ProjectWidgetHandle>>{
         "appBar": <ffai.ProjectWidgetHandle>[
           ffai.ProjectWidgetHandle(

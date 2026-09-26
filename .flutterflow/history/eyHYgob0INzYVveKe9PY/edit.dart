@@ -135,116 +135,42 @@ Options:
 }
 
 void buildStarterEditFlow(App app) {
-  // A stop and a pickup belong to the round the driver is actually on, which
-  // the phone remembers. Before this they were saved against nothing.
-  app.editPage(ff.Pages.stopPage, (page) {
-    page.ensureActions(
-      ff.Pages.stopPage.widgets.byKey('Button_6xdknv8c').single,
-      triggerType: FFActionTriggerType.ON_TAP,
-      actions: [
-        PostgresCreate(
-          ff.Tables.feedRunStops,
-          fields: {
-            'run_id': AppState(ff.AppState.currentRunId),
-            'spot_id': State(ff.Pages.stopPage.state.spotId),
-            'meals_served': State(ff.Pages.stopPage.state.meals),
-            'animals_seen': State(ff.Pages.stopPage.state.seen),
-            'note': State(ff.Pages.stopPage.state.note),
-            'arrived_at': const Global(GlobalProperty.currentTimestamp),
-          },
-        ),
-        Snackbar('Stop saved.'),
-        const NavigateBack(),
-      ],
-    );
-  });
+  // The round a driver is in the middle of, kept on the phone: closing the app
+  // in the street must not lose the day.
+  app.state('currentRunId', string, persisted: true);
 
-  app.editPage(ff.Pages.pickupPage, (page) {
-    page.ensureActions(
-      ff.Pages.pickupPage.widgets.byKey('Button_h50rc8xs').single,
-      triggerType: FFActionTriggerType.ON_TAP,
-      actions: [
-        PostgresCreate(
-          ff.Tables.feedCollections,
-          fields: {
-            'run_id': AppState(ff.AppState.currentRunId),
-            'butcher_name': State(ff.Pages.pickupPage.state.butcher),
-            'kilos': State(ff.Pages.pickupPage.state.kilos),
-            'collected_by': const AuthUser(AuthUserField.userId),
-            'note': State(ff.Pages.pickupPage.state.note),
-          },
-        ),
-        Snackbar('Pickup saved.'),
-        const NavigateBack(),
-      ],
-    );
-  });
-
-  // Starting a round now also remembers it on the phone.
-  app.editPage(ff.Pages.driverPage, (page) {
-    page.ensureActions(
-      ff.Pages.driverPage.widgets.byKey('Button_ox047bt4').single,
-      triggerType: FFActionTriggerType.ON_TAP,
-      actions: [
-        PostgresCreate(
-          ff.Tables.feedRuns,
-          fields: {
-            'driver_id': const AuthUser(AuthUserField.userId),
-            'status': 'running',
-            'started_at': const Global(GlobalProperty.currentTimestamp),
-          },
-        ),
-        PostgresRead(
-          ff.Tables.feedRuns,
-          outputAs: 'startedRun',
-          query: PostgresQuerySpec(
-            filters: [
-              PostgresFilter(
-                'driver_id',
-                relation: PostgresFilterRelation.equalTo,
-                value: const AuthUser(AuthUserField.userId),
-              ),
-              PostgresFilter(
-                'status',
-                relation: PostgresFilterRelation.equalTo,
-                value: 'running',
-              ),
-            ],
-            isSingleRow: true,
+  // The driver's page picks up a round that is already running.
+  app.editPageOnLoad(ff.Pages.driverPage, [
+    PostgresRead(
+      ff.Tables.feedRuns,
+      outputAs: 'runningRun',
+      query: PostgresQuerySpec(
+        filters: [
+          PostgresFilter(
+            'driver_id',
+            relation: PostgresFilterRelation.equalTo,
+            value: const AuthUser(AuthUserField.userId),
           ),
-        ),
-        UpdateAppState.set(ff.AppState.currentRunId, ActionOutput('startedRun')['id']),
-        SetState(ff.Pages.driverPage.state.runId, ActionOutput('startedRun')['id']),
-        SetState(ff.Pages.driverPage.state.onTheRoad, true),
-        Snackbar('The round has started.'),
-      ],
-    );
-
-    page.ensureActions(
-      ff.Pages.driverPage.widgets.byKey('Button_zfzjqb0v').single,
-      triggerType: FFActionTriggerType.ON_TAP,
-      actions: [
-        PostgresUpdate(
-          ff.Tables.feedRuns,
-          fields: {
-            'status': 'done',
-            'ended_at': const Global(GlobalProperty.currentTimestamp),
-          },
-          query: PostgresQuerySpec(
-            filters: [
-              PostgresFilter(
-                'id',
-                relation: PostgresFilterRelation.equalTo,
-                value: AppState(ff.AppState.currentRunId),
-              ),
-            ],
-            isSingleRow: true,
+          PostgresFilter(
+            'status',
+            relation: PostgresFilterRelation.equalTo,
+            value: 'running',
           ),
-        ),
-        UpdateAppState.set(ff.AppState.currentRunId, ''),
-        SetState(ff.Pages.driverPage.state.onTheRoad, false),
-        Snackbar('Round finished. Thank you.'),
+        ],
+        isSingleRow: true,
+      ),
+    ),
+    If(
+      Not(Equals(ActionOutput('runningRun')['id'], '')),
+      then: [
+        UpdateAppState.set('currentRunId', ActionOutput('runningRun')['id']),
+        SetState('runId', ActionOutput('runningRun')['id']),
+        SetState('onTheRoad', true),
       ],
-    );
-  });
+      orElse: [
+        UpdateAppState.set('currentRunId', ''),
+        SetState('onTheRoad', false),
+      ],
+    ),
+  ]);
 }

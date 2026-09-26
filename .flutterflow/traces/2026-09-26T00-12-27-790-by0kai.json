@@ -1,0 +1,153 @@
+{
+  "version": 1,
+  "runId": "2026-09-26T00-12-27-790-by0kai",
+  "projectId": "feeda-paw-hc0hpt",
+  "startedAt": "2026-09-26T00:12:26.362752Z",
+  "finishedAt": "2026-09-26T00:12:27.818059Z",
+  "flutterFlowAIVersion": "0.0.41",
+  "dartVersion": "3.10.7",
+  "environment": {
+    "os": "windows",
+    "cwd": "[REDACTED_PATH]",
+    "dryRun": false,
+    "pushed": false,
+    "refreshContext": true,
+    "preFlightFreshness": false,
+    "baseUrl": "[REDACTED_URL]"
+  },
+  "projectTarget": {
+    "type": "existing",
+    "requestedProjectId": "feeda-paw-hc0hpt",
+    "resolvedProjectId": "feeda-paw-hc0hpt"
+  },
+  "source": {
+    "mode": "paths",
+    "fileCount": 1,
+    "files": [
+      "edit.dart"
+    ],
+    "explicitPaths": [
+      "[REDACTED_PATH]"
+    ],
+    "localArchivePath": ".flutterflow/history/2026-09-26T00-12-27-790-by0kai",
+    "uploaded": false
+  },
+  "tasks": [
+    {
+      "name": "compileDslApp",
+      "status": "validation_failed",
+      "startedAt": "2026-09-26T00:12:27.417586Z",
+      "finishedAt": "2026-09-26T00:12:27.721907Z",
+      "durationMs": 303,
+      "error": "Typed SDK authoring validation failed: Use ff.AppState.currentRunId instead of a raw app-state name \"currentRunId\".; Use ff.Pages.driverPage.state.onTheRoad instead of SetState(\"onTheRoad\").; Use ff.Pages.driverPage.state.runId instead of SetState(\"runId\").",
+      "validationErrors": [
+        "Use ff.AppState.currentRunId instead of a raw app-state name \"currentRunId\".",
+        "Use ff.Pages.driverPage.state.onTheRoad instead of SetState(\"onTheRoad\").",
+        "Use ff.Pages.driverPage.state.runId instead of SetState(\"runId\")."
+      ]
+    }
+  ],
+  "diagnostics": [
+    {
+      "code": "VALIDATION_TYPED_AUTHORING",
+      "message": "Use ff.AppState.currentRunId instead of a raw app-state name \"currentRunId\".",
+      "severity": "error",
+      "target": "validation"
+    },
+    {
+      "code": "VALIDATION_TYPED_AUTHORING",
+      "message": "Use ff.Pages.driverPage.state.onTheRoad instead of SetState(\"onTheRoad\").",
+      "severity": "error",
+      "target": "validation"
+    },
+    {
+      "code": "VALIDATION_TYPED_AUTHORING",
+      "message": "Use ff.Pages.driverPage.state.runId instead of SetState(\"runId\").",
+      "severity": "error",
+      "target": "validation"
+    }
+  ],
+  "changeSummary": {
+    "modifiedPages": [
+      "DriverPage"
+    ]
+  },
+  "commit": {
+    "attempted": false,
+    "created": false,
+    "commitMessage": "Feed a Paw: stops and pickups attach to the round the driver is actually on"
+  },
+  "workspaceStateSnapshot": {
+    "projectId": "feeda-paw-hc0hpt",
+    "lastUpdated": "2026-09-26T00:12:27.802028Z",
+    "lastRun": {
+      "timestamp": "2026-09-26T00:12:27.802028Z",
+      "tasks": [
+        {
+          "name": "compileDslApp",
+          "status": "validation_failed"
+        }
+      ],
+      "pushed": false,
+      "validationFailedTask": "compileDslApp"
+    },
+    "instructionBundle": {
+      "mode": "full",
+      "templateSha256": "fbb431c336275ad73c3045d0b890faca89e37aa16b004e1e3668d7ec16e50172",
+      "bytes": 40161,
+      "lines": 404
+    },
+    "pageDsl": false
+  },
+  "recoveryHints": {
+    "version": 1,
+    "timestamp": "2026-09-26T00:12:27.811544Z",
+    "projectId": "feeda-paw-hc0hpt",
+    "status": "failed",
+    "completedTasks": [],
+    "failedTasks": [
+      {
+        "name": "compileDslApp",
+        "error": "Typed SDK authoring validation failed: Use ff.AppState.currentRunId instead of a raw app-state name \"currentRunId\".; Use ff.Pages.driverPage.state.onTheRoad instead of SetState(\"onTheRoad\").; Use ff.Pages.driverPage.state.runId instead of SetState(\"runId\").",
+        "validationErrors": [
+          "Use ff.AppState.currentRunId instead of a raw app-state name \"currentRunId\".",
+          "Use ff.Pages.driverPage.state.onTheRoad instead of SetState(\"onTheRoad\").",
+          "Use ff.Pages.driverPage.state.runId instead of SetState(\"runId\")."
+        ]
+      }
+    ],
+    "skippedTasks": [],
+    "diagnostics": [
+      {
+        "code": "VALIDATION_TYPED_AUTHORING",
+        "message": "Use ff.AppState.currentRunId instead of a raw app-state name \"currentRunId\".",
+        "severity": "error",
+        "target": "validation"
+      },
+      {
+        "code": "VALIDATION_TYPED_AUTHORING",
+        "message": "Use ff.Pages.driverPage.state.onTheRoad instead of SetState(\"onTheRoad\").",
+        "severity": "error",
+        "target": "validation"
+      },
+      {
+        "code": "VALIDATION_TYPED_AUTHORING",
+        "message": "Use ff.Pages.driverPage.state.runId instead of SetState(\"runId\").",
+        "severity": "error",
+        "target": "validation"
+      }
+    ],
+    "recoveryHints": [
+      "Task \"compileDslApp\" failed validation. Fix the validation errors and re-run.",
+      "Task \"compileDslApp\" failed: Typed SDK authoring validation failed: Use ff.AppState.currentRunId instead of a raw app-state name \"currentRunId\".; Use ff.Pages.driverPage.state.onTheRoad instead of SetState(\"onTheRoad\").; Use ff.Pages.driverPage.state.runId instead of SetState(\"runId\").. Fix the error and re-run."
+    ],
+    "attemptedCommitMessage": "Feed a Paw: stops and pickups attach to the round the driver is actually on"
+  },
+  "paths": {
+    "journalPath": ".flutterflow/runs.jsonl",
+    "lastRunArtifactPath": ".flutterflow/last_run.json",
+    "recoveryHintsPath": ".flutterflow/recovery.json",
+    "localSourceArchivePath": ".flutterflow/history/2026-09-26T00-12-27-790-by0kai",
+    "localPlanArchivePath": ".flutterflow/history/2026-09-26T00-12-27-790-by0kai/plan.md"
+  }
+}
