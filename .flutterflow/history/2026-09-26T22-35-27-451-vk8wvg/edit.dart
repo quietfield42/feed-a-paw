@@ -147,6 +147,13 @@ void buildStarterEditFlow(App app) {
         ff.Tables.feedStories,
         outputAs: 'published',
         query: PostgresQuerySpec(
+          filters: [
+            PostgresFilter(
+              'published_at',
+              relation: PostgresFilterRelation.isNot,
+              value: null,
+            ),
+          ],
           orderBys: const [PostgresOrderBy('published_at', ascending: false)],
         ),
       ),
