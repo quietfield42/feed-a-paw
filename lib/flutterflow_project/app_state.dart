@@ -5,6 +5,18 @@ library;
 import 'package:flutterflow_ai/flutterflow_ai.dart' as ffai;
 
 abstract final class AppState {
+  static const currentRouteId = ffai.ProjectAppStateFieldHandle(
+    name: "currentRouteId",
+    key: "92ml70g3",
+    typeName: "String",
+    persisted: true,
+  );
+  static const currentRouteName = ffai.ProjectAppStateFieldHandle(
+    name: "currentRouteName",
+    key: "zxvpx9li",
+    typeName: "String",
+    persisted: true,
+  );
   static const currentRunId = ffai.ProjectAppStateFieldHandle(
     name: "currentRunId",
     key: "hd1mrilm",
@@ -12,6 +24,8 @@ abstract final class AppState {
     persisted: true,
   );
   static const all = <ffai.ProjectAppStateFieldHandle>[
+    currentRouteId,
+    currentRouteName,
     currentRunId,
   ];
 }

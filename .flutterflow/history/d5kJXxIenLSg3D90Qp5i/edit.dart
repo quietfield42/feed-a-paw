@@ -135,68 +135,53 @@ Options:
 }
 
 void buildStarterEditFlow(App app) {
-  // The round remembers its route (28 Sep 2026).
+  // Tonight's route (28 Sep 2026).
   //
-  // Starting a round now writes down which route it follows, so a week later
-  // it is clear what was covered. The old button did not, and could not be
-  // edited in place, so it is replaced.
-  //
-  // The list of places also loses shrinkWrap: a data-backed list that sizes
-  // itself to its contents lays out every row on every frame.
+  // A round is no longer a loose list of stops: the driver picks a route, the
+  // places appear in the order they are driven, and the round remembers which
+  // route it followed. The idea is Spot-a-Paw's; this is it made for a truck.
 
   app.supabase(
     url: 'https://bxoboypzumjdfkpszbkt.supabase.co',
     anonKey: 'sb_publishable_g3AquYaNa0cwXs8jxqidqg_p1FwQCWJ',
   );
 
-  app.editPage(ff.Pages.driverPage, (page) {
-    page.ensureWrappedWith(
-      ff.Pages.driverPage.widgets.byKey('ListView_piskpfah').single,
-      Container(name: 'RoutePlanBox', height: 260),
-    );
+  final routes = app.table(
+    'feed_routes',
+    fields: {
+      'id': const PostgresTableField(string,
+          postgresType: 'uuid', isPrimaryKey: true, hasDefault: true),
+      'name': const PostgresTableField(string,
+          postgresType: 'text', isRequired: true),
+      'area': const PostgresTableField(string, postgresType: 'text'),
+      'note': const PostgresTableField(string, postgresType: 'text'),
+      'active': const PostgresTableField(bool_,
+          postgresType: 'bool', hasDefault: true),
+    },
+    description: 'The runs the truck drives, each an ordered set of places.',
+  );
 
-    // Starting a round, this time writing down the route it follows.
-    page.ensureInsertedBefore(
-      ff.Pages.driverPage.widgets.byKey('Button_ox047bt4').single,
-      Button(
-        'Start the round',
-        name: 'StartRouteRunButton',
-        onTap: [
-          PostgresCreate(
-            ff.Tables.feedRuns,
-            fields: {
-              'driver_id': const AuthUser(AuthUserField.userId),
-              'status': 'running',
-              'route_id': AppState('currentRouteId'),
-              'started_at': const Global(GlobalProperty.currentTimestamp),
-            },
-          ),
-          PostgresRead(
-            ff.Tables.feedRuns,
-            outputAs: 'startedRun',
-            query: PostgresQuerySpec(
-              filters: [
-                PostgresFilter('driver_id',
-                    relation: PostgresFilterRelation.equalTo,
-                    value: const AuthUser(AuthUserField.userId)),
-                PostgresFilter('status',
-                    relation: PostgresFilterRelation.equalTo,
-                    value: 'running'),
-              ],
-              isSingleRow: true,
-            ),
-          ),
-          UpdateAppState.set('currentRunId', ActionOutput('startedRun')['id']),
-          SetState(ff.Pages.driverPage.state.runId,
-              ActionOutput('startedRun')['id']),
-          SetState(ff.Pages.driverPage.state.onTheRoad, true),
-          Snackbar('The round has started.'),
-        ],
-      ),
-    );
+  final routePlan = app.table(
+    'feed_route_plan',
+    fields: {
+      'route_id': const PostgresTableField(string,
+          postgresType: 'uuid', isPrimaryKey: true),
+      'route_name': const PostgresTableField(string, postgresType: 'text'),
+      'route_area': const PostgresTableField(string, postgresType: 'text'),
+      'position': const PostgresTableField(int_, postgresType: 'int4'),
+      'spot_id': const PostgresTableField(string, postgresType: 'uuid'),
+      'spot_name': const PostgresTableField(string, postgresType: 'text'),
+      'spot_area': const PostgresTableField(string, postgresType: 'text'),
+      'spot_note': const PostgresTableField(string, postgresType: 'text'),
+    },
+    description: 'A route\'s places, in the order they are driven.',
+  );
 
-    page.ensureRemoved(
-      ff.Pages.driverPage.widgets.byKey('Button_ox047bt4').single,
-    );
+  app.state('currentRouteId', string, persisted: true);
+  app.state('currentRouteName', string, persisted: true);
+
+  app.editPageState(ff.Pages.driverPage, (state) {
+    state.ensureField('routes', listOf(routes));
+    state.ensureField('plan', listOf(routePlan));
   });
 }

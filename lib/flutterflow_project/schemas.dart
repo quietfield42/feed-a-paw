@@ -32,6 +32,18 @@ abstract final class Tables {
     isView: false,
     fields: FeedFundFields(),
   );
+  static final feedRoutePlan = ffai.ProjectTableHandle<FeedRoutePlanFields>(
+    name: "feed_route_plan",
+    description: "",
+    isView: false,
+    fields: FeedRoutePlanFields(),
+  );
+  static final feedRoutes = ffai.ProjectTableHandle<FeedRoutesFields>(
+    name: "feed_routes",
+    description: "",
+    isView: false,
+    fields: FeedRoutesFields(),
+  );
   static final feedRunStops = ffai.ProjectTableHandle<FeedRunStopsFields>(
     name: "feed_run_stops",
     description: "",
@@ -71,6 +83,8 @@ abstract final class Tables {
   static final all = <ffai.ProjectTableHandle>[
     feedCollections,
     feedFund,
+    feedRoutePlan,
+    feedRoutes,
     feedRunStops,
     feedRunTotals,
     feedRuns,
@@ -293,6 +307,234 @@ final class FeedFundFields extends MapBase<String, ffai.PostgresTableField> {
     "open" => this.open,
     "raised" => this.raised,
     "target" => this.target,
+    _ => null,
+  };
+
+  @override
+  void operator []=(String key, ffai.PostgresTableField value) =>
+      throw UnsupportedError('Generated project SDK fields are read-only.');
+
+  @override
+  void clear() => throw UnsupportedError('Generated project SDK fields are read-only.');
+
+  @override
+  ffai.PostgresTableField? remove(Object? key) =>
+      throw UnsupportedError('Generated project SDK fields are read-only.');
+}
+
+final class FeedRoutePlanFields extends MapBase<String, ffai.PostgresTableField> {
+  late final position = ffai.ProjectTableFieldHandle(
+    name: "position",
+    key: "co4vtwmj",
+    typeName: "Integer",
+    type: ffai.int_,
+    description: "",
+    postgresType: "int4",
+    foreignKey: null,
+    isPrimaryKey: false,
+    isRequired: false,
+    hasDefault: false,
+  );
+  late final routeArea = ffai.ProjectTableFieldHandle(
+    name: "route_area",
+    key: "ejegzepy",
+    typeName: "String",
+    type: ffai.string,
+    description: "",
+    postgresType: "text",
+    foreignKey: null,
+    isPrimaryKey: false,
+    isRequired: false,
+    hasDefault: false,
+  );
+  late final routeId = ffai.ProjectTableFieldHandle(
+    name: "route_id",
+    key: "uv59dngl",
+    typeName: "String",
+    type: ffai.string,
+    description: "",
+    postgresType: "uuid",
+    foreignKey: null,
+    isPrimaryKey: true,
+    isRequired: false,
+    hasDefault: false,
+  );
+  late final routeName = ffai.ProjectTableFieldHandle(
+    name: "route_name",
+    key: "iridiq5i",
+    typeName: "String",
+    type: ffai.string,
+    description: "",
+    postgresType: "text",
+    foreignKey: null,
+    isPrimaryKey: false,
+    isRequired: false,
+    hasDefault: false,
+  );
+  late final spotArea = ffai.ProjectTableFieldHandle(
+    name: "spot_area",
+    key: "9qq47ljd",
+    typeName: "String",
+    type: ffai.string,
+    description: "",
+    postgresType: "text",
+    foreignKey: null,
+    isPrimaryKey: false,
+    isRequired: false,
+    hasDefault: false,
+  );
+  late final spotId = ffai.ProjectTableFieldHandle(
+    name: "spot_id",
+    key: "b4sretw2",
+    typeName: "String",
+    type: ffai.string,
+    description: "",
+    postgresType: "uuid",
+    foreignKey: null,
+    isPrimaryKey: false,
+    isRequired: false,
+    hasDefault: false,
+  );
+  late final spotName = ffai.ProjectTableFieldHandle(
+    name: "spot_name",
+    key: "janfss27",
+    typeName: "String",
+    type: ffai.string,
+    description: "",
+    postgresType: "text",
+    foreignKey: null,
+    isPrimaryKey: false,
+    isRequired: false,
+    hasDefault: false,
+  );
+  late final spotNote = ffai.ProjectTableFieldHandle(
+    name: "spot_note",
+    key: "xj73e0ys",
+    typeName: "String",
+    type: ffai.string,
+    description: "",
+    postgresType: "text",
+    foreignKey: null,
+    isPrimaryKey: false,
+    isRequired: false,
+    hasDefault: false,
+  );
+
+  @override
+  Iterable<String> get keys => const <String>[
+    "position",
+    "route_area",
+    "route_id",
+    "route_name",
+    "spot_area",
+    "spot_id",
+    "spot_name",
+    "spot_note",
+  ];
+
+  @override
+  ffai.PostgresTableField? operator [](Object? key) => switch (key) {
+    "position" => this.position,
+    "route_area" => this.routeArea,
+    "route_id" => this.routeId,
+    "route_name" => this.routeName,
+    "spot_area" => this.spotArea,
+    "spot_id" => this.spotId,
+    "spot_name" => this.spotName,
+    "spot_note" => this.spotNote,
+    _ => null,
+  };
+
+  @override
+  void operator []=(String key, ffai.PostgresTableField value) =>
+      throw UnsupportedError('Generated project SDK fields are read-only.');
+
+  @override
+  void clear() => throw UnsupportedError('Generated project SDK fields are read-only.');
+
+  @override
+  ffai.PostgresTableField? remove(Object? key) =>
+      throw UnsupportedError('Generated project SDK fields are read-only.');
+}
+
+final class FeedRoutesFields extends MapBase<String, ffai.PostgresTableField> {
+  late final active = ffai.ProjectTableFieldHandle(
+    name: "active",
+    key: "kzfreajs",
+    typeName: "Boolean",
+    type: ffai.bool_,
+    description: "",
+    postgresType: "bool",
+    foreignKey: null,
+    isPrimaryKey: false,
+    isRequired: false,
+    hasDefault: true,
+  );
+  late final area = ffai.ProjectTableFieldHandle(
+    name: "area",
+    key: "8qr0ua2r",
+    typeName: "String",
+    type: ffai.string,
+    description: "",
+    postgresType: "text",
+    foreignKey: null,
+    isPrimaryKey: false,
+    isRequired: false,
+    hasDefault: false,
+  );
+  late final id = ffai.ProjectTableFieldHandle(
+    name: "id",
+    key: "wtyd1748",
+    typeName: "String",
+    type: ffai.string,
+    description: "",
+    postgresType: "uuid",
+    foreignKey: null,
+    isPrimaryKey: true,
+    isRequired: false,
+    hasDefault: true,
+  );
+  late final name = ffai.ProjectTableFieldHandle(
+    name: "name",
+    key: "zh0yh941",
+    typeName: "String",
+    type: ffai.string,
+    description: "",
+    postgresType: "text",
+    foreignKey: null,
+    isPrimaryKey: false,
+    isRequired: true,
+    hasDefault: false,
+  );
+  late final note = ffai.ProjectTableFieldHandle(
+    name: "note",
+    key: "v90lw7nj",
+    typeName: "String",
+    type: ffai.string,
+    description: "",
+    postgresType: "text",
+    foreignKey: null,
+    isPrimaryKey: false,
+    isRequired: false,
+    hasDefault: false,
+  );
+
+  @override
+  Iterable<String> get keys => const <String>[
+    "active",
+    "area",
+    "id",
+    "name",
+    "note",
+  ];
+
+  @override
+  ffai.PostgresTableField? operator [](Object? key) => switch (key) {
+    "active" => this.active,
+    "area" => this.area,
+    "id" => this.id,
+    "name" => this.name,
+    "note" => this.note,
     _ => null,
   };
 

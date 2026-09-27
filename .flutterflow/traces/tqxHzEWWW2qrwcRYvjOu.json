@@ -1,21 +1,47 @@
 {
   "version": 1,
-  "timestamp": "2026-09-27T14:21:34.702853Z",
+  "runId": "tqxHzEWWW2qrwcRYvjOu",
   "projectId": "feeda-paw-hc0hpt",
-  "success": true,
-  "noOp": false,
-  "pushed": true,
-  "dryRun": false,
-  "commitId": "tqxHzEWWW2qrwcRYvjOu",
-  "commitMessage": "The round remembers which route it followed",
+  "startedAt": "2026-09-27T14:21:27.771800Z",
+  "finishedAt": "2026-09-27T14:21:34.712299Z",
+  "flutterFlowAIVersion": "0.0.41",
+  "dartVersion": "3.10.7",
+  "environment": {
+    "os": "windows",
+    "cwd": "[REDACTED_PATH]",
+    "dryRun": false,
+    "pushed": true,
+    "refreshContext": true,
+    "preFlightFreshness": false,
+    "baseUrl": "[REDACTED_URL]"
+  },
+  "projectTarget": {
+    "type": "existing",
+    "requestedProjectId": "feeda-paw-hc0hpt",
+    "resolvedProjectId": "feeda-paw-hc0hpt"
+  },
+  "source": {
+    "mode": "paths",
+    "fileCount": 1,
+    "files": [
+      "edit.dart"
+    ],
+    "explicitPaths": [
+      "[REDACTED_PATH]"
+    ],
+    "localArchivePath": ".flutterflow/history/tqxHzEWWW2qrwcRYvjOu",
+    "uploaded": true,
+    "uploadCommitId": "tqxHzEWWW2qrwcRYvjOu"
+  },
   "tasks": [
     {
       "name": "compileDslApp",
-      "success": true,
-      "skipped": false,
+      "status": "passed",
+      "startedAt": "2026-09-27T14:21:28.807597Z",
+      "finishedAt": "2026-09-27T14:21:30.836419Z",
       "durationMs": 313,
       "validationErrors": [
-        "Go to RoutePlanList.",
+        "edit.dart:154: [symbol: ListView_piskpfah] Go to RoutePlanList.",
         "This color could use the theme's \"Info\" color instead of a hardcoded value.",
         "This color could use the theme's \"Info\" color instead of a hardcoded value.",
         "This color could use the theme's \"Info\" color instead of a hardcoded value.",
@@ -75,5 +101,54 @@
       "target": "widget",
       "suggestion": "Disable `shrinkWrap` on data-backed ListView widgets unless the list must live inside another scrollable. Prefer giving the list bounded space and leaving shrinkWrap off."
     }
-  ]
+  ],
+  "changeSummary": {
+    "modifiedPages": [
+      "DriverPage"
+    ],
+    "diffs": [
+      {
+        "name": "DriverPage",
+        "changeType": "modified",
+        "details": [
+          "Added 1 widget(s)"
+        ]
+      }
+    ]
+  },
+  "commit": {
+    "attempted": true,
+    "created": true,
+    "commitId": "tqxHzEWWW2qrwcRYvjOu",
+    "commitMessage": "The round remembers which route it followed"
+  },
+  "workspaceStateSnapshot": {
+    "projectId": "feeda-paw-hc0hpt",
+    "lastUpdated": "2026-09-27T14:21:34.697820Z",
+    "lastRun": {
+      "timestamp": "2026-09-27T14:21:34.697820Z",
+      "tasks": [
+        {
+          "name": "compileDslApp",
+          "status": "passed"
+        }
+      ],
+      "pushed": true,
+      "commitId": "tqxHzEWWW2qrwcRYvjOu"
+    },
+    "instructionBundle": {
+      "mode": "full",
+      "templateSha256": "fbb431c336275ad73c3045d0b890faca89e37aa16b004e1e3668d7ec16e50172",
+      "bytes": 40161,
+      "lines": 404
+    },
+    "pageDsl": false
+  },
+  "paths": {
+    "journalPath": ".flutterflow/runs.jsonl",
+    "lastRunArtifactPath": ".flutterflow/last_run.json",
+    "recoveryHintsPath": ".flutterflow/recovery.json",
+    "localSourceArchivePath": ".flutterflow/history/tqxHzEWWW2qrwcRYvjOu",
+    "localPlanArchivePath": ".flutterflow/history/tqxHzEWWW2qrwcRYvjOu/plan.md"
+  }
 }
