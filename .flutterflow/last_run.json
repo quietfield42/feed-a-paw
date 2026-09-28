@@ -1,21 +1,20 @@
 {
   "version": 1,
-  "timestamp": "2026-09-27T14:21:34.702853Z",
+  "timestamp": "2026-09-28T23:36:23.328733Z",
   "projectId": "feeda-paw-hc0hpt",
   "success": true,
   "noOp": false,
   "pushed": true,
   "dryRun": false,
-  "commitId": "tqxHzEWWW2qrwcRYvjOu",
-  "commitMessage": "The round remembers which route it followed",
+  "commitId": "jY4fFkKS2DLMqaGtot1z",
+  "commitMessage": "Ticking the route off as it is driven",
   "tasks": [
     {
       "name": "compileDslApp",
       "success": true,
       "skipped": false,
-      "durationMs": 313,
+      "durationMs": 539,
       "validationErrors": [
-        "Go to RoutePlanList.",
         "This color could use the theme's \"Info\" color instead of a hardcoded value.",
         "This color could use the theme's \"Info\" color instead of a hardcoded value.",
         "This color could use the theme's \"Info\" color instead of a hardcoded value.",
@@ -58,22 +57,6 @@
       "severity": "warning",
       "location": "Button 'StartRunButton' [key: Button_ox047bt4]",
       "target": "widget"
-    },
-    {
-      "code": "R19",
-      "message": "Dynamic ListView enables shrinkWrap, which triggers the same performance warning FlutterFlow shows for data-backed lists.",
-      "severity": "warning",
-      "location": "DriverPage.RoutePlanList",
-      "target": "wiring",
-      "suggestion": "Disable `shrinkWrap` on dynamic ListView widgets unless the list must live inside another scrollable. Prefer giving the list bounded space and leaving shrinkWrap off."
-    },
-    {
-      "code": "VALIDATION_LIST_VIEW_SHRINK_WRAP",
-      "message": "Go to RoutePlanList.",
-      "severity": "warning",
-      "location": "ListView 'RoutePlanList' [key: ListView_piskpfah]",
-      "target": "widget",
-      "suggestion": "Disable `shrinkWrap` on data-backed ListView widgets unless the list must live inside another scrollable. Prefer giving the list bounded space and leaving shrinkWrap off."
     }
   ]
 }

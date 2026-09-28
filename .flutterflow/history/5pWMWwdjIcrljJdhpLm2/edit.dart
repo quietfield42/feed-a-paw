@@ -135,94 +135,37 @@ Options:
 }
 
 void buildStarterEditFlow(App app) {
-  // Ticking the route off as it is driven (29 Sep 2026).
+  // Tonight's route, with what is done (29 Sep 2026).
   //
-  // Once a round has started, the list of places stops being a plan and
-  // becomes a tally: each one says whether it has been fed tonight and how
-  // many meals went out. A driver halfway through a route, in the dark, with
-  // the engine running, should be able to see what is left without counting.
-  //
-  // It shows only while a round is on. Before that, the plan list above it
-  // answers the same question in its plain form.
+  // This push declares the view and gives the driver's screen somewhere to
+  // keep it. The list itself follows.
 
   app.supabase(
     url: 'https://bxoboypzumjdfkpszbkt.supabase.co',
     anonKey: 'sb_publishable_g3AquYaNa0cwXs8jxqidqg_p1FwQCWJ',
   );
 
-  app.editPageOnLoad(ff.Pages.driverPage, [
-    PostgresQuery(
-      ff.Tables.feedTonight,
-      outputAs: 'tonightsPlaces',
-      query: PostgresQuerySpec(
-        filters: [
-          PostgresFilter('run_id',
-              relation: PostgresFilterRelation.equalTo,
-              value: AppState('currentRunId')),
-        ],
-        orderBys: const [PostgresOrderBy('position')],
-      ),
-    ),
-    SetState(ff.Pages.driverPage.state.tonight,
-        ActionOutput('tonightsPlaces')),
-  ]);
+  final tonight = app.table(
+    'feed_tonight',
+    fields: {
+      'run_id': const PostgresTableField(string,
+          postgresType: 'uuid', isPrimaryKey: true),
+      'route_id': const PostgresTableField(string, postgresType: 'uuid'),
+      'route_name': const PostgresTableField(string, postgresType: 'text'),
+      'position': const PostgresTableField(int_, postgresType: 'int4'),
+      'spot_id': const PostgresTableField(string, postgresType: 'uuid'),
+      'spot_name': const PostgresTableField(string, postgresType: 'text'),
+      'spot_area': const PostgresTableField(string, postgresType: 'text'),
+      'spot_note': const PostgresTableField(string, postgresType: 'text'),
+      'fed_at': const PostgresTableField(dateTime,
+          postgresType: 'timestamptz'),
+      'meals': const PostgresTableField(int_, postgresType: 'int4'),
+      'done': const PostgresTableField(bool_, postgresType: 'bool'),
+    },
+    description: 'The places on the route tonight, and which are fed.',
+  );
 
-  app.editPage(ff.Pages.driverPage, (page) {
-    page.ensureInsertedAfter(
-      ff.Pages.driverPage.widgets.byKey('Container_lobxguj8').single,
-      Column(
-        name: 'TonightTally',
-        crossAxis: CrossAxis.start,
-        spacing: 8,
-        visible: State(ff.Pages.driverPage.state.onTheRoad),
-        children: [
-          Text(
-            'Tonight, so far',
-            name: 'TallyHeading',
-            style: Styles.labelMedium,
-            color: Colors.secondaryText,
-          ),
-          Container(
-            height: 300,
-            child: ListView(
-              name: 'TonightList',
-              source: State(ff.Pages.driverPage.state.tonight),
-              spacing: 6,
-              itemBuilder: (item) => Card(
-                child: Container(
-                  padding: 12,
-                  child: Row(
-                    spacing: 10,
-                    children: [
-                      Text(item['position'],
-                          style: Styles.titleMedium,
-                          color: Colors.secondary),
-                      Column(
-                        crossAxis: CrossAxis.start,
-                        spacing: 2,
-                        children: [
-                          Text(item['spot_name'], style: Styles.bodyLarge),
-                          Text(item['spot_area'],
-                              style: Styles.labelSmall,
-                              color: Colors.secondaryText),
-                          Text(item['meals'],
-                              style: Styles.labelMedium,
-                              color: Colors.tertiary,
-                              visible: item['done']),
-                          Text('not yet',
-                              style: Styles.labelSmall,
-                              color: Colors.secondaryText,
-                              visible: Not(item['done'])),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
+  app.editPageState(ff.Pages.driverPage, (state) {
+    state.ensureField('tonight', listOf(tonight));
   });
 }
