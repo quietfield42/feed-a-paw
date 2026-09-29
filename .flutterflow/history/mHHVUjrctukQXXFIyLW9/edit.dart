@@ -144,74 +144,24 @@ String _kit(String name) {
 }
 
 void buildStarterEditFlow(App app) {
-  // A photograph from a stop (29 Sep 2026).
+  // FlutterFlow learns about photo_path (29 Sep 2026).
   //
-  // The round is the story: who was there and what they were fed. A driver
-  // can now take a picture at the stop, see it before saving, and it goes
-  // with the stop into feed-photos. The save chain is cleared before it is
-  // rewritten, because ensureActions leaves an existing one alone.
+  // The column has been on feed_run_stops in the database since the schema
+  // was written; FlutterFlow's own copy of the table never had it, so an
+  // action could not name it. This tells FlutterFlow it is there.
 
-  final st = ff.Pages.stopPage.state;
-
-  app.editPage(ff.Pages.stopPage, (page) {
-    page.ensureInsertedBefore(
-      page.findByKey('Button_6xdknv8c'),
-      Column(
-        name: 'StopPhotographBlock',
-        key: 'stop-photograph-block',
-        crossAxis: CrossAxis.start,
-        spacing: 8,
-        children: [
-          Image(
-            State(st.photoUrl),
-            name: 'StopPhotoPreview',
-            key: 'stop-photo-preview',
-            height: 180,
-            borderRadius: 12,
-            visible: Not(Equals(State(st.photoUrl), '')),
-          ),
-          Button(
-            'Take a photograph',
-            name: 'StopPhotoButton',
-            key: 'stop-photo-button',
-            onTap: [
-              const UploadData(
-                key: 'stop-photo-upload',
-                actionName: 'stopPhoto',
-                destination: UploadDestination.supabase,
-              ),
-              SetState(st.photoUrl,
-                  const ActionResult.uploadUrl('stop-photo-upload'),
-                  key: 'keep-stop-photo'),
-            ],
-          ),
-        ],
-      ),
-    );
-
-    page.removeTrigger(
-        page.findByKey('Button_6xdknv8c'), FFActionTriggerType.ON_TAP);
-    page.ensureActions(
-      page.findByKey('Button_6xdknv8c'),
-      triggerType: FFActionTriggerType.ON_TAP,
-      actions: [
-        PostgresCreate(
-          ff.Tables.feedRunStops,
-          key: 'save-stop',
-          fields: {
-            'run_id': State(st.runId),
-            'spot_id': State(st.spotId),
-            'meals_served': State(st.meals),
-            'animals_seen': State(st.seen),
-            'note': State(st.note),
-            'photo_path': State(st.photoUrl),
-            'arrived_at': const Global(GlobalProperty.currentTimestamp),
-          },
-          outputAs: 'rows',
-        ),
-        Snackbar('Stop saved.', key: 'stop-saved-note'),
-        const NavigateBack(key: 'stop-saved-back'),
-      ],
-    );
+  app.raw((project) {
+    if (findTableField(project,
+            tableName: 'feed_run_stops', fieldName: 'photo_path') ==
+        null) {
+      addTableField(
+        project,
+        tableName: 'feed_run_stops',
+        fieldName: 'photo_path',
+        type: FFDataTypeV2(scalarType: FFBaseDataType.String),
+        postgresType: 'text',
+        description: 'Storage path of the photograph taken at this stop.',
+      );
+    }
   });
 }

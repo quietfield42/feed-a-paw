@@ -3,8 +3,6 @@ library;
 import 'dart:io';
 
 import 'package:flutterflow_ai/flutterflow_ai.dart';
-import 'package:flutterflow_ai/src/helpers/postgres_helpers.dart'
-    show addTableField, findTableField;
 import 'package:feedapaw/flutterflow_project.dart' as ff;
 
 Future<void> main(List<String> args) async {
@@ -146,10 +144,10 @@ String _kit(String name) {
 void buildStarterEditFlow(App app) {
   // A photograph from a stop (29 Sep 2026).
   //
-  // The round is the story: who was there and what they were fed. A driver
-  // can now take a picture at the stop, see it before saving, and it goes
-  // with the stop into feed-photos. The save chain is cleared before it is
-  // rewritten, because ensureActions leaves an existing one alone.
+  // The round is the story: who was there, what they were fed. A driver can
+  // now take a picture at the stop, see it before saving, and it goes with
+  // the stop into feed-photos. The chain is cleared before it is rewritten,
+  // because ensureActions leaves an existing one alone.
 
   final st = ff.Pages.stopPage.state;
 

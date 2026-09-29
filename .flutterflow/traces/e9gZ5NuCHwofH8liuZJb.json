@@ -1,0 +1,122 @@
+{
+  "version": 1,
+  "runId": "e9gZ5NuCHwofH8liuZJb",
+  "projectId": "feeda-paw-hc0hpt",
+  "startedAt": "2026-09-29T20:58:29.316150Z",
+  "finishedAt": "2026-09-29T20:58:39.498033Z",
+  "flutterFlowAIVersion": "0.0.41",
+  "dartVersion": "3.10.7",
+  "environment": {
+    "os": "windows",
+    "cwd": "[REDACTED_PATH]",
+    "dryRun": false,
+    "pushed": true,
+    "refreshContext": true,
+    "preFlightFreshness": false,
+    "baseUrl": "[REDACTED_URL]"
+  },
+  "projectTarget": {
+    "type": "existing",
+    "requestedProjectId": "feeda-paw-hc0hpt",
+    "resolvedProjectId": "feeda-paw-hc0hpt"
+  },
+  "source": {
+    "mode": "paths",
+    "fileCount": 1,
+    "files": [
+      "edit.dart"
+    ],
+    "explicitPaths": [
+      "[REDACTED_PATH]"
+    ],
+    "localArchivePath": ".flutterflow/history/e9gZ5NuCHwofH8liuZJb",
+    "uploaded": true,
+    "uploadCommitId": "e9gZ5NuCHwofH8liuZJb"
+  },
+  "tasks": [
+    {
+      "name": "compileDslApp",
+      "status": "passed",
+      "startedAt": "2026-09-29T20:58:30.795861Z",
+      "finishedAt": "2026-09-29T20:58:33.409300Z",
+      "durationMs": 291,
+      "validationErrors": [
+        "Go to SpotList."
+      ]
+    }
+  ],
+  "diagnostics": [
+    {
+      "code": "PREEXISTING_WIRING",
+      "message": "6 pre-existing wiring findings outside this edit; run `flutterflow ai review` to list them",
+      "severity": "warning",
+      "location": "",
+      "target": "wiring"
+    },
+    {
+      "code": "VALIDATION_LIST_VIEW_SHRINK_WRAP",
+      "message": "Go to SpotList.",
+      "severity": "warning",
+      "location": "ListView 'SpotList' [key: ListView_s17wb0qu]",
+      "target": "widget",
+      "suggestion": "Disable `shrinkWrap` on data-backed ListView widgets unless the list must live inside another scrollable. Prefer giving the list bounded space and leaving shrinkWrap off."
+    },
+    {
+      "code": "R19",
+      "message": "Dynamic ListView enables shrinkWrap, which triggers the same performance warning FlutterFlow shows for data-backed lists.",
+      "severity": "warning",
+      "location": "StopPage.SpotList",
+      "target": "wiring",
+      "suggestion": "Disable `shrinkWrap` on dynamic ListView widgets unless the list must live inside another scrollable. Prefer giving the list bounded space and leaving shrinkWrap off."
+    }
+  ],
+  "changeSummary": {
+    "modifiedPages": [
+      "StopPage"
+    ],
+    "diffs": [
+      {
+        "name": "StopPage",
+        "changeType": "modified",
+        "details": [
+          "Added state field \"photoUrl\""
+        ]
+      }
+    ]
+  },
+  "commit": {
+    "attempted": true,
+    "created": true,
+    "commitId": "e9gZ5NuCHwofH8liuZJb",
+    "commitMessage": "Somewhere to hold the photograph from a stop"
+  },
+  "workspaceStateSnapshot": {
+    "projectId": "feeda-paw-hc0hpt",
+    "lastUpdated": "2026-09-29T20:58:39.468790Z",
+    "lastRun": {
+      "timestamp": "2026-09-29T20:58:39.468790Z",
+      "tasks": [
+        {
+          "name": "compileDslApp",
+          "status": "passed"
+        }
+      ],
+      "pushed": true,
+      "commitId": "e9gZ5NuCHwofH8liuZJb"
+    },
+    "instructionBundle": {
+      "mode": "full",
+      "templateSha256": "fbb431c336275ad73c3045d0b890faca89e37aa16b004e1e3668d7ec16e50172",
+      "bytes": 40161,
+      "lines": 404
+    },
+    "pageDsl": false
+  },
+  "paths": {
+    "journalPath": ".flutterflow/runs.jsonl",
+    "lastRunArtifactPath": ".flutterflow/last_run.json",
+    "recoveryHintsPath": ".flutterflow/recovery.json",
+    "localSourceArchivePath": ".flutterflow/history/e9gZ5NuCHwofH8liuZJb",
+    "localPlanArchivePath": ".flutterflow/history/e9gZ5NuCHwofH8liuZJb/plan.md"
+  }
+}

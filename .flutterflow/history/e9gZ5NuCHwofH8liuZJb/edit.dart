@@ -3,8 +3,6 @@ library;
 import 'dart:io';
 
 import 'package:flutterflow_ai/flutterflow_ai.dart';
-import 'package:flutterflow_ai/src/helpers/postgres_helpers.dart'
-    show addTableField, findTableField;
 import 'package:feedapaw/flutterflow_project.dart' as ff;
 
 Future<void> main(List<String> args) async {
@@ -144,74 +142,9 @@ String _kit(String name) {
 }
 
 void buildStarterEditFlow(App app) {
-  // A photograph from a stop (29 Sep 2026).
-  //
-  // The round is the story: who was there and what they were fed. A driver
-  // can now take a picture at the stop, see it before saving, and it goes
-  // with the stop into feed-photos. The save chain is cleared before it is
-  // rewritten, because ensureActions leaves an existing one alone.
+  // Somewhere to hold the photograph from a stop (29 Sep 2026).
 
-  final st = ff.Pages.stopPage.state;
-
-  app.editPage(ff.Pages.stopPage, (page) {
-    page.ensureInsertedBefore(
-      page.findByKey('Button_6xdknv8c'),
-      Column(
-        name: 'StopPhotographBlock',
-        key: 'stop-photograph-block',
-        crossAxis: CrossAxis.start,
-        spacing: 8,
-        children: [
-          Image(
-            State(st.photoUrl),
-            name: 'StopPhotoPreview',
-            key: 'stop-photo-preview',
-            height: 180,
-            borderRadius: 12,
-            visible: Not(Equals(State(st.photoUrl), '')),
-          ),
-          Button(
-            'Take a photograph',
-            name: 'StopPhotoButton',
-            key: 'stop-photo-button',
-            onTap: [
-              const UploadData(
-                key: 'stop-photo-upload',
-                actionName: 'stopPhoto',
-                destination: UploadDestination.supabase,
-              ),
-              SetState(st.photoUrl,
-                  const ActionResult.uploadUrl('stop-photo-upload'),
-                  key: 'keep-stop-photo'),
-            ],
-          ),
-        ],
-      ),
-    );
-
-    page.removeTrigger(
-        page.findByKey('Button_6xdknv8c'), FFActionTriggerType.ON_TAP);
-    page.ensureActions(
-      page.findByKey('Button_6xdknv8c'),
-      triggerType: FFActionTriggerType.ON_TAP,
-      actions: [
-        PostgresCreate(
-          ff.Tables.feedRunStops,
-          key: 'save-stop',
-          fields: {
-            'run_id': State(st.runId),
-            'spot_id': State(st.spotId),
-            'meals_served': State(st.meals),
-            'animals_seen': State(st.seen),
-            'note': State(st.note),
-            'photo_path': State(st.photoUrl),
-            'arrived_at': const Global(GlobalProperty.currentTimestamp),
-          },
-          outputAs: 'rows',
-        ),
-        Snackbar('Stop saved.', key: 'stop-saved-note'),
-        const NavigateBack(key: 'stop-saved-back'),
-      ],
-    );
+  app.editPageState(ff.Pages.stopPage, (state) {
+    state.ensureField('photoUrl', string.withDefault(''));
   });
 }

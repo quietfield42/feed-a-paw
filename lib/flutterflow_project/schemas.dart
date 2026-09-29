@@ -618,6 +618,18 @@ final class FeedRunStopsFields extends MapBase<String, ffai.PostgresTableField> 
     isRequired: false,
     hasDefault: false,
   );
+  late final photoPath = ffai.ProjectTableFieldHandle(
+    name: "photo_path",
+    key: "5sb5qje9",
+    typeName: "String",
+    type: ffai.string,
+    description: "Storage path of the photograph taken at this stop.",
+    postgresType: "text",
+    foreignKey: null,
+    isPrimaryKey: false,
+    isRequired: false,
+    hasDefault: false,
+  );
   late final position = ffai.ProjectTableFieldHandle(
     name: "position",
     key: "40vx7w5v",
@@ -674,6 +686,7 @@ final class FeedRunStopsFields extends MapBase<String, ffai.PostgresTableField> 
     "id",
     "meals_served",
     "note",
+    "photo_path",
     "position",
     "run_id",
     "skipped_reason",
@@ -687,6 +700,7 @@ final class FeedRunStopsFields extends MapBase<String, ffai.PostgresTableField> 
     "id" => this.id,
     "meals_served" => this.mealsServed,
     "note" => this.note,
+    "photo_path" => this.photoPath,
     "position" => this.position,
     "run_id" => this.runId,
     "skipped_reason" => this.skippedReason,

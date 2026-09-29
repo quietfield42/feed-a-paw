@@ -1,0 +1,99 @@
+{
+  "version": 1,
+  "runId": "2026-09-29T20-59-41-947-f7wo1v",
+  "projectId": "feeda-paw-hc0hpt",
+  "startedAt": "2026-09-29T20:59:39.704761Z",
+  "finishedAt": "2026-09-29T20:59:41.999664Z",
+  "flutterFlowAIVersion": "0.0.41",
+  "dartVersion": "3.10.7",
+  "environment": {
+    "os": "windows",
+    "cwd": "[REDACTED_PATH]",
+    "dryRun": false,
+    "pushed": false,
+    "refreshContext": true,
+    "preFlightFreshness": false,
+    "baseUrl": "[REDACTED_URL]"
+  },
+  "projectTarget": {
+    "type": "existing",
+    "requestedProjectId": "feeda-paw-hc0hpt",
+    "resolvedProjectId": "feeda-paw-hc0hpt"
+  },
+  "source": {
+    "mode": "paths",
+    "fileCount": 1,
+    "files": [
+      "edit.dart"
+    ],
+    "explicitPaths": [
+      "[REDACTED_PATH]"
+    ],
+    "localArchivePath": ".flutterflow/history/2026-09-29T20-59-41-947-f7wo1v",
+    "uploaded": false
+  },
+  "tasks": [
+    {
+      "name": "compileDslApp",
+      "status": "failed",
+      "startedAt": "2026-09-29T20:59:41.024200Z",
+      "finishedAt": "2026-09-29T20:59:41.915548Z",
+      "durationMs": 891,
+      "error": "Bad state: Field \"feed_run_stops.photo_path\" is not on table \"feed_run_stops\" in the project snapshot. Existing names: \"id\", \"run_id\", \"spot_id\", \"position\", \"arrived_at\", \"meals_served\", \"animals_seen\", \"note\", \"skipped_reason\". Use the exact snapshot field name, or add the field in app.table(...) before referencing it. Where a typed field handle is accepted, use ff.Tables.feedRunStops.fields.spotId."
+    }
+  ],
+  "diagnostics": [],
+  "commit": {
+    "attempted": false,
+    "created": false,
+    "commitMessage": "A photograph from a stop, saved with the stop"
+  },
+  "workspaceStateSnapshot": {
+    "projectId": "feeda-paw-hc0hpt",
+    "lastUpdated": "2026-09-29T20:59:41.965538Z",
+    "lastRun": {
+      "timestamp": "2026-09-29T20:59:41.965538Z",
+      "tasks": [
+        {
+          "name": "compileDslApp",
+          "status": "failed"
+        }
+      ],
+      "pushed": false
+    },
+    "instructionBundle": {
+      "mode": "full",
+      "templateSha256": "fbb431c336275ad73c3045d0b890faca89e37aa16b004e1e3668d7ec16e50172",
+      "bytes": 40161,
+      "lines": 404
+    },
+    "pageDsl": false
+  },
+  "recoveryHints": {
+    "version": 1,
+    "timestamp": "2026-09-29T20:59:41.982643Z",
+    "projectId": "feeda-paw-hc0hpt",
+    "status": "failed",
+    "completedTasks": [],
+    "failedTasks": [
+      {
+        "name": "compileDslApp",
+        "error": "Bad state: Field \"feed_run_stops.photo_path\" is not on table \"feed_run_stops\" in the project snapshot. Existing names: \"id\", \"run_id\", \"spot_id\", \"position\", \"arrived_at\", \"meals_served\", \"animals_seen\", \"note\", \"skipped_reason\". Use the exact snapshot field name, or add the field in app.table(...) before referencing it. Where a typed field handle is accepted, use ff.Tables.feedRunStops.fields.spotId.",
+        "validationErrors": []
+      }
+    ],
+    "skippedTasks": [],
+    "diagnostics": [],
+    "recoveryHints": [
+      "Task \"compileDslApp\" failed: Bad state: Field \"feed_run_stops.photo_path\" is not on table \"feed_run_stops\" in the project snapshot. Existing names: \"id\", \"run_id\", \"spot_id\", \"position\", \"arrived_at\", \"meals_served\", \"animals_seen\", \"note\", \"skipped_reason\". Use the exact snapshot field name, or add the field in app.table(...) before referencing it. Where a typed field handle is accepted, use ff.Tables.feedRunStops.fields.spotId.. Fix the error and re-run."
+    ],
+    "attemptedCommitMessage": "A photograph from a stop, saved with the stop"
+  },
+  "paths": {
+    "journalPath": ".flutterflow/runs.jsonl",
+    "lastRunArtifactPath": ".flutterflow/last_run.json",
+    "recoveryHintsPath": ".flutterflow/recovery.json",
+    "localSourceArchivePath": ".flutterflow/history/2026-09-29T20-59-41-947-f7wo1v",
+    "localPlanArchivePath": ".flutterflow/history/2026-09-29T20-59-41-947-f7wo1v/plan.md"
+  }
+}

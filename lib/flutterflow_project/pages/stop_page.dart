@@ -31,6 +31,12 @@ final class StopPageState {
         key: "0rta1pgo",
         typeName: "String",
       );
+  ffai.ProjectStateFieldHandle get photoUrl =>
+      const ffai.ProjectStateFieldHandle(
+        name: "photoUrl",
+        key: "k82zigg2",
+        typeName: "String",
+      );
   ffai.ProjectStateFieldHandle get runId =>
       const ffai.ProjectStateFieldHandle(
         name: "runId",
@@ -212,9 +218,33 @@ abstract final class StopPageWidgets {
                     ],
                   ),
                   ffai.ProjectWidgetHandle(
+                    key: "stop-photograph-block",
+                    type: "Column",
+                    path: "StopPage.body[0].children[0].children[5]",
+                    name: "StopPhotographBlock",
+                    children: <ffai.ProjectWidgetHandle>[
+                      ffai.ProjectWidgetHandle(
+                        key: "stop-photo-preview",
+                        type: "Image",
+                        path: "StopPage.body[0].children[0].children[5].children[0]",
+                        name: "StopPhotoPreview",
+                      ),
+                      ffai.ProjectWidgetHandle(
+                        key: "stop-photo-button",
+                        type: "Button",
+                        path: "StopPage.body[0].children[0].children[5].children[1]",
+                        name: "StopPhotoButton",
+                        text: "Take a photograph",
+                        triggers: const <String>[
+                          "ON_TAP",
+                        ],
+                      ),
+                    ],
+                  ),
+                  ffai.ProjectWidgetHandle(
                     key: "Button_6xdknv8c",
                     type: "Button",
-                    path: "StopPage.body[0].children[0].children[5]",
+                    path: "StopPage.body[0].children[0].children[6]",
                     name: "SaveStopButton",
                     text: "Save this stop",
                     triggers: const <String>[
