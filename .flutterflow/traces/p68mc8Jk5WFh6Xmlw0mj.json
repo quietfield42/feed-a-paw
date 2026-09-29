@@ -1,18 +1,44 @@
 {
   "version": 1,
-  "timestamp": "2026-09-29T00:06:05.537876Z",
+  "runId": "p68mc8Jk5WFh6Xmlw0mj",
   "projectId": "feeda-paw-hc0hpt",
-  "success": true,
-  "noOp": false,
-  "pushed": true,
-  "dryRun": false,
-  "commitId": "p68mc8Jk5WFh6Xmlw0mj",
-  "commitMessage": "Ivory lettering on every bar",
+  "startedAt": "2026-09-29T00:05:56.937491Z",
+  "finishedAt": "2026-09-29T00:06:05.548774Z",
+  "flutterFlowAIVersion": "0.0.41",
+  "dartVersion": "3.10.7",
+  "environment": {
+    "os": "windows",
+    "cwd": "[REDACTED_PATH]",
+    "dryRun": false,
+    "pushed": true,
+    "refreshContext": true,
+    "preFlightFreshness": false,
+    "baseUrl": "[REDACTED_URL]"
+  },
+  "projectTarget": {
+    "type": "existing",
+    "requestedProjectId": "feeda-paw-hc0hpt",
+    "resolvedProjectId": "feeda-paw-hc0hpt"
+  },
+  "source": {
+    "mode": "paths",
+    "fileCount": 1,
+    "files": [
+      "edit.dart"
+    ],
+    "explicitPaths": [
+      "[REDACTED_PATH]"
+    ],
+    "localArchivePath": ".flutterflow/history/p68mc8Jk5WFh6Xmlw0mj",
+    "uploaded": true,
+    "uploadCommitId": "p68mc8Jk5WFh6Xmlw0mj"
+  },
   "tasks": [
     {
       "name": "compileDslApp",
-      "success": true,
-      "skipped": false,
+      "status": "passed",
+      "startedAt": "2026-09-29T00:05:58.207787Z",
+      "finishedAt": "2026-09-29T00:06:00.746993Z",
       "durationMs": 250,
       "validationErrors": [
         "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
@@ -115,5 +141,50 @@
       "target": "wiring",
       "suggestion": "Disable `shrinkWrap` on dynamic ListView widgets unless the list must live inside another scrollable. Prefer giving the list bounded space and leaving shrinkWrap off."
     }
-  ]
+  ],
+  "changeSummary": {
+    "modifiedPages": [
+      "AboutPage",
+      "DriverPage",
+      "PickupPage",
+      "SignInPage",
+      "StopPage",
+      "StoriesPage"
+    ]
+  },
+  "commit": {
+    "attempted": true,
+    "created": true,
+    "commitId": "p68mc8Jk5WFh6Xmlw0mj",
+    "commitMessage": "Ivory lettering on every bar"
+  },
+  "workspaceStateSnapshot": {
+    "projectId": "feeda-paw-hc0hpt",
+    "lastUpdated": "2026-09-29T00:06:05.531878Z",
+    "lastRun": {
+      "timestamp": "2026-09-29T00:06:05.531878Z",
+      "tasks": [
+        {
+          "name": "compileDslApp",
+          "status": "passed"
+        }
+      ],
+      "pushed": true,
+      "commitId": "p68mc8Jk5WFh6Xmlw0mj"
+    },
+    "instructionBundle": {
+      "mode": "full",
+      "templateSha256": "fbb431c336275ad73c3045d0b890faca89e37aa16b004e1e3668d7ec16e50172",
+      "bytes": 40161,
+      "lines": 404
+    },
+    "pageDsl": false
+  },
+  "paths": {
+    "journalPath": ".flutterflow/runs.jsonl",
+    "lastRunArtifactPath": ".flutterflow/last_run.json",
+    "recoveryHintsPath": ".flutterflow/recovery.json",
+    "localSourceArchivePath": ".flutterflow/history/p68mc8Jk5WFh6Xmlw0mj",
+    "localPlanArchivePath": ".flutterflow/history/p68mc8Jk5WFh6Xmlw0mj/plan.md"
+  }
 }

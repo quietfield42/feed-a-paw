@@ -135,45 +135,21 @@ Options:
 }
 
 void buildStarterEditFlow(App app) {
-  // Every bar the same (29 Sep 2026).
+  // A bottom bar, so the app has a shape (29 Sep 2026).
   //
-  // Forest behind, ivory lettering, on every screen in every app. Somebody
-  // moving between two a-Paw apps should not have to work out where they are.
+  // Today, the stories, the round, and the story behind it. The Driver tab
+  // stays in the bar for now — it is only useful to the team, and the team is
+  // who signs in.
 
-  app.editPage(ff.Pages.aboutPage, (page) {
-    page.update(
-      ff.Pages.aboutPage.widgets.byKey('Text_ct5wrn0j').single,
-      (patch) => patch.color(Colors.primaryBackground),
-    );
-  });
-  app.editPage(ff.Pages.driverPage, (page) {
-    page.update(
-      ff.Pages.driverPage.widgets.byKey('Text_ybsncio4').single,
-      (patch) => patch.color(Colors.primaryBackground),
-    );
-  });
-  app.editPage(ff.Pages.pickupPage, (page) {
-    page.update(
-      ff.Pages.pickupPage.widgets.byKey('Text_qhtasw1t').single,
-      (patch) => patch.color(Colors.primaryBackground),
-    );
-  });
-  app.editPage(ff.Pages.signInPage, (page) {
-    page.update(
-      ff.Pages.signInPage.widgets.byKey('Text_2o1h06im').single,
-      (patch) => patch.color(Colors.primaryBackground),
-    );
-  });
-  app.editPage(ff.Pages.stopPage, (page) {
-    page.update(
-      ff.Pages.stopPage.widgets.byKey('Text_urzwxqvo').single,
-      (patch) => patch.color(Colors.primaryBackground),
-    );
-  });
-  app.editPage(ff.Pages.storiesPage, (page) {
-    page.update(
-      ff.Pages.storiesPage.widgets.byKey('Text_20dozi7g').single,
-      (patch) => patch.color(Colors.primaryBackground),
-    );
-  });
+  app.bottomNav(
+    items: [
+      BottomNavItem(ff.Pages.todayPage, icon: 'restaurant'),
+      BottomNavItem(ff.Pages.storiesPage, icon: 'photo_library'),
+      BottomNavItem(ff.Pages.driverPage, icon: 'local_shipping'),
+      BottomNavItem(ff.Pages.aboutPage, icon: 'info'),
+    ],
+    backgroundColor: Colors.secondaryBackground,
+    selectedColor: Colors.secondary,
+    unselectedColor: Colors.secondaryText,
+  );
 }

@@ -135,45 +135,66 @@ Options:
 }
 
 void buildStarterEditFlow(App app) {
-  // Every bar the same (29 Sep 2026).
-  //
-  // Forest behind, ivory lettering, on every screen in every app. Somebody
-  // moving between two a-Paw apps should not have to work out where they are.
+  // The a-Paw house style, applied (29 Sep 2026).
 
-  app.editPage(ff.Pages.aboutPage, (page) {
-    page.update(
-      ff.Pages.aboutPage.widgets.byKey('Text_ct5wrn0j').single,
-      (patch) => patch.color(Colors.primaryBackground),
-    );
-  });
-  app.editPage(ff.Pages.driverPage, (page) {
-    page.update(
-      ff.Pages.driverPage.widgets.byKey('Text_ybsncio4').single,
-      (patch) => patch.color(Colors.primaryBackground),
-    );
-  });
-  app.editPage(ff.Pages.pickupPage, (page) {
-    page.update(
-      ff.Pages.pickupPage.widgets.byKey('Text_qhtasw1t').single,
-      (patch) => patch.color(Colors.primaryBackground),
-    );
-  });
-  app.editPage(ff.Pages.signInPage, (page) {
-    page.update(
-      ff.Pages.signInPage.widgets.byKey('Text_2o1h06im').single,
-      (patch) => patch.color(Colors.primaryBackground),
-    );
-  });
-  app.editPage(ff.Pages.stopPage, (page) {
-    page.update(
-      ff.Pages.stopPage.widgets.byKey('Text_urzwxqvo').single,
-      (patch) => patch.color(Colors.primaryBackground),
-    );
-  });
-  app.editPage(ff.Pages.storiesPage, (page) {
-    page.update(
-      ff.Pages.storiesPage.widgets.byKey('Text_20dozi7g').single,
-      (patch) => patch.color(Colors.primaryBackground),
-    );
-  });
+  app.supabase(
+    url: 'https://bxoboypzumjdfkpszbkt.supabase.co',
+    anonKey: 'sb_publishable_g3AquYaNa0cwXs8jxqidqg_p1FwQCWJ',
+  );
+
+  // ---------------------------------------------------------------------
+  // The a-Paw house style. Identical in every app in the family, taken from
+  // Care-a-Paw so the seven look like one thing rather than seven.
+  //
+  // Forest carries the app, orange is the paw and the call to action, ivory
+  // is the paper everything sits on. Fraunces for anything that is a heading,
+  // Figtree for anything that is read.
+  // ---------------------------------------------------------------------
+  app.themeColor('primary', 0xFF1F5148);
+  app.themeColor('secondary', 0xFFFF7900);
+  app.themeColor('tertiary', 0xFFB08D57);
+  app.themeColor('alternate', 0xFFE6DFD1);
+  app.themeColor('primaryText', 0xFF1F5148);
+  app.themeColor('secondaryText', 0xFF55625D);
+  app.themeColor('primaryBackground', 0xFFF6F1E7);
+  app.themeColor('secondaryBackground', 0xFFFFFFFF);
+  app.themeColor('accent1', 0xFFDDEBE3);
+  app.themeColor('accent2', 0xFFFFE7D1);
+  app.themeColor('accent3', 0xFFF2EBDD);
+  app.themeColor('accent4', 0xCCFFFFFF);
+  app.themeColor('success', 0xFF2E7D32);
+  app.themeColor('warning', 0xFFB85200);
+  app.themeColor('error', 0xFFB3261E);
+  app.themeColor('info', 0xFF1F5148);
+
+  app.typography('displayLarge',
+      fontFamily: 'Fraunces', fontSize: 64, fontWeight: 600);
+  app.typography('displayMedium',
+      fontFamily: 'Fraunces', fontSize: 44, fontWeight: 600);
+  app.typography('displaySmall',
+      fontFamily: 'Fraunces', fontSize: 36, fontWeight: 700);
+  app.typography('headlineLarge',
+      fontFamily: 'Fraunces', fontSize: 32, fontWeight: 600);
+  app.typography('headlineMedium',
+      fontFamily: 'Fraunces', fontSize: 32, fontWeight: 700);
+  app.typography('headlineSmall',
+      fontFamily: 'Fraunces', fontSize: 24, fontWeight: 700);
+  app.typography('titleLarge',
+      fontFamily: 'Fraunces', fontSize: 20, fontWeight: 700);
+  app.typography('titleMedium',
+      fontFamily: 'Fraunces', fontSize: 16, fontWeight: 600);
+  app.typography('titleSmall',
+      fontFamily: 'Fraunces', fontSize: 16, fontWeight: 600);
+  app.typography('labelLarge',
+      fontFamily: 'Figtree', fontSize: 16, fontWeight: 400);
+  app.typography('labelMedium',
+      fontFamily: 'Figtree', fontSize: 14, fontWeight: 400);
+  app.typography('labelSmall',
+      fontFamily: 'Figtree', fontSize: 12, fontWeight: 400);
+  app.typography('bodyLarge',
+      fontFamily: 'Figtree', fontSize: 17, fontWeight: 400);
+  app.typography('bodyMedium',
+      fontFamily: 'Figtree', fontSize: 15, fontWeight: 400);
+  app.typography('bodySmall',
+      fontFamily: 'Figtree', fontSize: 13, fontWeight: 400);
 }

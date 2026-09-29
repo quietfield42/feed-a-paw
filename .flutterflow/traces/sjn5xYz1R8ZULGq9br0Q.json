@@ -1,23 +1,46 @@
 {
   "version": 1,
-  "timestamp": "2026-09-29T00:06:05.537876Z",
+  "runId": "sjn5xYz1R8ZULGq9br0Q",
   "projectId": "feeda-paw-hc0hpt",
-  "success": true,
-  "noOp": false,
-  "pushed": true,
-  "dryRun": false,
-  "commitId": "p68mc8Jk5WFh6Xmlw0mj",
-  "commitMessage": "Ivory lettering on every bar",
+  "startedAt": "2026-09-29T00:00:30.873499Z",
+  "finishedAt": "2026-09-29T00:00:42.160518Z",
+  "flutterFlowAIVersion": "0.0.41",
+  "dartVersion": "3.10.7",
+  "environment": {
+    "os": "windows",
+    "cwd": "[REDACTED_PATH]",
+    "dryRun": false,
+    "pushed": true,
+    "refreshContext": true,
+    "preFlightFreshness": false,
+    "baseUrl": "[REDACTED_URL]"
+  },
+  "projectTarget": {
+    "type": "existing",
+    "requestedProjectId": "feeda-paw-hc0hpt",
+    "resolvedProjectId": "feeda-paw-hc0hpt"
+  },
+  "source": {
+    "mode": "paths",
+    "fileCount": 1,
+    "files": [
+      "edit.dart"
+    ],
+    "explicitPaths": [
+      "[REDACTED_PATH]"
+    ],
+    "localArchivePath": ".flutterflow/history/sjn5xYz1R8ZULGq9br0Q",
+    "uploaded": true,
+    "uploadCommitId": "sjn5xYz1R8ZULGq9br0Q"
+  },
   "tasks": [
     {
       "name": "compileDslApp",
-      "success": true,
-      "skipped": false,
-      "durationMs": 250,
+      "status": "passed",
+      "startedAt": "2026-09-29T00:00:32.396112Z",
+      "finishedAt": "2026-09-29T00:00:34.183568Z",
+      "durationMs": 140,
       "validationErrors": [
-        "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
-        "Go to SpotList.",
-        "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
         "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
         "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
         "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
@@ -31,7 +54,7 @@
   "diagnostics": [
     {
       "code": "PREEXISTING_WIRING",
-      "message": "2 pre-existing wiring findings outside this edit; run `flutterflow ai review` to list them",
+      "message": "6 pre-existing wiring findings outside this edit; run `flutterflow ai review` to list them",
       "severity": "warning",
       "location": "",
       "target": "wiring"
@@ -40,7 +63,7 @@
       "code": "VALIDATION_HARDCODED_COLOR",
       "message": "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
       "severity": "warning",
-      "location": "Button 'BackToTodayButton' [key: Button_w7gk2zl9]",
+      "location": "Button 'AboutButton' [key: Button_ikvt4ilc]",
       "target": "widget"
     },
     {
@@ -75,45 +98,58 @@
       "code": "VALIDATION_HARDCODED_COLOR",
       "message": "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
       "severity": "warning",
-      "location": "Button 'SavePickupButton' [key: Button_h50rc8xs]",
-      "target": "widget"
-    },
-    {
-      "code": "VALIDATION_HARDCODED_COLOR",
-      "message": "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
-      "severity": "warning",
-      "location": "Button 'SaveStopButton' [key: Button_6xdknv8c]",
-      "target": "widget"
-    },
-    {
-      "code": "VALIDATION_HARDCODED_COLOR",
-      "message": "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
-      "severity": "warning",
-      "location": "Button 'SignInButton' [key: Button_55zd78mn]",
-      "target": "widget"
-    },
-    {
-      "code": "VALIDATION_HARDCODED_COLOR",
-      "message": "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
-      "severity": "warning",
       "location": "Button 'StartRunButton' [key: Button_ox047bt4]",
       "target": "widget"
     },
     {
-      "code": "VALIDATION_LIST_VIEW_SHRINK_WRAP",
-      "message": "Go to SpotList.",
+      "code": "VALIDATION_HARDCODED_COLOR",
+      "message": "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
       "severity": "warning",
-      "location": "ListView 'SpotList' [key: ListView_s17wb0qu]",
-      "target": "widget",
-      "suggestion": "Disable `shrinkWrap` on data-backed ListView widgets unless the list must live inside another scrollable. Prefer giving the list bounded space and leaving shrinkWrap off."
-    },
-    {
-      "code": "R19",
-      "message": "Dynamic ListView enables shrinkWrap, which triggers the same performance warning FlutterFlow shows for data-backed lists.",
-      "severity": "warning",
-      "location": "StopPage.SpotList",
-      "target": "wiring",
-      "suggestion": "Disable `shrinkWrap` on dynamic ListView widgets unless the list must live inside another scrollable. Prefer giving the list bounded space and leaving shrinkWrap off."
+      "location": "Button 'SupportButton' [key: Button_h75xi57u]",
+      "target": "widget"
     }
-  ]
+  ],
+  "changeSummary": {
+    "modifiedPages": [
+      "AboutPage",
+      "DriverPage",
+      "StoriesPage",
+      "TodayPage"
+    ]
+  },
+  "commit": {
+    "attempted": true,
+    "created": true,
+    "commitId": "sjn5xYz1R8ZULGq9br0Q",
+    "commitMessage": "A bottom bar: today, the stories, the round, the why"
+  },
+  "workspaceStateSnapshot": {
+    "projectId": "feeda-paw-hc0hpt",
+    "lastUpdated": "2026-09-29T00:00:42.143519Z",
+    "lastRun": {
+      "timestamp": "2026-09-29T00:00:42.143519Z",
+      "tasks": [
+        {
+          "name": "compileDslApp",
+          "status": "passed"
+        }
+      ],
+      "pushed": true,
+      "commitId": "sjn5xYz1R8ZULGq9br0Q"
+    },
+    "instructionBundle": {
+      "mode": "full",
+      "templateSha256": "fbb431c336275ad73c3045d0b890faca89e37aa16b004e1e3668d7ec16e50172",
+      "bytes": 40161,
+      "lines": 404
+    },
+    "pageDsl": false
+  },
+  "paths": {
+    "journalPath": ".flutterflow/runs.jsonl",
+    "lastRunArtifactPath": ".flutterflow/last_run.json",
+    "recoveryHintsPath": ".flutterflow/recovery.json",
+    "localSourceArchivePath": ".flutterflow/history/sjn5xYz1R8ZULGq9br0Q",
+    "localPlanArchivePath": ".flutterflow/history/sjn5xYz1R8ZULGq9br0Q/plan.md"
+  }
 }
