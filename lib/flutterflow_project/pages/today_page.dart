@@ -101,7 +101,7 @@ abstract final class TodayPageWidgets {
                     type: "Button",
                     path: "TodayPage.body[0].children[0].children[5]",
                     name: "SupportButton",
-                    text: "Support the truck",
+                    text: "Follow the truck",
                     triggers: const <String>[
                       "ON_TAP",
                     ],

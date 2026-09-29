@@ -134,45 +134,41 @@ Options:
 ''');
 }
 
-String _kit(String name) {
-  final text = File('kit/$name').readAsStringSync();
-  const marker = '// DO NOT REMOVE OR MODIFY THE CODE ABOVE!';
-  final at = text.indexOf(marker);
-  return at < 0 ? text.trim() : text.substring(at + marker.length).trim();
-}
-
 void buildStarterEditFlow(App app) {
-  // Nothing in the app asks for money (29 Sep 2026).
+  // Light bars, forest lettering (29 Sep 2026).
   //
-  // About said One Tail One Meal "is not a registered charity, so gifts are
-  // not tax deductible", and offered "Give on the website"; Today offered
-  // "Support the truck". Three problems at once: the words donation, charity
-  // and tax deductible are not used in these apps; Apple and Google only
-  // allow a donation link for a registered non-profit, so a button that leads
-  // to giving can have the app refused; and it is simply not what this app is
-  // for. Feed-a-Paw shows the work — the website is where money is handled.
-  //
-  // So the sentence goes, and both buttons become an invitation to follow the
-  // work rather than to pay for it.
+  // The house style is an ivory ground the whole way down, not a coloured
+  // band at the top. Forest bars were my own idea and they are not what Care
+  // and Spot do.
 
   app.editPage(ff.Pages.aboutPage, (page) {
     page.update(
-      ff.Pages.aboutPage.widgets.byKey('Text_az8i2tm1').single,
-      (patch) => patch.text(
-          'Every meal in this app was cooked and handed out by the One Tail '
-          'One Meal team. You can follow the round, read the stories and see '
-          'the count rise. The wider story lives on onetailonemeal.com.'),
-    );
-    page.update(
-      ff.Pages.aboutPage.widgets.byKey('Button_j0a5kwkc').single,
-      (patch) => patch.text('Read more on onetailonemeal.com'),
+      ff.Pages.aboutPage.widgets.byKey('Text_ct5wrn0j').single,
+      (patch) => patch.color(Colors.primaryText),
     );
   });
-
-  app.editPage(ff.Pages.todayPage, (page) {
+  app.editPage(ff.Pages.driverPage, (page) {
     page.update(
-      ff.Pages.todayPage.widgets.byKey('Button_h75xi57u').single,
-      (patch) => patch.text('Follow the truck'),
+      ff.Pages.driverPage.widgets.byKey('Text_ybsncio4').single,
+      (patch) => patch.color(Colors.primaryText),
+    );
+  });
+  app.editPage(ff.Pages.pickupPage, (page) {
+    page.update(
+      ff.Pages.pickupPage.widgets.byKey('Text_qhtasw1t').single,
+      (patch) => patch.color(Colors.primaryText),
+    );
+  });
+  app.editPage(ff.Pages.stopPage, (page) {
+    page.update(
+      ff.Pages.stopPage.widgets.byKey('Text_urzwxqvo').single,
+      (patch) => patch.color(Colors.primaryText),
+    );
+  });
+  app.editPage(ff.Pages.storiesPage, (page) {
+    page.update(
+      ff.Pages.storiesPage.widgets.byKey('Text_20dozi7g').single,
+      (patch) => patch.color(Colors.primaryText),
     );
   });
 }

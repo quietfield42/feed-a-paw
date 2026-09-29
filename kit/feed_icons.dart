@@ -490,6 +490,8 @@ class ApawFrontDoor extends StatefulWidget {
     required this.features,
     required this.meals,
     required this.homeRoute,
+    this.guestLabel,
+    this.guestRoute,
     this.width,
     this.height,
   });
@@ -501,6 +503,11 @@ class ApawFrontDoor extends StatefulWidget {
   final List<ApawFeature> features;
   final String meals;
   final String homeRoute;
+
+  /// Optional "look around first" link for apps that are open to everyone
+  /// (Feed-a-Paw): the label and the route it goes to without an account.
+  final String? guestLabel;
+  final String? guestRoute;
   final double? width;
   final double? height;
 
@@ -723,6 +730,8 @@ class _ApawFrontDoorState extends State<ApawFrontDoor> {
         apawPrimary('Create an account', () => _go(_ApawDoor.create)),
         const SizedBox(height: 6),
         _link('I already have an account', () => _go(_ApawDoor.signIn)),
+        if (widget.guestLabel != null && widget.guestRoute != null)
+          _link(widget.guestLabel!, () => context.goNamed(widget.guestRoute!)),
         const SizedBox(height: 2),
         Text('One a-Paw account works in all our apps.',
             textAlign: TextAlign.center, style: apawText(size: 12.5, color: ApawColors.muted)),

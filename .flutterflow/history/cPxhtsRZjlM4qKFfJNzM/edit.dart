@@ -142,37 +142,20 @@ String _kit(String name) {
 }
 
 void buildStarterEditFlow(App app) {
-  // Nothing in the app asks for money (29 Sep 2026).
+  // Look around first (29 Sep 2026).
   //
-  // About said One Tail One Meal "is not a registered charity, so gifts are
-  // not tax deductible", and offered "Give on the website"; Today offered
-  // "Support the truck". Three problems at once: the words donation, charity
-  // and tax deductible are not used in these apps; Apple and Google only
-  // allow a donation link for a registered non-profit, so a button that leads
-  // to giving can have the app refused; and it is simply not what this app is
-  // for. Feed-a-Paw shows the work — the website is where money is handled.
+  // The front door had no way past it, so Feed asked strangers to make an
+  // account before they could see a single meal — the opposite of the point.
+  // The kit now carries a guest link; this takes the new version.
   //
-  // So the sentence goes, and both buttons become an invitation to follow the
-  // work rather than to pay for it.
+  // app.customWidget quietly does nothing when the name already exists, which
+  // is why the first attempt changed nothing. updateCustomWidget replaces the
+  // code.
 
-  app.editPage(ff.Pages.aboutPage, (page) {
-    page.update(
-      ff.Pages.aboutPage.widgets.byKey('Text_az8i2tm1').single,
-      (patch) => patch.text(
-          'Every meal in this app was cooked and handed out by the One Tail '
-          'One Meal team. You can follow the round, read the stories and see '
-          'the count rise. The wider story lives on onetailonemeal.com.'),
-    );
-    page.update(
-      ff.Pages.aboutPage.widgets.byKey('Button_j0a5kwkc').single,
-      (patch) => patch.text('Read more on onetailonemeal.com'),
-    );
-  });
-
-  app.editPage(ff.Pages.todayPage, (page) {
-    page.update(
-      ff.Pages.todayPage.widgets.byKey('Button_h75xi57u').single,
-      (patch) => patch.text('Follow the truck'),
-    );
+  app.raw((project) {
+    updateCustomWidget(project,
+        name: 'FeedIcons', code: _kit('feed_icons.dart'));
+    updateCustomWidget(project,
+        name: 'FeedAuthPanel', code: _kit('feed_auth_panel.dart'));
   });
 }

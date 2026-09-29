@@ -89,14 +89,14 @@ abstract final class AboutPageWidgets {
                     type: "Text",
                     path: "AboutPage.body[0].children[0].children[2]",
                     name: "AboutMoney",
-                    text: "Giving happens on onetailonemeal.com, never inside the app. What is given there funds meals for street animals. One Tail One Meal is not a registered charity, so gifts are not tax deductible.",
+                    text: "Every meal in this app was cooked and handed out by the One Tail One Meal team. You can follow the round, read the stories and see the count rise. The wider story lives on onetailonemeal.com.",
                   ),
                   ffai.ProjectWidgetHandle(
                     key: "Button_j0a5kwkc",
                     type: "Button",
                     path: "AboutPage.body[0].children[0].children[3]",
                     name: "GiveButton",
-                    text: "Give on the website",
+                    text: "Read more on onetailonemeal.com",
                     triggers: const <String>[
                       "ON_TAP",
                     ],

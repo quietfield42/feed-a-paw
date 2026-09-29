@@ -1,25 +1,20 @@
 {
   "version": 1,
-  "timestamp": "2026-09-29T06:49:48.706506Z",
+  "timestamp": "2026-09-29T08:11:52.591066Z",
   "projectId": "feeda-paw-hc0hpt",
   "success": true,
   "noOp": false,
   "pushed": true,
   "dryRun": false,
-  "commitId": "RAxAbSWdzYs36wgZahos",
-  "commitMessage": "Forest lettering on light bars",
+  "commitId": "uTI4VIzPlF3ebbXkkuwQ",
+  "commitMessage": "Nothing in the app asks for money",
   "tasks": [
     {
       "name": "compileDslApp",
       "success": true,
       "skipped": false,
-      "durationMs": 396,
+      "durationMs": 377,
       "validationErrors": [
-        "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
-        "Go to SpotList.",
-        "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
-        "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
-        "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
         "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
         "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
         "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value."
@@ -29,7 +24,7 @@
   "diagnostics": [
     {
       "code": "PREEXISTING_WIRING",
-      "message": "2 pre-existing wiring findings outside this edit; run `flutterflow ai review` to list them",
+      "message": "8 pre-existing wiring findings outside this edit; run `flutterflow ai review` to list them",
       "severity": "warning",
       "location": "",
       "target": "wiring"
@@ -38,7 +33,7 @@
       "code": "VALIDATION_HARDCODED_COLOR",
       "message": "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
       "severity": "warning",
-      "location": "Button 'FinishRunButton' [key: Button_zfzjqb0v]",
+      "location": "Button 'AboutButton' [key: Button_ikvt4ilc]",
       "target": "widget"
     },
     {
@@ -52,52 +47,8 @@
       "code": "VALIDATION_HARDCODED_COLOR",
       "message": "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
       "severity": "warning",
-      "location": "Button 'LogPickupButton' [key: Button_zmdjnht0]",
+      "location": "Button 'SupportButton' [key: Button_h75xi57u]",
       "target": "widget"
-    },
-    {
-      "code": "VALIDATION_HARDCODED_COLOR",
-      "message": "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
-      "severity": "warning",
-      "location": "Button 'LogStopButton' [key: Button_2fog88v7]",
-      "target": "widget"
-    },
-    {
-      "code": "VALIDATION_HARDCODED_COLOR",
-      "message": "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
-      "severity": "warning",
-      "location": "Button 'SavePickupButton' [key: Button_h50rc8xs]",
-      "target": "widget"
-    },
-    {
-      "code": "VALIDATION_HARDCODED_COLOR",
-      "message": "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
-      "severity": "warning",
-      "location": "Button 'SaveStopButton' [key: Button_6xdknv8c]",
-      "target": "widget"
-    },
-    {
-      "code": "VALIDATION_HARDCODED_COLOR",
-      "message": "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
-      "severity": "warning",
-      "location": "Button 'StartRunButton' [key: Button_ox047bt4]",
-      "target": "widget"
-    },
-    {
-      "code": "VALIDATION_LIST_VIEW_SHRINK_WRAP",
-      "message": "Go to SpotList.",
-      "severity": "warning",
-      "location": "ListView 'SpotList' [key: ListView_s17wb0qu]",
-      "target": "widget",
-      "suggestion": "Disable `shrinkWrap` on data-backed ListView widgets unless the list must live inside another scrollable. Prefer giving the list bounded space and leaving shrinkWrap off."
-    },
-    {
-      "code": "R19",
-      "message": "Dynamic ListView enables shrinkWrap, which triggers the same performance warning FlutterFlow shows for data-backed lists.",
-      "severity": "warning",
-      "location": "StopPage.SpotList",
-      "target": "wiring",
-      "suggestion": "Disable `shrinkWrap` on dynamic ListView widgets unless the list must live inside another scrollable. Prefer giving the list bounded space and leaving shrinkWrap off."
     }
   ]
 }

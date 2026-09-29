@@ -38,6 +38,8 @@ class _FeedAuthPanelState extends State<FeedAuthPanel> {
         ],
         meals: 'Feed-a-Paw is One Tail One Meal’s own app, feeding street animals every day.',
         homeRoute: 'DriverPage',
+        guestLabel: 'Look around first',
+        guestRoute: 'TodayPage',
         width: widget.width,
         height: widget.height,
       );
