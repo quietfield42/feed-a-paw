@@ -1,24 +1,19 @@
 {
   "version": 1,
-  "timestamp": "2026-09-29T08:11:52.591066Z",
+  "timestamp": "2026-09-29T08:43:18.499428Z",
   "projectId": "feeda-paw-hc0hpt",
   "success": true,
   "noOp": false,
   "pushed": true,
   "dryRun": false,
-  "commitId": "uTI4VIzPlF3ebbXkkuwQ",
-  "commitMessage": "Nothing in the app asks for money",
+  "commitId": "5yXMaedTEkJbjOCN8B5E",
+  "commitMessage": "Stories says when there is nothing to read yet",
   "tasks": [
     {
       "name": "compileDslApp",
       "success": true,
       "skipped": false,
-      "durationMs": 377,
-      "validationErrors": [
-        "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
-        "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
-        "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value."
-      ]
+      "durationMs": 378
     }
   ],
   "diagnostics": [
@@ -28,27 +23,6 @@
       "severity": "warning",
       "location": "",
       "target": "wiring"
-    },
-    {
-      "code": "VALIDATION_HARDCODED_COLOR",
-      "message": "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
-      "severity": "warning",
-      "location": "Button 'AboutButton' [key: Button_ikvt4ilc]",
-      "target": "widget"
-    },
-    {
-      "code": "VALIDATION_HARDCODED_COLOR",
-      "message": "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
-      "severity": "warning",
-      "location": "Button 'GiveButton' [key: Button_j0a5kwkc]",
-      "target": "widget"
-    },
-    {
-      "code": "VALIDATION_HARDCODED_COLOR",
-      "message": "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
-      "severity": "warning",
-      "location": "Button 'SupportButton' [key: Button_h75xi57u]",
-      "target": "widget"
     }
   ]
 }

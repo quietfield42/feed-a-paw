@@ -134,38 +134,23 @@ Options:
 ''');
 }
 
-String _kit(String name) {
-  final text = File('kit/$name').readAsStringSync();
-  const marker = '// DO NOT REMOVE OR MODIFY THE CODE ABOVE!';
-  final at = text.indexOf(marker);
-  return at < 0 ? text.trim() : text.substring(at + marker.length).trim();
-}
-
 void buildStarterEditFlow(App app) {
-  // A page that says when it is empty (29 Sep 2026).
+  // The bar the rest of the family has (29 Sep 2026).
   //
-  // Stories was simply blank before anything had been written: nothing to
-  // read and no sign whether that was the app or the day. The pack has the
-  // drawing for it; the kit has the layout.
-  //
-  // The widget takes the list itself rather than a flag, so the picture and
-  // the list can never disagree about whether there is anything there.
+  // Orange on the selected tab and no labels was mine. Care, Track and Snap
+  // use forest on a pale pill with a word under every icon, which is the
+  // Material 3 bar — so ask for that one rather than the plain one.
 
-  final empty = app.customWidget(
-    'FeedEmpty',
-    parameters: {'which': string, 'items': listOf(ff.Tables.feedStories)},
-    description: 'Empty-state drawing from the pack, for a bare list.',
-    code: _kit('feed_empty.dart'),
+  app.bottomNav(
+    items: [
+      BottomNavItem(ff.Pages.todayPage, icon: 'restaurant'),
+      BottomNavItem(ff.Pages.storiesPage, icon: 'photo_library'),
+      BottomNavItem(ff.Pages.driverPage, icon: 'local_shipping'),
+      BottomNavItem(ff.Pages.aboutPage, icon: 'info'),
+    ],
+    style: BottomNavStyle.google,
+    backgroundColor: Colors.secondaryBackground,
+    selectedColor: Colors.primary,
+    unselectedColor: Colors.secondaryText,
   );
-
-  app.editPage(ff.Pages.storiesPage, (page) {
-    page.ensureInsertedAfter(
-      ff.Pages.storiesPage.widgets.byKey('ListView_8ryng321').single,
-      empty(
-        name: 'StoriesEmpty',
-        which: 'stories',
-        items: State(ff.Pages.storiesPage.state.stories),
-      ),
-    );
-  });
 }

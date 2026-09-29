@@ -1,0 +1,163 @@
+{
+  "version": 1,
+  "runId": "2026-09-29T08-42-30-048-6x72sm",
+  "projectId": "feeda-paw-hc0hpt",
+  "startedAt": "2026-09-29T08:42:26.708849Z",
+  "finishedAt": "2026-09-29T08:42:30.067021Z",
+  "flutterFlowAIVersion": "0.0.41",
+  "dartVersion": "3.10.7",
+  "environment": {
+    "os": "windows",
+    "cwd": "[REDACTED_PATH]",
+    "dryRun": false,
+    "pushed": false,
+    "refreshContext": true,
+    "preFlightFreshness": false,
+    "baseUrl": "[REDACTED_URL]"
+  },
+  "projectTarget": {
+    "type": "existing",
+    "requestedProjectId": "feeda-paw-hc0hpt",
+    "resolvedProjectId": "feeda-paw-hc0hpt"
+  },
+  "source": {
+    "mode": "paths",
+    "fileCount": 1,
+    "files": [
+      "edit.dart"
+    ],
+    "explicitPaths": [
+      "[REDACTED_PATH]"
+    ],
+    "localArchivePath": ".flutterflow/history/2026-09-29T08-42-30-048-6x72sm",
+    "uploaded": false
+  },
+  "tasks": [
+    {
+      "name": "compileDslApp",
+      "status": "validation_failed",
+      "startedAt": "2026-09-29T08:42:27.606952Z",
+      "finishedAt": "2026-09-29T08:42:29.991280Z",
+      "durationMs": 344,
+      "error": "Validation failed: Container 'StoriesEmpty' [key: Container_ygt38vjv] — edit.dart:164: [symbol: StoriesEmpty] FeedEmpty parameter items not set properly.",
+      "validationErrors": [
+        "edit.dart:164: [symbol: StoriesEmpty] FeedEmpty parameter items not set properly."
+      ]
+    }
+  ],
+  "diagnostics": [
+    {
+      "code": "VALIDATION_CUSTOM_CODE_WIDGET",
+      "message": "FeedEmpty parameter items not set properly.",
+      "severity": "error",
+      "location": "Container 'StoriesEmpty' [key: Container_ygt38vjv]",
+      "target": "widget"
+    },
+    {
+      "code": "PREEXISTING_WIRING",
+      "message": "7 pre-existing wiring findings outside this edit; run `flutterflow ai review` to list them",
+      "severity": "warning",
+      "location": "",
+      "target": "wiring"
+    }
+  ],
+  "changeSummary": {
+    "modifiedPages": [
+      "StoriesPage"
+    ],
+    "modifiedCustomCode": [
+      "FeedEmpty"
+    ],
+    "customCodeDeltas": [
+      {
+        "name": "FeedEmpty",
+        "kind": "widget",
+        "file": "feed_empty.dart",
+        "addedLines": 45,
+        "removedLines": 0,
+        "codeChanged": true
+      }
+    ],
+    "diffs": [
+      {
+        "name": "StoriesPage",
+        "changeType": "modified",
+        "details": [
+          "Added 1 widget(s)"
+        ]
+      }
+    ]
+  },
+  "commit": {
+    "attempted": false,
+    "created": false,
+    "commitMessage": "Stories says when there is nothing to read yet"
+  },
+  "workspaceStateSnapshot": {
+    "projectId": "feeda-paw-hc0hpt",
+    "lastUpdated": "2026-09-29T08:42:30.055229Z",
+    "lastRun": {
+      "timestamp": "2026-09-29T08:42:30.055229Z",
+      "tasks": [
+        {
+          "name": "compileDslApp",
+          "status": "validation_failed"
+        }
+      ],
+      "pushed": false,
+      "validationFailedTask": "compileDslApp"
+    },
+    "instructionBundle": {
+      "mode": "full",
+      "templateSha256": "fbb431c336275ad73c3045d0b890faca89e37aa16b004e1e3668d7ec16e50172",
+      "bytes": 40161,
+      "lines": 404
+    },
+    "pageDsl": false
+  },
+  "recoveryHints": {
+    "version": 1,
+    "timestamp": "2026-09-29T08:42:30.061262Z",
+    "projectId": "feeda-paw-hc0hpt",
+    "status": "failed",
+    "completedTasks": [],
+    "failedTasks": [
+      {
+        "name": "compileDslApp",
+        "error": "Validation failed: Container 'StoriesEmpty' [key: Container_ygt38vjv] — edit.dart:164: [symbol: StoriesEmpty] FeedEmpty parameter items not set properly.",
+        "validationErrors": [
+          "FeedEmpty parameter items not set properly."
+        ]
+      }
+    ],
+    "skippedTasks": [],
+    "diagnostics": [
+      {
+        "code": "VALIDATION_CUSTOM_CODE_WIDGET",
+        "message": "FeedEmpty parameter items not set properly.",
+        "severity": "error",
+        "location": "Container 'StoriesEmpty' [key: Container_ygt38vjv]",
+        "target": "widget"
+      },
+      {
+        "code": "PREEXISTING_WIRING",
+        "message": "7 pre-existing wiring findings outside this edit; run `flutterflow ai review` to list them",
+        "severity": "warning",
+        "location": "",
+        "target": "wiring"
+      }
+    ],
+    "recoveryHints": [
+      "Task \"compileDslApp\" failed validation. Fix the validation errors and re-run.",
+      "Task \"compileDslApp\" failed: Validation failed: Container 'StoriesEmpty' [key: Container_ygt38vjv] — edit.dart:164: [symbol: StoriesEmpty] FeedEmpty parameter items not set properly.. Fix the error and re-run."
+    ],
+    "attemptedCommitMessage": "Stories says when there is nothing to read yet"
+  },
+  "paths": {
+    "journalPath": ".flutterflow/runs.jsonl",
+    "lastRunArtifactPath": ".flutterflow/last_run.json",
+    "recoveryHintsPath": ".flutterflow/recovery.json",
+    "localSourceArchivePath": ".flutterflow/history/2026-09-29T08-42-30-048-6x72sm",
+    "localPlanArchivePath": ".flutterflow/history/2026-09-29T08-42-30-048-6x72sm/plan.md"
+  }
+}

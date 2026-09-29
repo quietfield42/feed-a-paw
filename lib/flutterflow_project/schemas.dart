@@ -1465,12 +1465,17 @@ abstract final class CustomWidgets {
     name: "FeedAuthPanel",
     key: "fsy810f8",
   );
+  static const feedEmpty = ffai.ProjectCustomWidgetHandle(
+    name: "FeedEmpty",
+    key: "le0zgnha",
+  );
   static const feedIcons = ffai.ProjectCustomWidgetHandle(
     name: "FeedIcons",
     key: "5ocyl0et",
   );
   static const all = <ffai.ProjectCustomWidgetHandle>[
     feedAuthPanel,
+    feedEmpty,
     feedIcons,
   ];
 }
@@ -1482,6 +1487,7 @@ abstract final class CustomCode {
   ];
   static const widgets = <String>[
     "FeedAuthPanel",
+    "FeedEmpty",
     "FeedIcons",
   ];
 }

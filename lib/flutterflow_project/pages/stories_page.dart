@@ -37,6 +37,14 @@ abstract final class StoriesPageWidgets {
       triggers: const <String>[
         "ON_INIT_STATE",
       ],
+      children: <ffai.ProjectWidgetHandle>[
+        ffai.ProjectWidgetHandle(
+          key: "Container_5loexhpl",
+          type: "Container",
+          path: "StoriesPage.children[0]",
+          name: "StoriesEmpty",
+        ),
+      ],
       slots: <String, List<ffai.ProjectWidgetHandle>>{
         "appBar": <ffai.ProjectWidgetHandle>[
           ffai.ProjectWidgetHandle(

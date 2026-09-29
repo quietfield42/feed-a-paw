@@ -153,7 +153,7 @@ void buildStarterEditFlow(App app) {
 
   final empty = app.customWidget(
     'FeedEmpty',
-    parameters: {'which': string, 'items': listOf(ff.Tables.feedStories)},
+    parameters: {'which': string, 'items': listOf(json)},
     description: 'Empty-state drawing from the pack, for a bare list.',
     code: _kit('feed_empty.dart'),
   );
