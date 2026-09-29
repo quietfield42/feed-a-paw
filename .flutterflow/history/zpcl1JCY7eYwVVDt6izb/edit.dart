@@ -142,13 +142,17 @@ String _kit(String name) {
 }
 
 void buildStarterEditFlow(App app) {
-  // Tidying up after the Stories rebuild (29 Sep 2026).
+  // The driver's empty rounds line, moved where it will be drawn (29 Sep).
   //
-  // An old copy of the empty-state widget was left hanging off the page,
-  // outside the body, where nothing draws it. Out it goes.
+  // It went in beside the list of routes inside a container, and a container
+  // draws one child, so nobody ever saw it. It belongs in the column, right
+  // under the box that holds the routes.
 
-  app.editPage(ff.Pages.storiesPage, (page) {
-    page.ensureRemoved(
-        ff.Pages.storiesPage.widgets.byKey('Container_5loexhpl').single);
+  app.editPage(ff.Pages.driverPage, (page) {
+    page.ensureMovedTo(
+      page.findByKey('Container_7iwssdjd'),
+      page.findByKey('Column_bxzx0cg4'),
+      index: 3,
+    );
   });
 }

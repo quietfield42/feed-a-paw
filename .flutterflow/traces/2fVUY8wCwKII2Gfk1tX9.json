@@ -1,0 +1,198 @@
+{
+  "version": 1,
+  "runId": "2fVUY8wCwKII2Gfk1tX9",
+  "projectId": "feeda-paw-hc0hpt",
+  "startedAt": "2026-09-29T10:54:51.082471Z",
+  "finishedAt": "2026-09-29T10:54:58.730341Z",
+  "flutterFlowAIVersion": "0.0.41",
+  "dartVersion": "3.10.7",
+  "environment": {
+    "os": "windows",
+    "cwd": "[REDACTED_PATH]",
+    "dryRun": false,
+    "pushed": true,
+    "refreshContext": true,
+    "preFlightFreshness": false,
+    "baseUrl": "[REDACTED_URL]"
+  },
+  "projectTarget": {
+    "type": "existing",
+    "requestedProjectId": "feeda-paw-hc0hpt",
+    "resolvedProjectId": "feeda-paw-hc0hpt"
+  },
+  "source": {
+    "mode": "paths",
+    "fileCount": 1,
+    "files": [
+      "edit.dart"
+    ],
+    "explicitPaths": [
+      "[REDACTED_PATH]"
+    ],
+    "localArchivePath": ".flutterflow/history/2fVUY8wCwKII2Gfk1tX9",
+    "uploaded": true,
+    "uploadCommitId": "2fVUY8wCwKII2Gfk1tX9"
+  },
+  "tasks": [
+    {
+      "name": "compileDslApp",
+      "status": "passed",
+      "startedAt": "2026-09-29T10:54:52.106313Z",
+      "finishedAt": "2026-09-29T10:54:54.031711Z",
+      "durationMs": 608,
+      "validationErrors": [
+        "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
+        "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
+        "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
+        "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
+        "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
+        "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value."
+      ]
+    }
+  ],
+  "diagnostics": [
+    {
+      "code": "PREEXISTING_WIRING",
+      "message": "2 pre-existing wiring findings outside this edit; run `flutterflow ai review` to list them",
+      "severity": "warning",
+      "location": "",
+      "target": "wiring"
+    },
+    {
+      "code": "VALIDATION_HARDCODED_COLOR",
+      "message": "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
+      "severity": "warning",
+      "location": "Button 'AboutButton' [key: Button_ikvt4ilc]",
+      "target": "widget"
+    },
+    {
+      "code": "VALIDATION_HARDCODED_COLOR",
+      "message": "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
+      "severity": "warning",
+      "location": "Button 'FinishRunButton' [key: Button_zfzjqb0v]",
+      "target": "widget"
+    },
+    {
+      "code": "VALIDATION_HARDCODED_COLOR",
+      "message": "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
+      "severity": "warning",
+      "location": "Button 'GiveButton' [key: Button_j0a5kwkc]",
+      "target": "widget"
+    },
+    {
+      "code": "VALIDATION_HARDCODED_COLOR",
+      "message": "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
+      "severity": "warning",
+      "location": "Button 'LogPickupButton' [key: Button_zmdjnht0]",
+      "target": "widget"
+    },
+    {
+      "code": "VALIDATION_HARDCODED_COLOR",
+      "message": "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
+      "severity": "warning",
+      "location": "Button 'LogStopButton' [key: Button_2fog88v7]",
+      "target": "widget"
+    },
+    {
+      "code": "VALIDATION_HARDCODED_COLOR",
+      "message": "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
+      "severity": "warning",
+      "location": "Button 'StartRunButton' [key: Button_ox047bt4]",
+      "target": "widget"
+    }
+  ],
+  "changeSummary": {
+    "modifiedPages": [
+      "AboutPage",
+      "DriverPage",
+      "StoriesPage",
+      "TodayPage"
+    ],
+    "modifiedCustomCode": [
+      "FeedHeader"
+    ],
+    "structuralDeletions": [
+      "Removed: AppBar (existing)",
+      "Removed: AppBar (existing)",
+      "Removed: AppBar (existing)",
+      "Removed: AppBar Title (existing)",
+      "Removed: AppBar Title (existing)",
+      "Removed: AppBar Title (existing)"
+    ],
+    "customCodeDeltas": [
+      {
+        "name": "FeedHeader",
+        "kind": "widget",
+        "file": "feed_header.dart",
+        "addedLines": 41,
+        "removedLines": 0,
+        "codeChanged": true
+      }
+    ],
+    "diffs": [
+      {
+        "name": "TodayPage",
+        "changeType": "modified",
+        "details": [
+          "Added 1 widget(s)"
+        ]
+      },
+      {
+        "name": "AboutPage",
+        "changeType": "modified",
+        "details": [
+          "Removed 1 widget(s)"
+        ]
+      },
+      {
+        "name": "DriverPage",
+        "changeType": "modified",
+        "details": [
+          "Removed 1 widget(s)"
+        ]
+      },
+      {
+        "name": "StoriesPage",
+        "changeType": "modified",
+        "details": [
+          "Removed 1 widget(s)"
+        ]
+      }
+    ]
+  },
+  "commit": {
+    "attempted": true,
+    "created": true,
+    "commitId": "2fVUY8wCwKII2Gfk1tX9",
+    "commitMessage": "The family's header at the top of every main screen"
+  },
+  "workspaceStateSnapshot": {
+    "projectId": "feeda-paw-hc0hpt",
+    "lastUpdated": "2026-09-29T10:54:58.719330Z",
+    "lastRun": {
+      "timestamp": "2026-09-29T10:54:58.719330Z",
+      "tasks": [
+        {
+          "name": "compileDslApp",
+          "status": "passed"
+        }
+      ],
+      "pushed": true,
+      "commitId": "2fVUY8wCwKII2Gfk1tX9"
+    },
+    "instructionBundle": {
+      "mode": "full",
+      "templateSha256": "fbb431c336275ad73c3045d0b890faca89e37aa16b004e1e3668d7ec16e50172",
+      "bytes": 40161,
+      "lines": 404
+    },
+    "pageDsl": false
+  },
+  "paths": {
+    "journalPath": ".flutterflow/runs.jsonl",
+    "lastRunArtifactPath": ".flutterflow/last_run.json",
+    "recoveryHintsPath": ".flutterflow/recovery.json",
+    "localSourceArchivePath": ".flutterflow/history/2fVUY8wCwKII2Gfk1tX9",
+    "localPlanArchivePath": ".flutterflow/history/2fVUY8wCwKII2Gfk1tX9/plan.md"
+  }
+}

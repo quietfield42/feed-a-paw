@@ -64,42 +64,48 @@ abstract final class TodayPageWidgets {
                 name: "Column",
                 children: <ffai.ProjectWidgetHandle>[
                   ffai.ProjectWidgetHandle(
+                    key: "Container_66p66i1e",
+                    type: "Container",
+                    path: "TodayPage.body[0].children[0].children[0]",
+                    name: "TodayHeader",
+                  ),
+                  ffai.ProjectWidgetHandle(
                     key: "Text_vxex9cwn",
                     type: "Text",
-                    path: "TodayPage.body[0].children[0].children[0]",
+                    path: "TodayPage.body[0].children[0].children[1]",
                     name: "PromiseText",
                     text: "One tail. One meal. Every day.",
                   ),
                   ffai.ProjectWidgetHandle(
                     key: "Text_c08abnex",
                     type: "Text",
-                    path: "TodayPage.body[0].children[0].children[1]",
+                    path: "TodayPage.body[0].children[0].children[2]",
                     name: "TodayLabel",
                     text: "Meals served today",
                   ),
                   ffai.ProjectWidgetHandle(
                     key: "Text_1szd9c7q",
                     type: "Text",
-                    path: "TodayPage.body[0].children[0].children[2]",
+                    path: "TodayPage.body[0].children[0].children[3]",
                     name: "MealsTodayText",
                   ),
                   ffai.ProjectWidgetHandle(
                     key: "Text_l5ubgbic",
                     type: "Text",
-                    path: "TodayPage.body[0].children[0].children[3]",
+                    path: "TodayPage.body[0].children[0].children[4]",
                     name: "AllTimeLabel",
                     text: "Since the first round",
                   ),
                   ffai.ProjectWidgetHandle(
                     key: "Text_r05g8sga",
                     type: "Text",
-                    path: "TodayPage.body[0].children[0].children[4]",
+                    path: "TodayPage.body[0].children[0].children[5]",
                     name: "MealsAllTimeText",
                   ),
                   ffai.ProjectWidgetHandle(
                     key: "Button_h75xi57u",
                     type: "Button",
-                    path: "TodayPage.body[0].children[0].children[5]",
+                    path: "TodayPage.body[0].children[0].children[6]",
                     name: "SupportButton",
                     text: "Follow the truck",
                     triggers: const <String>[
@@ -109,44 +115,44 @@ abstract final class TodayPageWidgets {
                   ffai.ProjectWidgetHandle(
                     key: "Text_vaswjjxa",
                     type: "Text",
-                    path: "TodayPage.body[0].children[0].children[6]",
+                    path: "TodayPage.body[0].children[0].children[7]",
                     name: "StoriesHeading",
                     text: "From the street",
                   ),
                   ffai.ProjectWidgetHandle(
                     key: "ListView_6t3c5h99",
                     type: "ListView",
-                    path: "TodayPage.body[0].children[0].children[7]",
+                    path: "TodayPage.body[0].children[0].children[8]",
                     name: "ListView",
                     children: <ffai.ProjectWidgetHandle>[
                       ffai.ProjectWidgetHandle(
                         key: "Card_0o73s2v6",
                         type: "Card",
-                        path: "TodayPage.body[0].children[0].children[7].children[0]",
+                        path: "TodayPage.body[0].children[0].children[8].children[0]",
                         name: "Card",
                         children: <ffai.ProjectWidgetHandle>[
                           ffai.ProjectWidgetHandle(
                             key: "Column_8vemqkot",
                             type: "Column",
-                            path: "TodayPage.body[0].children[0].children[7].children[0].children[0]",
+                            path: "TodayPage.body[0].children[0].children[8].children[0].children[0]",
                             name: "Column",
                             children: <ffai.ProjectWidgetHandle>[
                               ffai.ProjectWidgetHandle(
                                 key: "Text_yz8hvxm3",
                                 type: "Text",
-                                path: "TodayPage.body[0].children[0].children[7].children[0].children[0].children[0]",
+                                path: "TodayPage.body[0].children[0].children[8].children[0].children[0].children[0]",
                                 name: "Text",
                               ),
                               ffai.ProjectWidgetHandle(
                                 key: "Text_04wusm5a",
                                 type: "Text",
-                                path: "TodayPage.body[0].children[0].children[7].children[0].children[0].children[1]",
+                                path: "TodayPage.body[0].children[0].children[8].children[0].children[0].children[1]",
                                 name: "Text",
                               ),
                               ffai.ProjectWidgetHandle(
                                 key: "Text_xxyhwq6o",
                                 type: "Text",
-                                path: "TodayPage.body[0].children[0].children[7].children[0].children[0].children[2]",
+                                path: "TodayPage.body[0].children[0].children[8].children[0].children[0].children[2]",
                                 name: "Text",
                               ),
                             ],
@@ -158,7 +164,7 @@ abstract final class TodayPageWidgets {
                   ffai.ProjectWidgetHandle(
                     key: "Button_ikvt4ilc",
                     type: "Button",
-                    path: "TodayPage.body[0].children[0].children[8]",
+                    path: "TodayPage.body[0].children[0].children[9]",
                     name: "AboutButton",
                     text: "Where the money goes",
                     triggers: const <String>[

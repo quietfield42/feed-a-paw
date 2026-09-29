@@ -142,13 +142,48 @@ String _kit(String name) {
 }
 
 void buildStarterEditFlow(App app) {
-  // Tidying up after the Stories rebuild (29 Sep 2026).
+  // The top of every main screen (29 Sep 2026).
   //
-  // An old copy of the empty-state widget was left hanging off the page,
-  // outside the body, where nothing draws it. Out it goes.
+  // A coloured bar with a centred title is FlutterFlow's default and it is
+  // what made the family look like seven unrelated apps. In its place: the
+  // app's own mark, then the screen's name in the family's display face,
+  // left aligned on the ivory page, exactly as Spot a Paw has it.
+
+  final header = app.customWidget(
+    'FeedHeader',
+    parameters: {'title': string, 'subtitle': string},
+    description: "The app's mark and the screen's name, at the top of a main screen.",
+    code: _kit('feed_header.dart'),
+  );
+
+  app.editPage(ff.Pages.todayPage, (page) {
+    page.ensureInsertedBefore(
+      ff.Pages.todayPage.widgets.byKey('Text_vxex9cwn').single,
+      header(name: 'TodayHeader', title: 'Tonight', subtitle: 'Meals on the street'),
+    );
+  });
+
+  app.editPage(ff.Pages.driverPage, (page) {
+    page.ensureRemoved(ff.Pages.driverPage.widgets.byKey('AppBar_pn6op4dl').single);
+    page.ensureInsertedBefore(
+      ff.Pages.driverPage.widgets.byKey('Text_qtv66hof').single,
+      header(name: 'DriverHeader', title: 'Today', subtitle: "Tonight's round"),
+    );
+  });
+
+  app.editPage(ff.Pages.aboutPage, (page) {
+    page.ensureRemoved(ff.Pages.aboutPage.widgets.byKey('AppBar_a72b5wsj').single);
+    page.ensureInsertedBefore(
+      ff.Pages.aboutPage.widgets.byKey('Text_3ek3rcl2').single,
+      header(name: 'AboutHeader', title: 'About', subtitle: ''),
+    );
+  });
 
   app.editPage(ff.Pages.storiesPage, (page) {
-    page.ensureRemoved(
-        ff.Pages.storiesPage.widgets.byKey('Container_5loexhpl').single);
+    page.ensureRemoved(ff.Pages.storiesPage.widgets.byKey('AppBar_jvydxjxd').single);
+    page.ensureInsertedBefore(
+      ff.Pages.storiesPage.widgets.byKey('ListView_8ryng321').single,
+      header(name: 'StoriesHeader', title: 'From the street', subtitle: ''),
+    );
   });
 }

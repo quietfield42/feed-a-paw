@@ -37,76 +37,69 @@ abstract final class StoriesPageWidgets {
       triggers: const <String>[
         "ON_INIT_STATE",
       ],
-      children: <ffai.ProjectWidgetHandle>[
-        ffai.ProjectWidgetHandle(
-          key: "Container_5loexhpl",
-          type: "Container",
-          path: "StoriesPage.children[0]",
-          name: "StoriesEmpty",
-        ),
-      ],
       slots: <String, List<ffai.ProjectWidgetHandle>>{
-        "appBar": <ffai.ProjectWidgetHandle>[
-          ffai.ProjectWidgetHandle(
-            key: "AppBar_jvydxjxd",
-            type: "AppBar",
-            path: "StoriesPage.appBar[0]",
-            name: "AppBar",
-            slots: <String, List<ffai.ProjectWidgetHandle>>{
-              "title": <ffai.ProjectWidgetHandle>[
-                ffai.ProjectWidgetHandle(
-                  key: "Text_20dozi7g",
-                  type: "Text",
-                  path: "StoriesPage.appBar[0].title[0]",
-                  name: "AppBar Title",
-                  text: "From the street",
-                ),
-              ],
-            },
-          ),
-        ],
         "body": <ffai.ProjectWidgetHandle>[
           ffai.ProjectWidgetHandle(
-            key: "ListView_8ryng321",
-            type: "ListView",
+            key: "Column_tapxo0rg",
+            type: "Column",
             path: "StoriesPage.body[0]",
-            name: "StoryList",
+            name: "StoriesBody",
             children: <ffai.ProjectWidgetHandle>[
               ffai.ProjectWidgetHandle(
-                key: "Card_1lixfdng",
-                type: "Card",
+                key: "Container_jvys2v09",
+                type: "Container",
                 path: "StoriesPage.body[0].children[0]",
-                name: "Card",
+                name: "StoriesHeader",
+              ),
+              ffai.ProjectWidgetHandle(
+                key: "Container_fggtrpzx",
+                type: "Container",
+                path: "StoriesPage.body[0].children[1]",
+                name: "StoriesEmpty",
+              ),
+              ffai.ProjectWidgetHandle(
+                key: "ListView_u7012p90",
+                type: "ListView",
+                path: "StoriesPage.body[0].children[2]",
+                name: "StoryList",
                 children: <ffai.ProjectWidgetHandle>[
                   ffai.ProjectWidgetHandle(
-                    key: "Column_2loi8se5",
-                    type: "Column",
-                    path: "StoriesPage.body[0].children[0].children[0]",
-                    name: "Column",
+                    key: "Card_7ztxja1d",
+                    type: "Card",
+                    path: "StoriesPage.body[0].children[2].children[0]",
+                    name: "Card",
                     children: <ffai.ProjectWidgetHandle>[
                       ffai.ProjectWidgetHandle(
-                        key: "Image_8pncx8ro",
-                        type: "Image",
-                        path: "StoriesPage.body[0].children[0].children[0].children[0]",
-                        name: "StoryPhoto",
-                      ),
-                      ffai.ProjectWidgetHandle(
-                        key: "Text_1v5nnzdv",
-                        type: "Text",
-                        path: "StoriesPage.body[0].children[0].children[0].children[1]",
-                        name: "Text",
-                      ),
-                      ffai.ProjectWidgetHandle(
-                        key: "Text_xbejjpq3",
-                        type: "Text",
-                        path: "StoriesPage.body[0].children[0].children[0].children[2]",
-                        name: "Text",
-                      ),
-                      ffai.ProjectWidgetHandle(
-                        key: "Text_3favsbz4",
-                        type: "Text",
-                        path: "StoriesPage.body[0].children[0].children[0].children[3]",
-                        name: "Text",
+                        key: "Column_o809r5mb",
+                        type: "Column",
+                        path: "StoriesPage.body[0].children[2].children[0].children[0]",
+                        name: "Column",
+                        children: <ffai.ProjectWidgetHandle>[
+                          ffai.ProjectWidgetHandle(
+                            key: "Image_zqb4reg1",
+                            type: "Image",
+                            path: "StoriesPage.body[0].children[2].children[0].children[0].children[0]",
+                            name: "Image",
+                          ),
+                          ffai.ProjectWidgetHandle(
+                            key: "Text_4m5d2nds",
+                            type: "Text",
+                            path: "StoriesPage.body[0].children[2].children[0].children[0].children[1]",
+                            name: "Text",
+                          ),
+                          ffai.ProjectWidgetHandle(
+                            key: "Text_uaghrxhj",
+                            type: "Text",
+                            path: "StoriesPage.body[0].children[2].children[0].children[0].children[2]",
+                            name: "Text",
+                          ),
+                          ffai.ProjectWidgetHandle(
+                            key: "Text_rjb594rs",
+                            type: "Text",
+                            path: "StoriesPage.body[0].children[2].children[0].children[0].children[3]",
+                            name: "Text",
+                          ),
+                        ],
                       ),
                     ],
                   ),

@@ -38,25 +38,6 @@ abstract final class AboutPageWidgets {
         "ON_INIT_STATE",
       ],
       slots: <String, List<ffai.ProjectWidgetHandle>>{
-        "appBar": <ffai.ProjectWidgetHandle>[
-          ffai.ProjectWidgetHandle(
-            key: "AppBar_a72b5wsj",
-            type: "AppBar",
-            path: "AboutPage.appBar[0]",
-            name: "AppBar",
-            slots: <String, List<ffai.ProjectWidgetHandle>>{
-              "title": <ffai.ProjectWidgetHandle>[
-                ffai.ProjectWidgetHandle(
-                  key: "Text_ct5wrn0j",
-                  type: "Text",
-                  path: "AboutPage.appBar[0].title[0]",
-                  name: "AppBar Title",
-                  text: "About",
-                ),
-              ],
-            },
-          ),
-        ],
         "body": <ffai.ProjectWidgetHandle>[
           ffai.ProjectWidgetHandle(
             key: "Container_a4mf6bd3",
@@ -71,30 +52,36 @@ abstract final class AboutPageWidgets {
                 name: "Column",
                 children: <ffai.ProjectWidgetHandle>[
                   ffai.ProjectWidgetHandle(
+                    key: "Container_zx3toi2f",
+                    type: "Container",
+                    path: "AboutPage.body[0].children[0].children[0]",
+                    name: "AboutHeader",
+                  ),
+                  ffai.ProjectWidgetHandle(
                     key: "Text_3ek3rcl2",
                     type: "Text",
-                    path: "AboutPage.body[0].children[0].children[0]",
+                    path: "AboutPage.body[0].children[0].children[1]",
                     name: "AboutHeading",
                     text: "No stray should go hungry.",
                   ),
                   ffai.ProjectWidgetHandle(
                     key: "Text_oha9emu2",
                     type: "Text",
-                    path: "AboutPage.body[0].children[0].children[1]",
+                    path: "AboutPage.body[0].children[0].children[2]",
                     name: "AboutWords",
                     text: "A truck collects meat trimmings from partner butchers each morning, cooks them on board, and follows the same round through the streets where the colonies live. This app shows that work as it happens.",
                   ),
                   ffai.ProjectWidgetHandle(
                     key: "Text_az8i2tm1",
                     type: "Text",
-                    path: "AboutPage.body[0].children[0].children[2]",
+                    path: "AboutPage.body[0].children[0].children[3]",
                     name: "AboutMoney",
                     text: "Every meal in this app was cooked and handed out by the One Tail One Meal team. You can follow the round, read the stories and see the count rise. The wider story lives on onetailonemeal.com.",
                   ),
                   ffai.ProjectWidgetHandle(
                     key: "Button_j0a5kwkc",
                     type: "Button",
-                    path: "AboutPage.body[0].children[0].children[3]",
+                    path: "AboutPage.body[0].children[0].children[4]",
                     name: "GiveButton",
                     text: "Read more on onetailonemeal.com",
                     triggers: const <String>[

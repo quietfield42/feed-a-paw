@@ -142,13 +142,69 @@ String _kit(String name) {
 }
 
 void buildStarterEditFlow(App app) {
-  // Tidying up after the Stories rebuild (29 Sep 2026).
+  // Stories, rebuilt around its header (29 Sep 2026).
   //
-  // An old copy of the empty-state widget was left hanging off the page,
-  // outside the body, where nothing draws it. Out it goes.
+  // The whole page was the list, and a page body holds one thing. Asking for
+  // a header above it left two widgets hanging off the screen where nothing
+  // draws them — they were in the file and invisible in the app. So the body
+  // becomes a column: the header, the line for when there is nothing yet,
+  // and the list filling what is left.
+
+  final header = app.customWidget(
+    'FeedHeader',
+    parameters: {'title': string, 'subtitle': string},
+    description: "The app's mark and the screen's name, at the top of a main screen.",
+    code: _kit('feed_header.dart'),
+  );
+
+  final empty = app.customWidget(
+    'FeedEmpty',
+    parameters: {'which': string, 'items': listOf(ff.Tables.feedStories)},
+    description: 'Empty-state drawing from the pack, for a bare list.',
+    code: _kit('feed_empty.dart'),
+  );
 
   app.editPage(ff.Pages.storiesPage, (page) {
     page.ensureRemoved(
+        ff.Pages.storiesPage.widgets.byKey('Container_bfvcdhoa').single);
+    page.ensureRemoved(
         ff.Pages.storiesPage.widgets.byKey('Container_5loexhpl').single);
+    page.ensureReplaced(
+      ff.Pages.storiesPage.widgets.byKey('ListView_8ryng321').single,
+      Column(
+        name: 'StoriesBody',
+        crossAxis: CrossAxis.start,
+        spacing: 12,
+        children: [
+          header(name: 'StoriesHeader', title: 'From the street', subtitle: ''),
+          empty(
+            name: 'StoriesEmpty',
+            which: 'stories',
+            items: State(ff.Pages.storiesPage.state.stories),
+          ),
+          Expanded(
+            ListView(
+              name: 'StoryList',
+              source: State(ff.Pages.storiesPage.state.stories),
+              spacing: 14,
+              itemBuilder: (item) => Card(
+                child: Column(
+                  crossAxis: CrossAxis.start,
+                  spacing: 8,
+                  children: [
+                    Image(item['photo_path'], height: 180, fit: ImageFit.cover,
+                        borderRadius: 12),
+                    Text(item['title'], style: Styles.titleMedium),
+                    Text(item['words'], style: Styles.bodyMedium),
+                    Text(item['area'],
+                        style: Styles.labelSmall, color: Colors.secondaryText),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   });
 }

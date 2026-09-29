@@ -142,13 +142,27 @@ String _kit(String name) {
 }
 
 void buildStarterEditFlow(App app) {
-  // Tidying up after the Stories rebuild (29 Sep 2026).
+  // Stories gets its header too (29 Sep 2026).
   //
-  // An old copy of the empty-state widget was left hanging off the page,
-  // outside the body, where nothing draws it. Out it goes.
+  // Its whole body was the list, and a page body holds one thing, so the
+  // insert quietly did nothing the first time. Wrap the list in a column
+  // first, then the header has somewhere to sit above it.
+
+  final header = app.customWidget(
+    'FeedHeader',
+    parameters: {'title': string, 'subtitle': string},
+    description: "The app's mark and the screen's name, at the top of a main screen.",
+    code: _kit('feed_header.dart'),
+  );
 
   app.editPage(ff.Pages.storiesPage, (page) {
-    page.ensureRemoved(
-        ff.Pages.storiesPage.widgets.byKey('Container_5loexhpl').single);
+    page.ensureWrappedWith(
+      ff.Pages.storiesPage.widgets.byKey('ListView_8ryng321').single,
+      Column(name: 'StoriesBody', key: 'stories-body', crossAxis: CrossAxis.start),
+    );
+    page.ensureInsertedBefore(
+      ff.Pages.storiesPage.widgets.byKey('ListView_8ryng321').single,
+      header(name: 'StoriesHeader', title: 'From the street', subtitle: ''),
+    );
   });
 }

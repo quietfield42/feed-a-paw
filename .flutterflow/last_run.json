@@ -1,62 +1,28 @@
 {
   "version": 1,
-  "timestamp": "2026-09-29T10:50:51.805007Z",
+  "timestamp": "2026-09-29T11:13:33.719343Z",
   "projectId": "feeda-paw-hc0hpt",
   "success": true,
   "noOp": false,
   "pushed": true,
   "dryRun": false,
-  "commitId": "yELQ6UB2C2IChcypk3kT",
-  "commitMessage": "The driver's rounds say when there are none",
+  "commitId": "YzsEOU3MeihQETtlCOXH",
+  "commitMessage": "Clear the leftover widget from the Stories rebuild",
   "tasks": [
     {
       "name": "compileDslApp",
       "success": true,
       "skipped": false,
-      "durationMs": 1000,
-      "validationErrors": [
-        "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
-        "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
-        "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
-        "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value."
-      ]
+      "durationMs": 149
     }
   ],
   "diagnostics": [
     {
       "code": "PREEXISTING_WIRING",
-      "message": "4 pre-existing wiring findings outside this edit; run `flutterflow ai review` to list them",
+      "message": "8 pre-existing wiring findings outside this edit; run `flutterflow ai review` to list them",
       "severity": "warning",
       "location": "",
       "target": "wiring"
-    },
-    {
-      "code": "VALIDATION_HARDCODED_COLOR",
-      "message": "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
-      "severity": "warning",
-      "location": "Button 'FinishRunButton' [key: Button_zfzjqb0v]",
-      "target": "widget"
-    },
-    {
-      "code": "VALIDATION_HARDCODED_COLOR",
-      "message": "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
-      "severity": "warning",
-      "location": "Button 'LogPickupButton' [key: Button_zmdjnht0]",
-      "target": "widget"
-    },
-    {
-      "code": "VALIDATION_HARDCODED_COLOR",
-      "message": "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
-      "severity": "warning",
-      "location": "Button 'LogStopButton' [key: Button_2fog88v7]",
-      "target": "widget"
-    },
-    {
-      "code": "VALIDATION_HARDCODED_COLOR",
-      "message": "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
-      "severity": "warning",
-      "location": "Button 'StartRunButton' [key: Button_ox047bt4]",
-      "target": "widget"
     }
   ]
 }

@@ -1,0 +1,99 @@
+{
+  "version": 1,
+  "runId": "2026-09-29T11-04-35-423-txhlot",
+  "projectId": "feeda-paw-hc0hpt",
+  "startedAt": "2026-09-29T11:04:33.132226Z",
+  "finishedAt": "2026-09-29T11:04:35.519641Z",
+  "flutterFlowAIVersion": "0.0.41",
+  "dartVersion": "3.10.7",
+  "environment": {
+    "os": "windows",
+    "cwd": "[REDACTED_PATH]",
+    "dryRun": false,
+    "pushed": false,
+    "refreshContext": true,
+    "preFlightFreshness": false,
+    "baseUrl": "[REDACTED_URL]"
+  },
+  "projectTarget": {
+    "type": "existing",
+    "requestedProjectId": "feeda-paw-hc0hpt",
+    "resolvedProjectId": "feeda-paw-hc0hpt"
+  },
+  "source": {
+    "mode": "paths",
+    "fileCount": 1,
+    "files": [
+      "edit.dart"
+    ],
+    "explicitPaths": [
+      "[REDACTED_PATH]"
+    ],
+    "localArchivePath": ".flutterflow/history/2026-09-29T11-04-35-423-txhlot",
+    "uploaded": false
+  },
+  "tasks": [
+    {
+      "name": "compileDslApp",
+      "status": "failed",
+      "startedAt": "2026-09-29T11:04:34.771180Z",
+      "finishedAt": "2026-09-29T11:04:35.380709Z",
+      "durationMs": 609,
+      "error": "Invalid argument(s): ensureWrappedWith requires an empty Container or Card without actions. Add actions after wrapping."
+    }
+  ],
+  "diagnostics": [],
+  "commit": {
+    "attempted": false,
+    "created": false,
+    "commitMessage": "Stories gets the family header too"
+  },
+  "workspaceStateSnapshot": {
+    "projectId": "feeda-paw-hc0hpt",
+    "lastUpdated": "2026-09-29T11:04:35.446531Z",
+    "lastRun": {
+      "timestamp": "2026-09-29T11:04:35.446531Z",
+      "tasks": [
+        {
+          "name": "compileDslApp",
+          "status": "failed"
+        }
+      ],
+      "pushed": false
+    },
+    "instructionBundle": {
+      "mode": "full",
+      "templateSha256": "fbb431c336275ad73c3045d0b890faca89e37aa16b004e1e3668d7ec16e50172",
+      "bytes": 40161,
+      "lines": 404
+    },
+    "pageDsl": false
+  },
+  "recoveryHints": {
+    "version": 1,
+    "timestamp": "2026-09-29T11:04:35.469537Z",
+    "projectId": "feeda-paw-hc0hpt",
+    "status": "failed",
+    "completedTasks": [],
+    "failedTasks": [
+      {
+        "name": "compileDslApp",
+        "error": "Invalid argument(s): ensureWrappedWith requires an empty Container or Card without actions. Add actions after wrapping.",
+        "validationErrors": []
+      }
+    ],
+    "skippedTasks": [],
+    "diagnostics": [],
+    "recoveryHints": [
+      "Task \"compileDslApp\" failed: Invalid argument(s): ensureWrappedWith requires an empty Container or Card without actions. Add actions after wrapping.. Fix the error and re-run."
+    ],
+    "attemptedCommitMessage": "Stories gets the family header too"
+  },
+  "paths": {
+    "journalPath": ".flutterflow/runs.jsonl",
+    "lastRunArtifactPath": ".flutterflow/last_run.json",
+    "recoveryHintsPath": ".flutterflow/recovery.json",
+    "localSourceArchivePath": ".flutterflow/history/2026-09-29T11-04-35-423-txhlot",
+    "localPlanArchivePath": ".flutterflow/history/2026-09-29T11-04-35-423-txhlot/plan.md"
+  }
+}

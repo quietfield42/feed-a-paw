@@ -74,25 +74,6 @@ abstract final class DriverPageWidgets {
         "ON_INIT_STATE",
       ],
       slots: <String, List<ffai.ProjectWidgetHandle>>{
-        "appBar": <ffai.ProjectWidgetHandle>[
-          ffai.ProjectWidgetHandle(
-            key: "AppBar_pn6op4dl",
-            type: "AppBar",
-            path: "DriverPage.appBar[0]",
-            name: "AppBar",
-            slots: <String, List<ffai.ProjectWidgetHandle>>{
-              "title": <ffai.ProjectWidgetHandle>[
-                ffai.ProjectWidgetHandle(
-                  key: "Text_ybsncio4",
-                  type: "Text",
-                  path: "DriverPage.appBar[0].title[0]",
-                  name: "AppBar Title",
-                  text: "Today",
-                ),
-              ],
-            },
-          ),
-        ],
         "body": <ffai.ProjectWidgetHandle>[
           ffai.ProjectWidgetHandle(
             key: "Container_9fa9vthk",
@@ -107,47 +88,53 @@ abstract final class DriverPageWidgets {
                 name: "Column",
                 children: <ffai.ProjectWidgetHandle>[
                   ffai.ProjectWidgetHandle(
+                    key: "Container_yrrbtvu5",
+                    type: "Container",
+                    path: "DriverPage.body[0].children[0].children[0]",
+                    name: "DriverHeader",
+                  ),
+                  ffai.ProjectWidgetHandle(
                     key: "Text_qtv66hof",
                     type: "Text",
-                    path: "DriverPage.body[0].children[0].children[0]",
+                    path: "DriverPage.body[0].children[0].children[1]",
                     name: "RoundHeading",
                     text: "The round",
                   ),
                   ffai.ProjectWidgetHandle(
                     key: "Text_afarirt3",
                     type: "Text",
-                    path: "DriverPage.body[0].children[0].children[1]",
+                    path: "DriverPage.body[0].children[0].children[2]",
                     name: "RoundWords",
                     text: "Start the day, then log each stop as you go.",
                   ),
                   ffai.ProjectWidgetHandle(
                     key: "Card_1zqo9do8",
                     type: "Card",
-                    path: "DriverPage.body[0].children[0].children[2]",
+                    path: "DriverPage.body[0].children[0].children[3]",
                     name: "TallyCard",
                     children: <ffai.ProjectWidgetHandle>[
                       ffai.ProjectWidgetHandle(
                         key: "Row_ljairs14",
                         type: "Row",
-                        path: "DriverPage.body[0].children[0].children[2].children[0]",
+                        path: "DriverPage.body[0].children[0].children[3].children[0]",
                         name: "Row",
                         children: <ffai.ProjectWidgetHandle>[
                           ffai.ProjectWidgetHandle(
                             key: "Column_ds3sxuef",
                             type: "Column",
-                            path: "DriverPage.body[0].children[0].children[2].children[0].children[0]",
+                            path: "DriverPage.body[0].children[0].children[3].children[0].children[0]",
                             name: "Column",
                             children: <ffai.ProjectWidgetHandle>[
                               ffai.ProjectWidgetHandle(
                                 key: "Text_cfgacbly",
                                 type: "Text",
-                                path: "DriverPage.body[0].children[0].children[2].children[0].children[0].children[0]",
+                                path: "DriverPage.body[0].children[0].children[3].children[0].children[0].children[0]",
                                 name: "StopsTodayText",
                               ),
                               ffai.ProjectWidgetHandle(
                                 key: "Text_664vt0o3",
                                 type: "Text",
-                                path: "DriverPage.body[0].children[0].children[2].children[0].children[0].children[1]",
+                                path: "DriverPage.body[0].children[0].children[3].children[0].children[0].children[1]",
                                 name: "StopsTodayLabel",
                                 text: "stops",
                               ),
@@ -156,19 +143,19 @@ abstract final class DriverPageWidgets {
                           ffai.ProjectWidgetHandle(
                             key: "Column_rbf2uqle",
                             type: "Column",
-                            path: "DriverPage.body[0].children[0].children[2].children[0].children[1]",
+                            path: "DriverPage.body[0].children[0].children[3].children[0].children[1]",
                             name: "Column",
                             children: <ffai.ProjectWidgetHandle>[
                               ffai.ProjectWidgetHandle(
                                 key: "Text_6hvc6t1l",
                                 type: "Text",
-                                path: "DriverPage.body[0].children[0].children[2].children[0].children[1].children[0]",
+                                path: "DriverPage.body[0].children[0].children[3].children[0].children[1].children[0]",
                                 name: "MealsTodayText",
                               ),
                               ffai.ProjectWidgetHandle(
                                 key: "Text_8bk6xl4z",
                                 type: "Text",
-                                path: "DriverPage.body[0].children[0].children[2].children[0].children[1].children[1]",
+                                path: "DriverPage.body[0].children[0].children[3].children[0].children[1].children[1]",
                                 name: "MealsTodayLabel",
                                 text: "meals",
                               ),
@@ -181,38 +168,38 @@ abstract final class DriverPageWidgets {
                   ffai.ProjectWidgetHandle(
                     key: "Column_bxzx0cg4",
                     type: "Column",
-                    path: "DriverPage.body[0].children[0].children[3]",
+                    path: "DriverPage.body[0].children[0].children[4]",
                     name: "TonightsRoute",
                     children: <ffai.ProjectWidgetHandle>[
                       ffai.ProjectWidgetHandle(
                         key: "Text_rd5xgy0b",
                         type: "Text",
-                        path: "DriverPage.body[0].children[0].children[3].children[0]",
+                        path: "DriverPage.body[0].children[0].children[4].children[0]",
                         name: "RouteLabel",
                         text: "Tonight you are driving",
                       ),
                       ffai.ProjectWidgetHandle(
                         key: "Text_wbtcwd3o",
                         type: "Text",
-                        path: "DriverPage.body[0].children[0].children[3].children[1]",
+                        path: "DriverPage.body[0].children[0].children[4].children[1]",
                         name: "ChosenRouteText",
                       ),
                       ffai.ProjectWidgetHandle(
                         key: "Container_brd9buzz",
                         type: "Container",
-                        path: "DriverPage.body[0].children[0].children[3].children[2]",
+                        path: "DriverPage.body[0].children[0].children[4].children[2]",
                         name: "Container",
                         children: <ffai.ProjectWidgetHandle>[
                           ffai.ProjectWidgetHandle(
                             key: "ListView_8j3ax98e",
                             type: "ListView",
-                            path: "DriverPage.body[0].children[0].children[3].children[2].children[0]",
+                            path: "DriverPage.body[0].children[0].children[4].children[2].children[0]",
                             name: "RoutesList",
                             children: <ffai.ProjectWidgetHandle>[
                               ffai.ProjectWidgetHandle(
                                 key: "Card_1nqaj872",
                                 type: "Card",
-                                path: "DriverPage.body[0].children[0].children[3].children[2].children[0].children[0]",
+                                path: "DriverPage.body[0].children[0].children[4].children[2].children[0].children[0]",
                                 name: "Card",
                                 triggers: const <String>[
                                   "ON_TAP",
@@ -221,25 +208,25 @@ abstract final class DriverPageWidgets {
                                   ffai.ProjectWidgetHandle(
                                     key: "Container_8aynh5lr",
                                     type: "Container",
-                                    path: "DriverPage.body[0].children[0].children[3].children[2].children[0].children[0].children[0]",
+                                    path: "DriverPage.body[0].children[0].children[4].children[2].children[0].children[0].children[0]",
                                     name: "Container",
                                     children: <ffai.ProjectWidgetHandle>[
                                       ffai.ProjectWidgetHandle(
                                         key: "Column_h55rxqte",
                                         type: "Column",
-                                        path: "DriverPage.body[0].children[0].children[3].children[2].children[0].children[0].children[0].children[0]",
+                                        path: "DriverPage.body[0].children[0].children[4].children[2].children[0].children[0].children[0].children[0]",
                                         name: "Column",
                                         children: <ffai.ProjectWidgetHandle>[
                                           ffai.ProjectWidgetHandle(
                                             key: "Text_q2geel7w",
                                             type: "Text",
-                                            path: "DriverPage.body[0].children[0].children[3].children[2].children[0].children[0].children[0].children[0].children[0]",
+                                            path: "DriverPage.body[0].children[0].children[4].children[2].children[0].children[0].children[0].children[0].children[0]",
                                             name: "Text",
                                           ),
                                           ffai.ProjectWidgetHandle(
                                             key: "Text_yh7tek58",
                                             type: "Text",
-                                            path: "DriverPage.body[0].children[0].children[3].children[2].children[0].children[0].children[0].children[0].children[1]",
+                                            path: "DriverPage.body[0].children[0].children[4].children[2].children[0].children[0].children[0].children[0].children[1]",
                                             name: "Text",
                                           ),
                                         ],
@@ -250,73 +237,73 @@ abstract final class DriverPageWidgets {
                               ),
                             ],
                           ),
-                          ffai.ProjectWidgetHandle(
-                            key: "Container_7iwssdjd",
-                            type: "Container",
-                            path: "DriverPage.body[0].children[0].children[3].children[2].children[1]",
-                            name: "RoundsEmpty",
-                          ),
                         ],
+                      ),
+                      ffai.ProjectWidgetHandle(
+                        key: "Container_7iwssdjd",
+                        type: "Container",
+                        path: "DriverPage.body[0].children[0].children[4].children[3]",
+                        name: "RoundsEmpty",
                       ),
                       ffai.ProjectWidgetHandle(
                         key: "Text_f3dluy3c",
                         type: "Text",
-                        path: "DriverPage.body[0].children[0].children[3].children[3]",
+                        path: "DriverPage.body[0].children[0].children[4].children[4]",
                         name: "PlanLabel",
                         text: "The places, in order",
                       ),
                       ffai.ProjectWidgetHandle(
                         key: "Container_lobxguj8",
                         type: "Container",
-                        path: "DriverPage.body[0].children[0].children[3].children[4]",
+                        path: "DriverPage.body[0].children[0].children[4].children[5]",
                         name: "RoutePlanBox",
                         children: <ffai.ProjectWidgetHandle>[
                           ffai.ProjectWidgetHandle(
                             key: "ListView_piskpfah",
                             type: "ListView",
-                            path: "DriverPage.body[0].children[0].children[3].children[4].children[0]",
+                            path: "DriverPage.body[0].children[0].children[4].children[5].children[0]",
                             name: "RoutePlanList",
                             children: <ffai.ProjectWidgetHandle>[
                               ffai.ProjectWidgetHandle(
                                 key: "Card_rpuw65ew",
                                 type: "Card",
-                                path: "DriverPage.body[0].children[0].children[3].children[4].children[0].children[0]",
+                                path: "DriverPage.body[0].children[0].children[4].children[5].children[0].children[0]",
                                 name: "Card",
                                 children: <ffai.ProjectWidgetHandle>[
                                   ffai.ProjectWidgetHandle(
                                     key: "Container_6z0uiegu",
                                     type: "Container",
-                                    path: "DriverPage.body[0].children[0].children[3].children[4].children[0].children[0].children[0]",
+                                    path: "DriverPage.body[0].children[0].children[4].children[5].children[0].children[0].children[0]",
                                     name: "Container",
                                     children: <ffai.ProjectWidgetHandle>[
                                       ffai.ProjectWidgetHandle(
                                         key: "Row_i4vf2dcc",
                                         type: "Row",
-                                        path: "DriverPage.body[0].children[0].children[3].children[4].children[0].children[0].children[0].children[0]",
+                                        path: "DriverPage.body[0].children[0].children[4].children[5].children[0].children[0].children[0].children[0]",
                                         name: "Row",
                                         children: <ffai.ProjectWidgetHandle>[
                                           ffai.ProjectWidgetHandle(
                                             key: "Text_tce3o823",
                                             type: "Text",
-                                            path: "DriverPage.body[0].children[0].children[3].children[4].children[0].children[0].children[0].children[0].children[0]",
+                                            path: "DriverPage.body[0].children[0].children[4].children[5].children[0].children[0].children[0].children[0].children[0]",
                                             name: "Text",
                                           ),
                                           ffai.ProjectWidgetHandle(
                                             key: "Column_0y29jd0d",
                                             type: "Column",
-                                            path: "DriverPage.body[0].children[0].children[3].children[4].children[0].children[0].children[0].children[0].children[1]",
+                                            path: "DriverPage.body[0].children[0].children[4].children[5].children[0].children[0].children[0].children[0].children[1]",
                                             name: "Column",
                                             children: <ffai.ProjectWidgetHandle>[
                                               ffai.ProjectWidgetHandle(
                                                 key: "Text_p2m4ol2k",
                                                 type: "Text",
-                                                path: "DriverPage.body[0].children[0].children[3].children[4].children[0].children[0].children[0].children[0].children[1].children[0]",
+                                                path: "DriverPage.body[0].children[0].children[4].children[5].children[0].children[0].children[0].children[0].children[1].children[0]",
                                                 name: "Text",
                                               ),
                                               ffai.ProjectWidgetHandle(
                                                 key: "Text_hyjcys9o",
                                                 type: "Text",
-                                                path: "DriverPage.body[0].children[0].children[3].children[4].children[0].children[0].children[0].children[0].children[1].children[1]",
+                                                path: "DriverPage.body[0].children[0].children[4].children[5].children[0].children[0].children[0].children[0].children[1].children[1]",
                                                 name: "Text",
                                               ),
                                             ],
@@ -334,80 +321,80 @@ abstract final class DriverPageWidgets {
                       ffai.ProjectWidgetHandle(
                         key: "Column_k2y1i4up",
                         type: "Column",
-                        path: "DriverPage.body[0].children[0].children[3].children[5]",
+                        path: "DriverPage.body[0].children[0].children[4].children[6]",
                         name: "TonightTally",
                         children: <ffai.ProjectWidgetHandle>[
                           ffai.ProjectWidgetHandle(
                             key: "Text_bfu2ijsv",
                             type: "Text",
-                            path: "DriverPage.body[0].children[0].children[3].children[5].children[0]",
+                            path: "DriverPage.body[0].children[0].children[4].children[6].children[0]",
                             name: "TallyHeading",
                             text: "Tonight, so far",
                           ),
                           ffai.ProjectWidgetHandle(
                             key: "Container_xl5imccd",
                             type: "Container",
-                            path: "DriverPage.body[0].children[0].children[3].children[5].children[1]",
+                            path: "DriverPage.body[0].children[0].children[4].children[6].children[1]",
                             name: "Container",
                             children: <ffai.ProjectWidgetHandle>[
                               ffai.ProjectWidgetHandle(
                                 key: "ListView_nm02ku3d",
                                 type: "ListView",
-                                path: "DriverPage.body[0].children[0].children[3].children[5].children[1].children[0]",
+                                path: "DriverPage.body[0].children[0].children[4].children[6].children[1].children[0]",
                                 name: "TonightList",
                                 children: <ffai.ProjectWidgetHandle>[
                                   ffai.ProjectWidgetHandle(
                                     key: "Card_3jlgwf03",
                                     type: "Card",
-                                    path: "DriverPage.body[0].children[0].children[3].children[5].children[1].children[0].children[0]",
+                                    path: "DriverPage.body[0].children[0].children[4].children[6].children[1].children[0].children[0]",
                                     name: "Card",
                                     children: <ffai.ProjectWidgetHandle>[
                                       ffai.ProjectWidgetHandle(
                                         key: "Container_2iwojcwe",
                                         type: "Container",
-                                        path: "DriverPage.body[0].children[0].children[3].children[5].children[1].children[0].children[0].children[0]",
+                                        path: "DriverPage.body[0].children[0].children[4].children[6].children[1].children[0].children[0].children[0]",
                                         name: "Container",
                                         children: <ffai.ProjectWidgetHandle>[
                                           ffai.ProjectWidgetHandle(
                                             key: "Row_b9clp1j8",
                                             type: "Row",
-                                            path: "DriverPage.body[0].children[0].children[3].children[5].children[1].children[0].children[0].children[0].children[0]",
+                                            path: "DriverPage.body[0].children[0].children[4].children[6].children[1].children[0].children[0].children[0].children[0]",
                                             name: "Row",
                                             children: <ffai.ProjectWidgetHandle>[
                                               ffai.ProjectWidgetHandle(
                                                 key: "Text_hjeo8jdi",
                                                 type: "Text",
-                                                path: "DriverPage.body[0].children[0].children[3].children[5].children[1].children[0].children[0].children[0].children[0].children[0]",
+                                                path: "DriverPage.body[0].children[0].children[4].children[6].children[1].children[0].children[0].children[0].children[0].children[0]",
                                                 name: "Text",
                                               ),
                                               ffai.ProjectWidgetHandle(
                                                 key: "Column_pql7w09x",
                                                 type: "Column",
-                                                path: "DriverPage.body[0].children[0].children[3].children[5].children[1].children[0].children[0].children[0].children[0].children[1]",
+                                                path: "DriverPage.body[0].children[0].children[4].children[6].children[1].children[0].children[0].children[0].children[0].children[1]",
                                                 name: "Column",
                                                 children: <ffai.ProjectWidgetHandle>[
                                                   ffai.ProjectWidgetHandle(
                                                     key: "Text_dw92alyw",
                                                     type: "Text",
-                                                    path: "DriverPage.body[0].children[0].children[3].children[5].children[1].children[0].children[0].children[0].children[0].children[1].children[0]",
+                                                    path: "DriverPage.body[0].children[0].children[4].children[6].children[1].children[0].children[0].children[0].children[0].children[1].children[0]",
                                                     name: "Text",
                                                   ),
                                                   ffai.ProjectWidgetHandle(
                                                     key: "Text_rwqroe65",
                                                     type: "Text",
-                                                    path: "DriverPage.body[0].children[0].children[3].children[5].children[1].children[0].children[0].children[0].children[0].children[1].children[1]",
+                                                    path: "DriverPage.body[0].children[0].children[4].children[6].children[1].children[0].children[0].children[0].children[0].children[1].children[1]",
                                                     name: "Text",
                                                   ),
                                                   ffai.ProjectWidgetHandle(
                                                     key: "Text_3e82ppza",
                                                     type: "Text",
-                                                    path: "DriverPage.body[0].children[0].children[3].children[5].children[1].children[0].children[0].children[0].children[0].children[1].children[2]",
+                                                    path: "DriverPage.body[0].children[0].children[4].children[6].children[1].children[0].children[0].children[0].children[0].children[1].children[2]",
                                                     name: "Text",
                                                   ),
                                                   ffai.ProjectWidgetHandle(
                                                     key: "Text_prtznrsn",
                                                     type: "Text",
-                                                    path: "DriverPage.body[0].children[0].children[3].children[5].children[1].children[0].children[0].children[0].children[0].children[1].children[3]",
+                                                    path: "DriverPage.body[0].children[0].children[4].children[6].children[1].children[0].children[0].children[0].children[0].children[1].children[3]",
                                                     name: "Text",
                                                     text: "not yet",
                                                   ),
@@ -430,7 +417,7 @@ abstract final class DriverPageWidgets {
                   ffai.ProjectWidgetHandle(
                     key: "Button_ox047bt4",
                     type: "Button",
-                    path: "DriverPage.body[0].children[0].children[4]",
+                    path: "DriverPage.body[0].children[0].children[5]",
                     name: "StartRunButton",
                     text: "Start the round",
                     triggers: const <String>[
@@ -440,7 +427,7 @@ abstract final class DriverPageWidgets {
                   ffai.ProjectWidgetHandle(
                     key: "Button_2fog88v7",
                     type: "Button",
-                    path: "DriverPage.body[0].children[0].children[5]",
+                    path: "DriverPage.body[0].children[0].children[6]",
                     name: "LogStopButton",
                     text: "Log a stop",
                     triggers: const <String>[
@@ -450,7 +437,7 @@ abstract final class DriverPageWidgets {
                   ffai.ProjectWidgetHandle(
                     key: "Button_zmdjnht0",
                     type: "Button",
-                    path: "DriverPage.body[0].children[0].children[6]",
+                    path: "DriverPage.body[0].children[0].children[7]",
                     name: "LogPickupButton",
                     text: "Log a pickup",
                     triggers: const <String>[
@@ -460,7 +447,7 @@ abstract final class DriverPageWidgets {
                   ffai.ProjectWidgetHandle(
                     key: "Button_zfzjqb0v",
                     type: "Button",
-                    path: "DriverPage.body[0].children[0].children[7]",
+                    path: "DriverPage.body[0].children[0].children[8]",
                     name: "FinishRunButton",
                     text: "Finish the round",
                     triggers: const <String>[
