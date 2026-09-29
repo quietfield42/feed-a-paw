@@ -1,0 +1,7 @@
+The SQL lives in one folder now, and it is not this one:
+
+  C:\Users\ashel\OneDrive\Documents\9. One Tail One Meal\a-paw-family\sql
+
+Write every new piece of SQL there, and add a line for it to RUN-ME.md
+in that folder. The files that used to sit here are in this repository's
+history, and copies of them are in that folder.
