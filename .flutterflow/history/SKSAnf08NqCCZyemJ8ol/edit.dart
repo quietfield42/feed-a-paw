@@ -167,17 +167,16 @@ void buildStarterEditFlow(App app) {
     code: _kit('feed_icons.dart'),
   );
 
-  app.customWidget(
+  final frontDoor = app.customWidget(
     'FeedAuthPanel',
     description: 'The front door, laid out like Spot a Paw.',
     code: _kit('feed_auth_panel.dart'),
   );
 
   app.editPage(ff.Pages.signInPage, (page) {
-    // Care's front door has no bar above it, and neither should this one:
-    // the logo is the title.
-    page.ensureRemoved(
-      ff.Pages.signInPage.widgets.byKey('AppBar_bsf8ap45').single,
+    page.ensureReplaced(
+      ff.Pages.signInPage.widgets.byKey('Container_zzu4yp8u').single,
+      frontDoor(name: 'FrontDoor'),
     );
   });
 }

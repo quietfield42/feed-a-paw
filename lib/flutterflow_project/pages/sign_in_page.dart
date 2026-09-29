@@ -41,88 +41,12 @@ abstract final class SignInPageWidgets {
       path: "SignInPage",
       name: "SignInPage",
       slots: <String, List<ffai.ProjectWidgetHandle>>{
-        "appBar": <ffai.ProjectWidgetHandle>[
-          ffai.ProjectWidgetHandle(
-            key: "AppBar_bsf8ap45",
-            type: "AppBar",
-            path: "SignInPage.appBar[0]",
-            name: "AppBar",
-            slots: <String, List<ffai.ProjectWidgetHandle>>{
-              "title": <ffai.ProjectWidgetHandle>[
-                ffai.ProjectWidgetHandle(
-                  key: "Text_2o1h06im",
-                  type: "Text",
-                  path: "SignInPage.appBar[0].title[0]",
-                  name: "AppBar Title",
-                  text: "Sign in",
-                ),
-              ],
-            },
-          ),
-        ],
         "body": <ffai.ProjectWidgetHandle>[
           ffai.ProjectWidgetHandle(
-            key: "Container_zzu4yp8u",
+            key: "Container_aon05h9g",
             type: "Container",
             path: "SignInPage.body[0]",
-            name: "Container",
-            children: <ffai.ProjectWidgetHandle>[
-              ffai.ProjectWidgetHandle(
-                key: "Column_5emo4n1u",
-                type: "Column",
-                path: "SignInPage.body[0].children[0]",
-                name: "Column",
-                children: <ffai.ProjectWidgetHandle>[
-                  ffai.ProjectWidgetHandle(
-                    key: "Text_5a1s53wn",
-                    type: "Text",
-                    path: "SignInPage.body[0].children[0].children[0]",
-                    name: "SignInWords",
-                    text: "Only the team signs in: drivers, feeders, and whoever writes the stories. Everyone else can just watch the work.",
-                  ),
-                  ffai.ProjectWidgetHandle(
-                    key: "TextField_e492w91w",
-                    type: "TextField",
-                    path: "SignInPage.body[0].children[0].children[1]",
-                    name: "EmailField",
-                    text: "Email",
-                    triggers: const <String>[
-                      "ON_TEXTFIELD_CHANGE",
-                    ],
-                  ),
-                  ffai.ProjectWidgetHandle(
-                    key: "TextField_skk3bokw",
-                    type: "TextField",
-                    path: "SignInPage.body[0].children[0].children[2]",
-                    name: "PasswordField",
-                    text: "Password",
-                    triggers: const <String>[
-                      "ON_TEXTFIELD_CHANGE",
-                    ],
-                  ),
-                  ffai.ProjectWidgetHandle(
-                    key: "Button_55zd78mn",
-                    type: "Button",
-                    path: "SignInPage.body[0].children[0].children[3]",
-                    name: "SignInButton",
-                    text: "Sign in",
-                    triggers: const <String>[
-                      "ON_TAP",
-                    ],
-                  ),
-                  ffai.ProjectWidgetHandle(
-                    key: "Button_w7gk2zl9",
-                    type: "Button",
-                    path: "SignInPage.body[0].children[0].children[4]",
-                    name: "BackToTodayButton",
-                    text: "Back to the feeding",
-                    triggers: const <String>[
-                      "ON_TAP",
-                    ],
-                  ),
-                ],
-              ),
-            ],
+            name: "FrontDoor",
           ),
         ],
       },
