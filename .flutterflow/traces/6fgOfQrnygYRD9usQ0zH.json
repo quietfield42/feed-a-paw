@@ -1,0 +1,129 @@
+{
+  "version": 1,
+  "runId": "6fgOfQrnygYRD9usQ0zH",
+  "projectId": "feeda-paw-hc0hpt",
+  "startedAt": "2026-09-30T06:39:04.593185Z",
+  "finishedAt": "2026-09-30T06:39:14.863992Z",
+  "flutterFlowAIVersion": "0.0.41",
+  "dartVersion": "3.10.7",
+  "environment": {
+    "os": "windows",
+    "cwd": "[REDACTED_PATH]",
+    "dryRun": false,
+    "pushed": true,
+    "refreshContext": true,
+    "preFlightFreshness": false,
+    "baseUrl": "[REDACTED_URL]"
+  },
+  "projectTarget": {
+    "type": "existing",
+    "requestedProjectId": "feeda-paw-hc0hpt",
+    "resolvedProjectId": "feeda-paw-hc0hpt"
+  },
+  "source": {
+    "mode": "paths",
+    "fileCount": 1,
+    "files": [
+      "edit.dart"
+    ],
+    "explicitPaths": [
+      "[REDACTED_PATH]"
+    ],
+    "localArchivePath": ".flutterflow/history/6fgOfQrnygYRD9usQ0zH",
+    "uploaded": true,
+    "uploadCommitId": "6fgOfQrnygYRD9usQ0zH"
+  },
+  "tasks": [
+    {
+      "name": "compileDslApp",
+      "status": "passed",
+      "startedAt": "2026-09-30T06:39:06.448036Z",
+      "finishedAt": "2026-09-30T06:39:09.377528Z",
+      "durationMs": 357,
+      "validationErrors": [
+        "[symbol: stop-photo-upload] [action-key: stop-photo-upload] Set max height or width for image.",
+        "Go to SpotList.",
+        "edit.dart:178: [symbol: stop-photo-button] This color could use the theme's \"Secondary Background\" color instead of a hardcoded value."
+      ]
+    }
+  ],
+  "diagnostics": [
+    {
+      "code": "PREEXISTING_WIRING",
+      "message": "6 pre-existing wiring findings outside this edit; run `flutterflow ai review` to list them",
+      "severity": "warning",
+      "location": "",
+      "target": "wiring"
+    },
+    {
+      "code": "VALIDATION_UNBOUNDED_IMAGE",
+      "message": "Set max height or width for image.",
+      "severity": "warning",
+      "location": "Button 'StopPhotoButton' [key: stop-photo-button] [action-key: stop-photo-upload]",
+      "target": "action"
+    },
+    {
+      "code": "VALIDATION_HARDCODED_COLOR",
+      "message": "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
+      "severity": "warning",
+      "location": "Button 'StopPhotoButton' [key: stop-photo-button] item:  [item-key: literal-color-0]",
+      "target": "widget"
+    },
+    {
+      "code": "VALIDATION_LIST_VIEW_SHRINK_WRAP",
+      "message": "Go to SpotList.",
+      "severity": "warning",
+      "location": "ListView 'SpotList' [key: ListView_s17wb0qu]",
+      "target": "widget",
+      "suggestion": "Disable `shrinkWrap` on data-backed ListView widgets unless the list must live inside another scrollable. Prefer giving the list bounded space and leaving shrinkWrap off."
+    },
+    {
+      "code": "R19",
+      "message": "Dynamic ListView enables shrinkWrap, which triggers the same performance warning FlutterFlow shows for data-backed lists.",
+      "severity": "warning",
+      "location": "StopPage.SpotList",
+      "target": "wiring",
+      "suggestion": "Disable `shrinkWrap` on dynamic ListView widgets unless the list must live inside another scrollable. Prefer giving the list bounded space and leaving shrinkWrap off."
+    }
+  ],
+  "changeSummary": {
+    "modifiedPages": [
+      "StopPage"
+    ]
+  },
+  "commit": {
+    "attempted": true,
+    "created": true,
+    "commitId": "6fgOfQrnygYRD9usQ0zH",
+    "commitMessage": "The stop's photograph goes to the feed-photos bucket"
+  },
+  "workspaceStateSnapshot": {
+    "projectId": "feeda-paw-hc0hpt",
+    "lastUpdated": "2026-09-30T06:39:14.824368Z",
+    "lastRun": {
+      "timestamp": "2026-09-30T06:39:14.824368Z",
+      "tasks": [
+        {
+          "name": "compileDslApp",
+          "status": "passed"
+        }
+      ],
+      "pushed": true,
+      "commitId": "6fgOfQrnygYRD9usQ0zH"
+    },
+    "instructionBundle": {
+      "mode": "full",
+      "templateSha256": "fbb431c336275ad73c3045d0b890faca89e37aa16b004e1e3668d7ec16e50172",
+      "bytes": 40161,
+      "lines": 404
+    },
+    "pageDsl": false
+  },
+  "paths": {
+    "journalPath": ".flutterflow/runs.jsonl",
+    "lastRunArtifactPath": ".flutterflow/last_run.json",
+    "recoveryHintsPath": ".flutterflow/recovery.json",
+    "localSourceArchivePath": ".flutterflow/history/6fgOfQrnygYRD9usQ0zH",
+    "localPlanArchivePath": ".flutterflow/history/6fgOfQrnygYRD9usQ0zH/plan.md"
+  }
+}
