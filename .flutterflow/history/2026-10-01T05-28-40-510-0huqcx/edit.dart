@@ -168,36 +168,46 @@ void _uploadToBucket(dynamic page, String nodeKey, String bucket) {
 }
 
 void buildStarterEditFlow(App app) {
-  // Your account, and with it the Look & feel picker (1 Oct 2026).
+  // The skin's scenery behind Feed's pages, first page as a trial (1 Oct).
   //
-  // Every app in the family gets the same screen in the same place, so the
-  // picker is where somebody looks for it. The choice is kept on the person's
-  // profile, so picking Egyptian here means Egyptian in Care and Track too.
+  // The kit wraps its own screens in apawBackground; a FlutterFlow page cannot
+  // be wrapped from outside, so the scenery goes in as the bottom layer of a
+  // stack with the page's own content on top. Trying it on Today before doing
+  // it to every page.
 
-  final account = app.customWidget(
-    'FeedAccount',
-    parameters: {},
-    description: 'Your account: the look and feel, and the way out.',
-    code: _kit('feed_account.dart'),
+  app.raw((project) {
+    updateCustomWidget(project, name: 'FeedIcons', code: _kit('feed_icons.dart'));
+  });
+
+  final skin = app.customWidget(
+    'FeedSkin',
+    parameters: {'scene': string},
+    description: "The chosen skin's scenery, behind a page.",
+    code: _kit('feed_skin.dart'),
   );
 
-  final accountPage = app.ensurePage(
-    'AccountPage',
-    route: '/account',
-    description: 'Your account: the look and feel, and signing out.',
-    body: account(name: 'AccountBody'),
-  );
-
-  app.bottomNav(
-    items: [
-      BottomNavItem(ff.Pages.todayPage, icon: 'restaurant'),
-      BottomNavItem(ff.Pages.storiesPage, icon: 'photo_library'),
-      BottomNavItem(ff.Pages.driverPage, icon: 'local_shipping'),
-      BottomNavItem(ff.Pages.aboutPage, icon: 'info_outline'),
-      BottomNavItem(accountPage, icon: 'person_outline'),
-    ],
-    backgroundColor: Colors.secondaryBackground,
-    selectedColor: Colors.primary,
-    unselectedColor: Colors.secondaryText,
-  );
+  app.editPage(ff.Pages.todayPage, (page) {
+    page.ensureInsertedInto(
+      page.root,
+      Stack(
+        name: 'TodaySkin',
+        key: 'today-skin',
+        alignment: Alignment.topCenter,
+        children: [
+          skin(name: 'TodayBackdrop', scene: 'paws'),
+          Container(
+            name: 'TodayContent',
+            key: 'today-content',
+            width: double.infinity,
+            height: double.infinity,
+          ),
+        ],
+      ),
+      slot: 'body',
+    );
+    page.ensureMovedTo(
+      page.findByKey('Container_oyaz88wr'),
+      page.findByKey('today-content'),
+    );
+  });
 }

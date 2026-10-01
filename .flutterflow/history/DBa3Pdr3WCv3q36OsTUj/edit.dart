@@ -168,36 +168,21 @@ void _uploadToBucket(dynamic page, String nodeKey, String bucket) {
 }
 
 void buildStarterEditFlow(App app) {
-  // Your account, and with it the Look & feel picker (1 Oct 2026).
+  // Nothing in Feed asks for money (1 Oct 2026, Ash's option A).
   //
-  // Every app in the family gets the same screen in the same place, so the
-  // picker is where somebody looks for it. The choice is kept on the person's
-  // profile, so picking Egyptian here means Egyptian in Care and Track too.
+  // Today's "Support the truck" goes, and About keeps one plain line that
+  // points at the website: no button that looks like a collection tin, and
+  // none of the words a store reads as a donation.
 
-  final account = app.customWidget(
-    'FeedAccount',
-    parameters: {},
-    description: 'Your account: the look and feel, and the way out.',
-    code: _kit('feed_account.dart'),
-  );
+  app.editPage(ff.Pages.todayPage, (page) {
+    page.ensureRemoved(page.findByKey('Button_h75xi57u'));
+  });
 
-  final accountPage = app.ensurePage(
-    'AccountPage',
-    route: '/account',
-    description: 'Your account: the look and feel, and signing out.',
-    body: account(name: 'AccountBody'),
-  );
+  app.editPage(ff.Pages.aboutPage, (page) {
+    page.update(page.findByKey('Button_j0a5kwkc'), (patch) {
+      patch.text('Follow the truck on onetailonemeal.com');
+      patch.color(Colors.hex(0x00000000));
 
-  app.bottomNav(
-    items: [
-      BottomNavItem(ff.Pages.todayPage, icon: 'restaurant'),
-      BottomNavItem(ff.Pages.storiesPage, icon: 'photo_library'),
-      BottomNavItem(ff.Pages.driverPage, icon: 'local_shipping'),
-      BottomNavItem(ff.Pages.aboutPage, icon: 'info_outline'),
-      BottomNavItem(accountPage, icon: 'person_outline'),
-    ],
-    backgroundColor: Colors.secondaryBackground,
-    selectedColor: Colors.primary,
-    unselectedColor: Colors.secondaryText,
-  );
+    });
+  });
 }

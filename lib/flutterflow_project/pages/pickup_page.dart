@@ -74,62 +74,84 @@ abstract final class PickupPageWidgets {
         ],
         "body": <ffai.ProjectWidgetHandle>[
           ffai.ProjectWidgetHandle(
-            key: "Container_8betwhp6",
-            type: "Container",
+            key: "pickup-skin",
+            type: "Stack",
             path: "PickupPage.body[0]",
-            name: "Container",
+            name: "PickupSkin",
             children: <ffai.ProjectWidgetHandle>[
               ffai.ProjectWidgetHandle(
-                key: "Column_i93rfsuo",
-                type: "Column",
+                key: "Container_gmzuialv",
+                type: "Container",
                 path: "PickupPage.body[0].children[0]",
-                name: "Column",
+                name: "PickupBackdrop",
+              ),
+              ffai.ProjectWidgetHandle(
+                key: "pickup-content",
+                type: "Container",
+                path: "PickupPage.body[0].children[1]",
+                name: "PickupContent",
                 children: <ffai.ProjectWidgetHandle>[
                   ffai.ProjectWidgetHandle(
-                    key: "Text_55wecq7a",
-                    type: "Text",
-                    path: "PickupPage.body[0].children[0].children[0]",
-                    name: "PickupWords",
-                    text: "What the butcher put aside this morning.",
-                  ),
-                  ffai.ProjectWidgetHandle(
-                    key: "TextField_jailsc5x",
-                    type: "TextField",
-                    path: "PickupPage.body[0].children[0].children[1]",
-                    name: "ButcherField",
-                    text: "Which butcher",
-                    triggers: const <String>[
-                      "ON_TEXTFIELD_CHANGE",
-                    ],
-                  ),
-                  ffai.ProjectWidgetHandle(
-                    key: "TextField_1r3kp90x",
-                    type: "TextField",
-                    path: "PickupPage.body[0].children[0].children[2]",
-                    name: "KilosField",
-                    text: "Kilos",
-                    triggers: const <String>[
-                      "ON_TEXTFIELD_CHANGE",
-                    ],
-                  ),
-                  ffai.ProjectWidgetHandle(
-                    key: "TextField_75bgrwkw",
-                    type: "TextField",
-                    path: "PickupPage.body[0].children[0].children[3]",
-                    name: "PickupNoteField",
-                    text: "Note",
-                    triggers: const <String>[
-                      "ON_TEXTFIELD_CHANGE",
-                    ],
-                  ),
-                  ffai.ProjectWidgetHandle(
-                    key: "Button_h50rc8xs",
-                    type: "Button",
-                    path: "PickupPage.body[0].children[0].children[4]",
-                    name: "SavePickupButton",
-                    text: "Save the pickup",
-                    triggers: const <String>[
-                      "ON_TAP",
+                    key: "Container_8betwhp6",
+                    type: "Container",
+                    path: "PickupPage.body[0].children[1].children[0]",
+                    name: "Container",
+                    children: <ffai.ProjectWidgetHandle>[
+                      ffai.ProjectWidgetHandle(
+                        key: "Column_i93rfsuo",
+                        type: "Column",
+                        path: "PickupPage.body[0].children[1].children[0].children[0]",
+                        name: "Column",
+                        children: <ffai.ProjectWidgetHandle>[
+                          ffai.ProjectWidgetHandle(
+                            key: "Text_55wecq7a",
+                            type: "Text",
+                            path: "PickupPage.body[0].children[1].children[0].children[0].children[0]",
+                            name: "PickupWords",
+                            text: "What the butcher put aside this morning.",
+                          ),
+                          ffai.ProjectWidgetHandle(
+                            key: "TextField_jailsc5x",
+                            type: "TextField",
+                            path: "PickupPage.body[0].children[1].children[0].children[0].children[1]",
+                            name: "ButcherField",
+                            text: "Which butcher",
+                            triggers: const <String>[
+                              "ON_TEXTFIELD_CHANGE",
+                            ],
+                          ),
+                          ffai.ProjectWidgetHandle(
+                            key: "TextField_1r3kp90x",
+                            type: "TextField",
+                            path: "PickupPage.body[0].children[1].children[0].children[0].children[2]",
+                            name: "KilosField",
+                            text: "Kilos",
+                            triggers: const <String>[
+                              "ON_TEXTFIELD_CHANGE",
+                            ],
+                          ),
+                          ffai.ProjectWidgetHandle(
+                            key: "TextField_75bgrwkw",
+                            type: "TextField",
+                            path: "PickupPage.body[0].children[1].children[0].children[0].children[3]",
+                            name: "PickupNoteField",
+                            text: "Note",
+                            triggers: const <String>[
+                              "ON_TEXTFIELD_CHANGE",
+                            ],
+                          ),
+                          ffai.ProjectWidgetHandle(
+                            key: "Button_h50rc8xs",
+                            type: "Button",
+                            path: "PickupPage.body[0].children[1].children[0].children[0].children[4]",
+                            name: "SavePickupButton",
+                            text: "Save the pickup",
+                            triggers: const <String>[
+                              "ON_TAP",
+                            ],
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ],

@@ -1,0 +1,113 @@
+{
+  "version": 1,
+  "runId": "AkqzyUqz5M2SXMF1bzuN",
+  "projectId": "feeda-paw-hc0hpt",
+  "startedAt": "2026-10-01T05:44:56.444129Z",
+  "finishedAt": "2026-10-01T05:45:09.618655Z",
+  "flutterFlowAIVersion": "0.0.41",
+  "dartVersion": "3.10.7",
+  "environment": {
+    "os": "windows",
+    "cwd": "[REDACTED_PATH]",
+    "dryRun": false,
+    "pushed": true,
+    "refreshContext": true,
+    "preFlightFreshness": false,
+    "baseUrl": "[REDACTED_URL]"
+  },
+  "projectTarget": {
+    "type": "existing",
+    "requestedProjectId": "feeda-paw-hc0hpt",
+    "resolvedProjectId": "feeda-paw-hc0hpt"
+  },
+  "source": {
+    "mode": "paths",
+    "fileCount": 1,
+    "files": [
+      "edit.dart"
+    ],
+    "explicitPaths": [
+      "[REDACTED_PATH]"
+    ],
+    "localArchivePath": ".flutterflow/history/AkqzyUqz5M2SXMF1bzuN",
+    "uploaded": true,
+    "uploadCommitId": "AkqzyUqz5M2SXMF1bzuN"
+  },
+  "tasks": [
+    {
+      "name": "compileDslApp",
+      "status": "passed",
+      "startedAt": "2026-10-01T05:44:59.663889Z",
+      "finishedAt": "2026-10-01T05:45:03.445426Z",
+      "durationMs": 1763
+    }
+  ],
+  "diagnostics": [
+    {
+      "code": "PREEXISTING_WIRING",
+      "message": "10 pre-existing wiring findings outside this edit; run `flutterflow ai review` to list them",
+      "severity": "warning",
+      "location": "",
+      "target": "wiring"
+    }
+  ],
+  "changeSummary": {
+    "addedPages": [
+      "AccountPage"
+    ],
+    "modifiedCustomCode": [
+      "FeedAccount"
+    ],
+    "customCodeDeltas": [
+      {
+        "name": "FeedAccount",
+        "kind": "widget",
+        "file": "feed_account.dart",
+        "addedLines": 99,
+        "removedLines": 0,
+        "codeChanged": true
+      }
+    ],
+    "diffs": [
+      {
+        "name": "AccountPage",
+        "changeType": "added"
+      }
+    ]
+  },
+  "commit": {
+    "attempted": true,
+    "created": true,
+    "commitId": "AkqzyUqz5M2SXMF1bzuN",
+    "commitMessage": "Your account, with the Look and feel picker"
+  },
+  "workspaceStateSnapshot": {
+    "projectId": "feeda-paw-hc0hpt",
+    "lastUpdated": "2026-10-01T05:45:09.603140Z",
+    "lastRun": {
+      "timestamp": "2026-10-01T05:45:09.603140Z",
+      "tasks": [
+        {
+          "name": "compileDslApp",
+          "status": "passed"
+        }
+      ],
+      "pushed": true,
+      "commitId": "AkqzyUqz5M2SXMF1bzuN"
+    },
+    "instructionBundle": {
+      "mode": "full",
+      "templateSha256": "fbb431c336275ad73c3045d0b890faca89e37aa16b004e1e3668d7ec16e50172",
+      "bytes": 40161,
+      "lines": 404
+    },
+    "pageDsl": false
+  },
+  "paths": {
+    "journalPath": ".flutterflow/runs.jsonl",
+    "lastRunArtifactPath": ".flutterflow/last_run.json",
+    "recoveryHintsPath": ".flutterflow/recovery.json",
+    "localSourceArchivePath": ".flutterflow/history/AkqzyUqz5M2SXMF1bzuN",
+    "localPlanArchivePath": ".flutterflow/history/AkqzyUqz5M2SXMF1bzuN/plan.md"
+  }
+}

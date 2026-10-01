@@ -1,0 +1,126 @@
+{
+  "version": 1,
+  "runId": "DBa3Pdr3WCv3q36OsTUj",
+  "projectId": "feeda-paw-hc0hpt",
+  "startedAt": "2026-10-01T05:25:31.744293Z",
+  "finishedAt": "2026-10-01T05:25:53.519684Z",
+  "flutterFlowAIVersion": "0.0.41",
+  "dartVersion": "3.10.7",
+  "environment": {
+    "os": "windows",
+    "cwd": "[REDACTED_PATH]",
+    "dryRun": false,
+    "pushed": true,
+    "refreshContext": true,
+    "preFlightFreshness": false,
+    "baseUrl": "[REDACTED_URL]"
+  },
+  "projectTarget": {
+    "type": "existing",
+    "requestedProjectId": "feeda-paw-hc0hpt",
+    "resolvedProjectId": "feeda-paw-hc0hpt"
+  },
+  "source": {
+    "mode": "paths",
+    "fileCount": 1,
+    "files": [
+      "edit.dart"
+    ],
+    "explicitPaths": [
+      "[REDACTED_PATH]"
+    ],
+    "localArchivePath": ".flutterflow/history/DBa3Pdr3WCv3q36OsTUj",
+    "uploaded": true,
+    "uploadCommitId": "DBa3Pdr3WCv3q36OsTUj"
+  },
+  "tasks": [
+    {
+      "name": "compileDslApp",
+      "status": "passed",
+      "startedAt": "2026-10-01T05:25:36.009364Z",
+      "finishedAt": "2026-10-01T05:25:45.031908Z",
+      "durationMs": 1577,
+      "validationErrors": [
+        "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
+        "edit.dart:182: [symbol: Button_j0a5kwkc] This color could use the theme's \"Secondary Background\" color instead of a hardcoded value."
+      ]
+    }
+  ],
+  "diagnostics": [
+    {
+      "code": "PREEXISTING_WIRING",
+      "message": "8 pre-existing wiring findings outside this edit; run `flutterflow ai review` to list them",
+      "severity": "warning",
+      "location": "",
+      "target": "wiring"
+    },
+    {
+      "code": "VALIDATION_HARDCODED_COLOR",
+      "message": "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
+      "severity": "warning",
+      "location": "Button 'AboutButton' [key: Button_ikvt4ilc] item:  [item-key: literal-color-0]",
+      "target": "widget"
+    },
+    {
+      "code": "VALIDATION_HARDCODED_COLOR",
+      "message": "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
+      "severity": "warning",
+      "location": "Button 'GiveButton' [key: Button_j0a5kwkc] item:  [item-key: literal-color-0]",
+      "target": "widget"
+    }
+  ],
+  "changeSummary": {
+    "modifiedPages": [
+      "AboutPage",
+      "TodayPage"
+    ],
+    "structuralDeletions": [
+      "Removed: SupportButton (existing)"
+    ],
+    "diffs": [
+      {
+        "name": "TodayPage",
+        "changeType": "modified",
+        "details": [
+          "Removed 1 widget(s)",
+          "Removed 1 action trigger(s)"
+        ]
+      }
+    ]
+  },
+  "commit": {
+    "attempted": true,
+    "created": true,
+    "commitId": "DBa3Pdr3WCv3q36OsTUj",
+    "commitMessage": "Nothing in Feed asks for money: one plain line to the website"
+  },
+  "workspaceStateSnapshot": {
+    "projectId": "feeda-paw-hc0hpt",
+    "lastUpdated": "2026-10-01T05:25:53.496117Z",
+    "lastRun": {
+      "timestamp": "2026-10-01T05:25:53.496117Z",
+      "tasks": [
+        {
+          "name": "compileDslApp",
+          "status": "passed"
+        }
+      ],
+      "pushed": true,
+      "commitId": "DBa3Pdr3WCv3q36OsTUj"
+    },
+    "instructionBundle": {
+      "mode": "full",
+      "templateSha256": "fbb431c336275ad73c3045d0b890faca89e37aa16b004e1e3668d7ec16e50172",
+      "bytes": 40161,
+      "lines": 404
+    },
+    "pageDsl": false
+  },
+  "paths": {
+    "journalPath": ".flutterflow/runs.jsonl",
+    "lastRunArtifactPath": ".flutterflow/last_run.json",
+    "recoveryHintsPath": ".flutterflow/recovery.json",
+    "localSourceArchivePath": ".flutterflow/history/DBa3Pdr3WCv3q36OsTUj",
+    "localPlanArchivePath": ".flutterflow/history/DBa3Pdr3WCv3q36OsTUj/plan.md"
+  }
+}

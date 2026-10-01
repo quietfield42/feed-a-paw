@@ -1475,6 +1475,10 @@ final class FeedTotalsFields extends MapBase<String, ffai.PostgresTableField> {
 }
 
 abstract final class CustomWidgets {
+  static const feedAccount = ffai.ProjectCustomWidgetHandle(
+    name: "FeedAccount",
+    key: "a7syku4p",
+  );
   static const feedAuthPanel = ffai.ProjectCustomWidgetHandle(
     name: "FeedAuthPanel",
     key: "fsy810f8",
@@ -1495,12 +1499,18 @@ abstract final class CustomWidgets {
     name: "FeedIcons",
     key: "5ocyl0et",
   );
+  static const feedSkin = ffai.ProjectCustomWidgetHandle(
+    name: "FeedSkin",
+    key: "j2r2uesh",
+  );
   static const all = <ffai.ProjectCustomWidgetHandle>[
+    feedAccount,
     feedAuthPanel,
     feedEmpty,
     feedEmptyRounds,
     feedHeader,
     feedIcons,
+    feedSkin,
   ];
 }
 
@@ -1510,11 +1520,13 @@ abstract final class CustomCode {
   static const actions = <String>[
   ];
   static const widgets = <String>[
+    "FeedAccount",
     "FeedAuthPanel",
     "FeedEmpty",
     "FeedEmptyRounds",
     "FeedHeader",
     "FeedIcons",
+    "FeedSkin",
   ];
 }
 

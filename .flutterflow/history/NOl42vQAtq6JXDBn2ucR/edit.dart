@@ -168,36 +168,171 @@ void _uploadToBucket(dynamic page, String nodeKey, String bucket) {
 }
 
 void buildStarterEditFlow(App app) {
-  // Your account, and with it the Look & feel picker (1 Oct 2026).
+  // The chosen skin's scenery behind every page (1 Oct 2026).
   //
-  // Every app in the family gets the same screen in the same place, so the
-  // picker is where somebody looks for it. The choice is kept on the person's
-  // profile, so picking Egyptian here means Egyptian in Care and Track too.
+  // The kit wraps its own screens in apawBackground; a FlutterFlow page cannot
+  // be wrapped from outside, so the scenery goes in as the bottom layer of a
+  // stack and the page's own content sits on top. The stack is built in the
+  // floating-button slot, the content is moved into it, and then the stack
+  // takes the body — a page body holds one thing, so it has to be done in that
+  // order.
+  //
+  // The sign-in screen is left alone: the kit's front door paints its own.
 
-  final account = app.customWidget(
-    'FeedAccount',
-    parameters: {},
-    description: 'Your account: the look and feel, and the way out.',
-    code: _kit('feed_account.dart'),
+  app.raw((project) {
+    updateCustomWidget(project, name: 'FeedIcons', code: _kit('feed_icons.dart'));
+  });
+
+  final skin = app.customWidget(
+    'FeedSkin',
+    parameters: {'scene': string},
+    description: "The chosen skin's scenery, behind a page.",
+    code: _kit('feed_skin.dart'),
   );
 
-  final accountPage = app.ensurePage(
-    'AccountPage',
-    route: '/account',
-    description: 'Your account: the look and feel, and signing out.',
-    body: account(name: 'AccountBody'),
-  );
-
-  app.bottomNav(
-    items: [
-      BottomNavItem(ff.Pages.todayPage, icon: 'restaurant'),
-      BottomNavItem(ff.Pages.storiesPage, icon: 'photo_library'),
-      BottomNavItem(ff.Pages.driverPage, icon: 'local_shipping'),
-      BottomNavItem(ff.Pages.aboutPage, icon: 'info_outline'),
-      BottomNavItem(accountPage, icon: 'person_outline'),
-    ],
-    backgroundColor: Colors.secondaryBackground,
-    selectedColor: Colors.primary,
-    unselectedColor: Colors.secondaryText,
-  );
+  app.editPage(ff.Pages.driverPage, (page) {
+    page.ensureInsertedInto(
+      page.root,
+      Stack(
+        name: 'DriverSkin',
+        key: 'driver-skin',
+        alignment: Alignment.topCenter,
+        children: [
+          skin(name: 'DriverBackdrop', scene: 'paws'),
+          Container(
+            name: 'DriverContent',
+            key: 'driver-content',
+            width: double.infinity,
+            height: double.infinity,
+          ),
+        ],
+      ),
+      slot: 'floatingActionButton',
+    );
+    page.ensureMovedTo(
+      page.findByKey('Container_9fa9vthk'),
+      page.findByKey('driver-content'),
+    );
+    page.ensureMovedTo(
+      page.findByKey('driver-skin'),
+      page.root,
+      slot: 'body',
+    );
+  });
+  app.editPage(ff.Pages.storiesPage, (page) {
+    page.ensureInsertedInto(
+      page.root,
+      Stack(
+        name: 'StoriesSkin',
+        key: 'stories-skin',
+        alignment: Alignment.topCenter,
+        children: [
+          skin(name: 'StoriesBackdrop', scene: 'paws'),
+          Container(
+            name: 'StoriesContent',
+            key: 'stories-content',
+            width: double.infinity,
+            height: double.infinity,
+          ),
+        ],
+      ),
+      slot: 'floatingActionButton',
+    );
+    page.ensureMovedTo(
+      page.findByKey('Column_tapxo0rg'),
+      page.findByKey('stories-content'),
+    );
+    page.ensureMovedTo(
+      page.findByKey('stories-skin'),
+      page.root,
+      slot: 'body',
+    );
+  });
+  app.editPage(ff.Pages.aboutPage, (page) {
+    page.ensureInsertedInto(
+      page.root,
+      Stack(
+        name: 'AboutSkin',
+        key: 'about-skin',
+        alignment: Alignment.topCenter,
+        children: [
+          skin(name: 'AboutBackdrop', scene: 'paws'),
+          Container(
+            name: 'AboutContent',
+            key: 'about-content',
+            width: double.infinity,
+            height: double.infinity,
+          ),
+        ],
+      ),
+      slot: 'floatingActionButton',
+    );
+    page.ensureMovedTo(
+      page.findByKey('Container_a4mf6bd3'),
+      page.findByKey('about-content'),
+    );
+    page.ensureMovedTo(
+      page.findByKey('about-skin'),
+      page.root,
+      slot: 'body',
+    );
+  });
+  app.editPage(ff.Pages.pickupPage, (page) {
+    page.ensureInsertedInto(
+      page.root,
+      Stack(
+        name: 'PickupSkin',
+        key: 'pickup-skin',
+        alignment: Alignment.topCenter,
+        children: [
+          skin(name: 'PickupBackdrop', scene: 'paws'),
+          Container(
+            name: 'PickupContent',
+            key: 'pickup-content',
+            width: double.infinity,
+            height: double.infinity,
+          ),
+        ],
+      ),
+      slot: 'floatingActionButton',
+    );
+    page.ensureMovedTo(
+      page.findByKey('Container_8betwhp6'),
+      page.findByKey('pickup-content'),
+    );
+    page.ensureMovedTo(
+      page.findByKey('pickup-skin'),
+      page.root,
+      slot: 'body',
+    );
+  });
+  app.editPage(ff.Pages.stopPage, (page) {
+    page.ensureInsertedInto(
+      page.root,
+      Stack(
+        name: 'StopSkin',
+        key: 'stop-skin',
+        alignment: Alignment.topCenter,
+        children: [
+          skin(name: 'StopBackdrop', scene: 'paws'),
+          Container(
+            name: 'StopContent',
+            key: 'stop-content',
+            width: double.infinity,
+            height: double.infinity,
+          ),
+        ],
+      ),
+      slot: 'floatingActionButton',
+    );
+    page.ensureMovedTo(
+      page.findByKey('Container_3y45sqpe'),
+      page.findByKey('stop-content'),
+    );
+    page.ensureMovedTo(
+      page.findByKey('stop-skin'),
+      page.root,
+      slot: 'body',
+    );
+  });
 }
