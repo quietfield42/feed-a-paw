@@ -112,6 +112,12 @@ abstract final class AboutPageWidgets {
                   ),
                 ],
               ),
+              ffai.ProjectWidgetHandle(
+                key: "Container_0jfnh1x5",
+                type: "Container",
+                path: "AboutPage.body[0].children[2]",
+                name: "AboutBar",
+              ),
             ],
           ),
         ],

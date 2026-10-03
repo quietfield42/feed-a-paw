@@ -170,14 +170,51 @@ void _uploadToBucket(dynamic page, String nodeKey, String bucket) {
 }
 
 void buildStarterEditFlow(App app) {
-  // A way to delete your account, from inside the app (3 Oct 2026).
+  // The family's bottom bar (3 Oct 2026, Ash said yes).
   //
-  // Google and Apple both want a web page where somebody can delete their
-  // account without installing anything; the family has one for all of us.
-  // Your account now links to it, under Look & feel.
+  // FlutterFlow's own bar carries an icon and nothing else: no labels, and no
+  // way to give it the pack's drawings. So it goes off, and each main screen
+  // draws the kit's bar instead — the same one Care, Track and Snap use, with
+  // the pack icons, labels under them, forest for the place you are on, and
+  // Account last. It sits in the page's stack over the scenery; the empty
+  // space above it passes taps through to the page.
+
+  final bar = app.customWidget(
+    'FeedNavBar',
+    parameters: {'current': string},
+    description: "The family's bottom bar, drawn on a main screen.",
+    code: _kit('feed_navbar.dart'),
+  );
 
   app.raw((project) {
-    updateCustomWidget(project,
-        name: 'FeedAccount', code: _kit('feed_account.dart'));
+    setNavBarEnabled(project, enabled: false);
+  });
+
+  app.editPage(ff.Pages.todayPage, (page) {
+    page.ensureInsertedInto(
+      page.findByKey('today-skin'),
+      bar(name: 'TodayBar', current: 'TodayPage'),
+    );
+  });
+
+  app.editPage(ff.Pages.storiesPage, (page) {
+    page.ensureInsertedInto(
+      page.findByKey('stories-skin'),
+      bar(name: 'StoriesBar', current: 'StoriesPage'),
+    );
+  });
+
+  app.editPage(ff.Pages.driverPage, (page) {
+    page.ensureInsertedInto(
+      page.findByKey('driver-skin'),
+      bar(name: 'DriverBar', current: 'DriverPage'),
+    );
+  });
+
+  app.editPage(ff.Pages.aboutPage, (page) {
+    page.ensureInsertedInto(
+      page.findByKey('about-skin'),
+      bar(name: 'AboutBar', current: 'AboutPage'),
+    );
   });
 }

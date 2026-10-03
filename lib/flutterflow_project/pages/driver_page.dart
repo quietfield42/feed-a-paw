@@ -478,6 +478,12 @@ abstract final class DriverPageWidgets {
                   ),
                 ],
               ),
+              ffai.ProjectWidgetHandle(
+                key: "Container_cj72o52z",
+                type: "Container",
+                path: "DriverPage.body[0].children[2]",
+                name: "DriverBar",
+              ),
             ],
           ),
         ],

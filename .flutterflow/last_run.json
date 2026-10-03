@@ -1,25 +1,25 @@
 {
   "version": 1,
-  "timestamp": "2026-10-01T05:45:09.607140Z",
+  "timestamp": "2026-10-03T00:03:59.350798Z",
   "projectId": "feeda-paw-hc0hpt",
   "success": true,
   "noOp": false,
   "pushed": true,
   "dryRun": false,
-  "commitId": "AkqzyUqz5M2SXMF1bzuN",
-  "commitMessage": "Your account, with the Look and feel picker",
+  "commitId": "KL8Ii1ge6p1TuYIzMvrm",
+  "commitMessage": "Your a-Paw account, linked from Your account",
   "tasks": [
     {
       "name": "compileDslApp",
       "success": true,
       "skipped": false,
-      "durationMs": 1763
+      "durationMs": 903
     }
   ],
   "diagnostics": [
     {
       "code": "PREEXISTING_WIRING",
-      "message": "10 pre-existing wiring findings outside this edit; run `flutterflow ai review` to list them",
+      "message": "8 pre-existing wiring findings outside this edit; run `flutterflow ai review` to list them",
       "severity": "warning",
       "location": "",
       "target": "wiring"

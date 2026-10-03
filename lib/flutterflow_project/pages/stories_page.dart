@@ -127,6 +127,12 @@ abstract final class StoriesPageWidgets {
                   ),
                 ],
               ),
+              ffai.ProjectWidgetHandle(
+                key: "Container_xanvabby",
+                type: "Container",
+                path: "StoriesPage.body[0].children[2]",
+                name: "StoriesBar",
+              ),
             ],
           ),
         ],

@@ -1,4 +1,5 @@
 import '/backend/supabase/supabase.dart';
+import '/custom_code/widgets/feed_nav_bar.dart' show FeedNavBar;
 import '/custom_code/widgets/feed_icons.dart'
     show
         apawBackground,
@@ -44,9 +45,10 @@ class _FeedAccountState extends State<FeedAccount> {
     final email = SupaFlow.client.auth.currentUser?.email ?? '';
     return apawBackground(
       scene: 'paws',
-      child: SafeArea(
+      child: Stack(children: [
+      SafeArea(
         child: ListView(
-          padding: const EdgeInsets.fromLTRB(0, 0, 0, 28),
+          padding: const EdgeInsets.fromLTRB(0, 0, 0, 110),
           children: [
             apawHeader('feed', 'Your account'),
             Padding(
@@ -86,6 +88,34 @@ class _FeedAccountState extends State<FeedAccount> {
                   Text('Feed-a-Paw is One Tail One Meal’s own app, feeding '
                       'street animals every day.',
                       style: apawText(size: 13, color: ApawColors.muted)),
+                  const SizedBox(height: 10),
+                  apawCard(
+                    onTap: () => launchURL('https://spotapaw.github.io/care-a-paw-site/account/'),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 14, vertical: 12),
+                    child: Row(children: [
+                      apawIconChip('common-privacy', size: 40),
+                      const SizedBox(width: 14),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('Your a-Paw account',
+                                style: apawText(
+                                    size: 16,
+                                    color: ApawColors.forest,
+                                    weight: FontWeight.w700)),
+                            Text('Change your email or password, or delete '
+                                'your account for every a-Paw app.',
+                                style: apawText(
+                                    size: 13, color: ApawColors.muted)),
+                          ],
+                        ),
+                      ),
+                      apawIcon('common-open-website',
+                          color: ApawColors.muted, size: 18),
+                    ]),
+                  ),
                   const SizedBox(height: 18),
                   apawSecondary('Sign out', _signOut),
                 ],
@@ -94,6 +124,8 @@ class _FeedAccountState extends State<FeedAccount> {
           ],
         ),
       ),
+      const FeedNavBar(current: 'AccountPage'),
+      ]),
     );
   }
 }

@@ -170,13 +170,16 @@ void _uploadToBucket(dynamic page, String nodeKey, String bucket) {
 }
 
 void buildStarterEditFlow(App app) {
-  // A way to delete your account, from inside the app (3 Oct 2026).
+  // The bar on Your account too, and a person for its icon (3 Oct 2026).
   //
-  // Google and Apple both want a web page where somebody can delete their
-  // account without installing anything; the family has one for all of us.
-  // Your account now links to it, under Look & feel.
+  // The pack has no account icon for Feed and the common ones have no filled
+  // twin, so the selected tab would have shown a label and no drawing. The
+  // feeder from the roles set is a person, has both states, and belongs to
+  // this app. Asked the other agent for a proper one on the board.
 
   app.raw((project) {
+    updateCustomWidget(project,
+        name: 'FeedNavBar', code: _kit('feed_navbar.dart'));
     updateCustomWidget(project,
         name: 'FeedAccount', code: _kit('feed_account.dart'));
   });

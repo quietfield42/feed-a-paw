@@ -1,0 +1,104 @@
+{
+  "version": 1,
+  "runId": "KL8Ii1ge6p1TuYIzMvrm",
+  "projectId": "feeda-paw-hc0hpt",
+  "startedAt": "2026-10-03T00:03:47.328992Z",
+  "finishedAt": "2026-10-03T00:03:59.374119Z",
+  "flutterFlowAIVersion": "0.0.41",
+  "dartVersion": "3.10.7",
+  "environment": {
+    "os": "windows",
+    "cwd": "[REDACTED_PATH]",
+    "dryRun": false,
+    "pushed": true,
+    "refreshContext": true,
+    "preFlightFreshness": false,
+    "baseUrl": "[REDACTED_URL]"
+  },
+  "projectTarget": {
+    "type": "existing",
+    "requestedProjectId": "feeda-paw-hc0hpt",
+    "resolvedProjectId": "feeda-paw-hc0hpt"
+  },
+  "source": {
+    "mode": "paths",
+    "fileCount": 1,
+    "files": [
+      "edit.dart"
+    ],
+    "explicitPaths": [
+      "[REDACTED_PATH]"
+    ],
+    "localArchivePath": ".flutterflow/history/KL8Ii1ge6p1TuYIzMvrm",
+    "uploaded": true,
+    "uploadCommitId": "KL8Ii1ge6p1TuYIzMvrm"
+  },
+  "tasks": [
+    {
+      "name": "compileDslApp",
+      "status": "passed",
+      "startedAt": "2026-10-03T00:03:49.668227Z",
+      "finishedAt": "2026-10-03T00:03:53.031105Z",
+      "durationMs": 903
+    }
+  ],
+  "diagnostics": [
+    {
+      "code": "PREEXISTING_WIRING",
+      "message": "8 pre-existing wiring findings outside this edit; run `flutterflow ai review` to list them",
+      "severity": "warning",
+      "location": "",
+      "target": "wiring"
+    }
+  ],
+  "changeSummary": {
+    "modifiedCustomCode": [
+      "FeedAccount"
+    ],
+    "customCodeDeltas": [
+      {
+        "name": "FeedAccount",
+        "kind": "widget",
+        "file": "feed_account.dart",
+        "addedLines": 28,
+        "removedLines": 0,
+        "codeChanged": true
+      }
+    ]
+  },
+  "commit": {
+    "attempted": true,
+    "created": true,
+    "commitId": "KL8Ii1ge6p1TuYIzMvrm",
+    "commitMessage": "Your a-Paw account, linked from Your account"
+  },
+  "workspaceStateSnapshot": {
+    "projectId": "feeda-paw-hc0hpt",
+    "lastUpdated": "2026-10-03T00:03:59.321668Z",
+    "lastRun": {
+      "timestamp": "2026-10-03T00:03:59.321668Z",
+      "tasks": [
+        {
+          "name": "compileDslApp",
+          "status": "passed"
+        }
+      ],
+      "pushed": true,
+      "commitId": "KL8Ii1ge6p1TuYIzMvrm"
+    },
+    "instructionBundle": {
+      "mode": "full",
+      "templateSha256": "fbb431c336275ad73c3045d0b890faca89e37aa16b004e1e3668d7ec16e50172",
+      "bytes": 40161,
+      "lines": 404
+    },
+    "pageDsl": false
+  },
+  "paths": {
+    "journalPath": ".flutterflow/runs.jsonl",
+    "lastRunArtifactPath": ".flutterflow/last_run.json",
+    "recoveryHintsPath": ".flutterflow/recovery.json",
+    "localSourceArchivePath": ".flutterflow/history/KL8Ii1ge6p1TuYIzMvrm",
+    "localPlanArchivePath": ".flutterflow/history/KL8Ii1ge6p1TuYIzMvrm/plan.md"
+  }
+}

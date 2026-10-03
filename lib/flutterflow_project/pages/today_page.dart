@@ -112,7 +112,7 @@ abstract final class TodayPageWidgets {
                             type: "Text",
                             path: "TodayPage.body[0].children[1].children[0].children[0].children[4]",
                             name: "AllTimeLabel",
-                            text: "Since the first round",
+                            text: "Meals since the first round",
                           ),
                           ffai.ProjectWidgetHandle(
                             key: "Text_r05g8sga",
@@ -184,6 +184,12 @@ abstract final class TodayPageWidgets {
                     ],
                   ),
                 ],
+              ),
+              ffai.ProjectWidgetHandle(
+                key: "Container_zcqlbl94",
+                type: "Container",
+                path: "TodayPage.body[0].children[2]",
+                name: "TodayBar",
               ),
             ],
           ),
