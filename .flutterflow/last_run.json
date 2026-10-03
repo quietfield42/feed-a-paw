@@ -1,28 +1,54 @@
 {
   "version": 1,
-  "timestamp": "2026-10-03T00:03:59.350798Z",
+  "timestamp": "2026-10-03T10:20:08.096987Z",
   "projectId": "feeda-paw-hc0hpt",
   "success": true,
   "noOp": false,
   "pushed": true,
   "dryRun": false,
-  "commitId": "KL8Ii1ge6p1TuYIzMvrm",
-  "commitMessage": "Your a-Paw account, linked from Your account",
+  "commitId": "GJfTFDfE4cuL3bFkrHWe",
+  "commitMessage": "What the round came to",
   "tasks": [
     {
       "name": "compileDslApp",
       "success": true,
       "skipped": false,
-      "durationMs": 903
+      "durationMs": 1845,
+      "validationErrors": [
+        "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
+        "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
+        "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value."
+      ]
     }
   ],
   "diagnostics": [
     {
       "code": "PREEXISTING_WIRING",
-      "message": "8 pre-existing wiring findings outside this edit; run `flutterflow ai review` to list them",
+      "message": "6 pre-existing wiring findings outside this edit; run `flutterflow ai review` to list them",
       "severity": "warning",
       "location": "",
       "target": "wiring"
+    },
+    {
+      "code": "VALIDATION_HARDCODED_COLOR",
+      "message": "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
+      "severity": "warning",
+      "location": "Button 'LogPickupButton' [key: Button_zmdjnht0] item:  [item-key: literal-color-0]",
+      "target": "widget"
+    },
+    {
+      "code": "VALIDATION_HARDCODED_COLOR",
+      "message": "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
+      "severity": "warning",
+      "location": "Button 'LogStopButton' [key: Button_2fog88v7] item:  [item-key: literal-color-0]",
+      "target": "widget"
+    },
+    {
+      "code": "VALIDATION_HARDCODED_COLOR",
+      "message": "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
+      "severity": "warning",
+      "location": "Button 'RoundSummaryDone' [key: Button_dmsrpz2w] item:  [item-key: literal-color-0]",
+      "target": "widget"
     }
   ]
 }

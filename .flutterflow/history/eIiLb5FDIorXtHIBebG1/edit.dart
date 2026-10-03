@@ -170,107 +170,15 @@ void _uploadToBucket(dynamic page, String nodeKey, String bucket) {
 }
 
 void buildStarterEditFlow(App app) {
-  // What the round came to (3 Oct 2026).
+  // Somewhere to hold what the round came to (3 Oct 2026).
   //
-  // Finishing a round used to say "thank you" and nothing else. Now the
-  // totals are read before the run is let go of, and the driver sees them:
-  // meals, stops, animals. It is the only moment in the evening when the
-  // work adds up to a number, and it belongs to the person who did it.
+  // Finishing a round says "thank you" and nothing else. A driver who has
+  // been out for three hours should see what it added up to.
 
-  final st = ff.Pages.driverPage.state;
-
-  app.editPage(ff.Pages.driverPage, (page) {
-    page.ensureInsertedAfter(
-      page.findByKey('Button_zfzjqb0v'),
-      Card(
-        name: 'RoundSummary',
-        key: 'round-summary',
-        visible: State(st.roundDone),
-        child: Container(
-          name: 'RoundSummaryFrame',
-          padding: EdgeInsets.all(16),
-          child: Column(
-            crossAxis: CrossAxis.start,
-            spacing: 6,
-            children: [
-              Text('That was the round',
-                  name: 'RoundSummaryHeading', style: Styles.titleLarge),
-              Text('Meals handed out',
-                  name: 'RoundMealsLabel',
-                  style: Styles.labelSmall,
-                  color: Colors.secondaryText),
-              Text(State(st.roundMeals),
-                  name: 'RoundMealsText',
-                  style: Styles.headlineSmall,
-                  color: Colors.secondary),
-              Text('Stops',
-                  name: 'RoundStopsLabel',
-                  style: Styles.labelSmall,
-                  color: Colors.secondaryText),
-              Text(State(st.roundStops),
-                  name: 'RoundStopsText', style: Styles.titleMedium),
-              Text('Animals seen',
-                  name: 'RoundAnimalsLabel',
-                  style: Styles.labelSmall,
-                  color: Colors.secondaryText),
-              Text(State(st.roundAnimals),
-                  name: 'RoundAnimalsText', style: Styles.titleMedium),
-              Button(
-                'Thanks',
-                name: 'RoundSummaryDone',
-                onTap: [SetState(st.roundDone, false)],
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-
-    page.removeTrigger(
-        page.findByKey('Button_zfzjqb0v'), FFActionTriggerType.ON_TAP);
-    page.ensureActions(
-      page.findByKey('Button_zfzjqb0v'),
-      triggerType: FFActionTriggerType.ON_TAP,
-      actions: [
-        PostgresUpdate(
-          ff.Tables.feedRuns,
-          key: 'finish-run',
-          fields: {
-            'status': 'done',
-            'ended_at': const Global(GlobalProperty.currentTimestamp),
-          },
-          query: PostgresQuerySpec(
-            filters: [
-              PostgresFilter('id',
-                  relation: PostgresFilterRelation.equalTo,
-                  value: AppState(ff.AppState.currentRunId)),
-            ],
-          ),
-        ),
-        // Read the totals while the run is still the one we are on.
-        PostgresRead(
-          ff.Tables.feedRunTotals,
-          key: 'read-round-totals',
-          outputAs: 'roundTotals',
-          query: PostgresQuerySpec(
-            filters: [
-              PostgresFilter('run_id',
-                  relation: PostgresFilterRelation.equalTo,
-                  value: AppState(ff.AppState.currentRunId)),
-            ],
-          ),
-        ),
-        SetState(st.roundMeals, const ActionOutput('roundTotals')['meals'],
-            key: 'keep-meals'),
-        SetState(st.roundStops, const ActionOutput('roundTotals')['stops'],
-            key: 'keep-stops'),
-        SetState(st.roundAnimals, const ActionOutput('roundTotals')['animals'],
-            key: 'keep-animals'),
-        SetState(st.roundDone, true, key: 'show-summary'),
-        UpdateAppState.set(ff.AppState.currentRunId, '', key: 'let-go'),
-        SetState(st.onTheRoad, false, key: 'off-the-road'),
-        Snackbar('Round finished. Thank you.', key: 'round-thanks'),
-      ],
-    );
+  app.editPageState(ff.Pages.driverPage, (state) {
+    state.ensureField('roundMeals', int_.withDefault(0));
+    state.ensureField('roundStops', int_.withDefault(0));
+    state.ensureField('roundAnimals', int_.withDefault(0));
+    state.ensureField('roundDone', bool_.withDefault(false));
   });
 }

@@ -37,6 +37,30 @@ final class DriverPageState {
         key: "jbhcwfkl",
         typeName: "List<PostgresRow>",
       );
+  ffai.ProjectStateFieldHandle get roundAnimals =>
+      const ffai.ProjectStateFieldHandle(
+        name: "roundAnimals",
+        key: "z8qj7sc6",
+        typeName: "Integer",
+      );
+  ffai.ProjectStateFieldHandle get roundDone =>
+      const ffai.ProjectStateFieldHandle(
+        name: "roundDone",
+        key: "uurws59a",
+        typeName: "Boolean",
+      );
+  ffai.ProjectStateFieldHandle get roundMeals =>
+      const ffai.ProjectStateFieldHandle(
+        name: "roundMeals",
+        key: "hvz5ftga",
+        typeName: "Integer",
+      );
+  ffai.ProjectStateFieldHandle get roundStops =>
+      const ffai.ProjectStateFieldHandle(
+        name: "roundStops",
+        key: "f65pcn7f",
+        typeName: "Integer",
+      );
   ffai.ProjectStateFieldHandle get routes =>
       const ffai.ProjectStateFieldHandle(
         name: "routes",
@@ -470,6 +494,86 @@ abstract final class DriverPageWidgets {
                             text: "Finish the round",
                             triggers: const <String>[
                               "ON_TAP",
+                            ],
+                          ),
+                          ffai.ProjectWidgetHandle(
+                            key: "round-summary",
+                            type: "Card",
+                            path: "DriverPage.body[0].children[1].children[0].children[0].children[9]",
+                            name: "RoundSummary",
+                            children: <ffai.ProjectWidgetHandle>[
+                              ffai.ProjectWidgetHandle(
+                                key: "Container_obqmvmj5",
+                                type: "Container",
+                                path: "DriverPage.body[0].children[1].children[0].children[0].children[9].children[0]",
+                                name: "RoundSummaryFrame",
+                                children: <ffai.ProjectWidgetHandle>[
+                                  ffai.ProjectWidgetHandle(
+                                    key: "Column_iir2h40z",
+                                    type: "Column",
+                                    path: "DriverPage.body[0].children[1].children[0].children[0].children[9].children[0].children[0]",
+                                    name: "Column",
+                                    children: <ffai.ProjectWidgetHandle>[
+                                      ffai.ProjectWidgetHandle(
+                                        key: "Text_nx7p7abw",
+                                        type: "Text",
+                                        path: "DriverPage.body[0].children[1].children[0].children[0].children[9].children[0].children[0].children[0]",
+                                        name: "RoundSummaryHeading",
+                                        text: "That was the round",
+                                      ),
+                                      ffai.ProjectWidgetHandle(
+                                        key: "Text_ho3s0c2k",
+                                        type: "Text",
+                                        path: "DriverPage.body[0].children[1].children[0].children[0].children[9].children[0].children[0].children[1]",
+                                        name: "RoundMealsLabel",
+                                        text: "Meals handed out",
+                                      ),
+                                      ffai.ProjectWidgetHandle(
+                                        key: "Text_vx755r24",
+                                        type: "Text",
+                                        path: "DriverPage.body[0].children[1].children[0].children[0].children[9].children[0].children[0].children[2]",
+                                        name: "RoundMealsText",
+                                      ),
+                                      ffai.ProjectWidgetHandle(
+                                        key: "Text_5cqp9ivv",
+                                        type: "Text",
+                                        path: "DriverPage.body[0].children[1].children[0].children[0].children[9].children[0].children[0].children[3]",
+                                        name: "RoundStopsLabel",
+                                        text: "Stops",
+                                      ),
+                                      ffai.ProjectWidgetHandle(
+                                        key: "Text_v8gzm9ej",
+                                        type: "Text",
+                                        path: "DriverPage.body[0].children[1].children[0].children[0].children[9].children[0].children[0].children[4]",
+                                        name: "RoundStopsText",
+                                      ),
+                                      ffai.ProjectWidgetHandle(
+                                        key: "Text_gwzahgcr",
+                                        type: "Text",
+                                        path: "DriverPage.body[0].children[1].children[0].children[0].children[9].children[0].children[0].children[5]",
+                                        name: "RoundAnimalsLabel",
+                                        text: "Animals seen",
+                                      ),
+                                      ffai.ProjectWidgetHandle(
+                                        key: "Text_a6x8jdoh",
+                                        type: "Text",
+                                        path: "DriverPage.body[0].children[1].children[0].children[0].children[9].children[0].children[0].children[6]",
+                                        name: "RoundAnimalsText",
+                                      ),
+                                      ffai.ProjectWidgetHandle(
+                                        key: "Button_dmsrpz2w",
+                                        type: "Button",
+                                        path: "DriverPage.body[0].children[1].children[0].children[0].children[9].children[0].children[0].children[7]",
+                                        name: "RoundSummaryDone",
+                                        text: "Thanks",
+                                        triggers: const <String>[
+                                          "ON_TAP",
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ],
                           ),
                         ],
