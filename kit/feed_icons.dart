@@ -499,6 +499,29 @@ Widget apawSkinRow(BuildContext context) => ValueListenableBuilder<String>(
       ),
     );
 
+/// The one web page for every a-Paw account: password, email, delete account.
+const kApawAccountUrl = 'https://spotapaw.github.io/care-a-paw-site/account/';
+
+/// Opens the a-Paw account page in the browser.
+Future<void> openApawAccountPage() => launchURL(kApawAccountUrl);
+
+/// "Manage account" row for an Account screen.
+Widget apawManageAccountRow(BuildContext context) => apawCard(
+      onTap: openApawAccountPage,
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+      child: Row(children: [
+        apawIconChip('common-account', size: 40),
+        const SizedBox(width: 14),
+        Expanded(
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Text('Manage account', style: apawText(size: 16, color: ApawColors.forest, weight: FontWeight.w700)),
+          Text('Password, email and your data, on the web',
+              style: apawText(size: 13, color: ApawColors.muted)),
+        ])),
+        apawIcon('common-open-website', color: ApawColors.muted, size: 18),
+      ]),
+    );
+
 /// The top of every main screen: app logo, a title, and actions on the right.
 Widget apawHeader(String app, String title,
         {List<Widget> actions = const [], String? subtitle, EdgeInsets padding = const EdgeInsets.fromLTRB(20, 12, 12, 8)}) =>
