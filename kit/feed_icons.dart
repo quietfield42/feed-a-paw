@@ -499,6 +499,75 @@ Widget apawSkinRow(BuildContext context) => ValueListenableBuilder<String>(
       ),
     );
 
+/// Report an AI-made picture. Google Play asks every app that makes pictures
+/// with AI to let people flag offensive results; reports land in
+/// content_reports (target_type 'ai_portrait') for review.
+Future<void> showApawAiReport(BuildContext context,
+    {required String app, required String targetId, String targetType = 'ai_portrait'}) async {
+  const reasons = <(String, String)>[
+    ('offensive', 'Offensive or upsetting'),
+    ('inappropriate', 'Shows a person, or something that is not a pet'),
+    ('other', 'Something else is wrong'),
+  ];
+  String? reason;
+  final note = TextEditingController();
+  final ok = await showModalBottomSheet<bool>(
+    context: context,
+    isScrollControlled: true,
+    backgroundColor: ApawColors.cream,
+    shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
+    builder: (sheet) => apawThemed(StatefulBuilder(
+      builder: (sheet, redraw) => Padding(
+        padding: EdgeInsets.fromLTRB(20, 18, 20, 20 + MediaQuery.of(sheet).viewInsets.bottom),
+        child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Text('Report this portrait', style: apawDisplay(size: 22)),
+          const SizedBox(height: 6),
+          Text('Portraits are painted by AI. Tell us if one is wrong and we will look at it.',
+              style: apawText(size: 14, color: ApawColors.muted)),
+          const SizedBox(height: 12),
+          for (final r in reasons)
+            RadioListTile<String>(
+              value: r.$1,
+              groupValue: reason,
+              onChanged: (v) => redraw(() => reason = v),
+              title: Text(r.$2, style: apawText(size: 15, color: ApawColors.ink)),
+              contentPadding: EdgeInsets.zero,
+              activeColor: ApawColors.forest,
+            ),
+          TextField(
+            controller: note,
+            maxLength: 500,
+            maxLines: 3,
+            minLines: 1,
+            decoration: const InputDecoration(labelText: 'Anything to add? (optional)'),
+          ),
+          const SizedBox(height: 8),
+          apawPrimary('Send report', reason == null ? null : () => Navigator.pop(sheet, true)),
+        ]),
+      ),
+    )),
+  );
+  if (ok != true || reason == null) return;
+  String msg;
+  try {
+    await Supabase.instance.client.from('content_reports').insert({
+      'app': app,
+      'target_type': targetType,
+      'target_id': targetId,
+      'reason': reason,
+      'details': note.text.trim().isEmpty ? null : note.text.trim(),
+    });
+    msg = 'Thank you. We will look at it.';
+  } on PostgrestException catch (e) {
+    msg = e.code == '23505' ? 'You have already reported this portrait.' : 'Could not send the report. Try again.';
+  } catch (_) {
+    msg = 'Could not send the report. Try again.';
+  }
+  if (context.mounted) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(msg)));
+  }
+}
+
 /// The one web page for every a-Paw account: password, email, delete account.
 const kApawAccountUrl = 'https://spotapaw.github.io/care-a-paw-site/account/';
 
