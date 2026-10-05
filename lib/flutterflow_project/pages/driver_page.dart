@@ -454,6 +454,12 @@ abstract final class DriverPageWidgets {
                                   ),
                                 ],
                               ),
+                              ffai.ProjectWidgetHandle(
+                                key: "Container_u30obbxh",
+                                type: "Container",
+                                path: "DriverPage.body[0].children[1].children[0].children[0].children[4].children[7]",
+                                name: "TonightPhotos",
+                              ),
                             ],
                           ),
                           ffai.ProjectWidgetHandle(
