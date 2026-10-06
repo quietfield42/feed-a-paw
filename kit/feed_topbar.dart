@@ -1,5 +1,5 @@
 import '/custom_code/widgets/feed_icons.dart'
-    show apawDisplay, apawIcon, apawText, ApawColors;
+    show apawDisplay, apawIcon, apawLogo, apawText, ApawColors;
 
 /// The top of a page you arrived at from somewhere else.
 ///
@@ -30,12 +30,18 @@ class FeedTopBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final sub = subtitle;
+    // A page reached from the bottom bar was arrived at with `go`, which
+    // replaces the stack, so there is nothing to pop and a back button would
+    // be a lie. Those pages get the app's mark instead and this is simply the
+    // family header. A page you were pushed to can pop, and gets the button.
+    final canGoBack = Navigator.of(context).canPop();
     // The page's own padding already holds this off the edge, so the bar
     // takes none of its own on the sides and lines up with what follows.
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: Row(children: [
-        Material(
+        if (!canGoBack) apawLogo('feed', size: 38),
+        if (canGoBack) Material(
           color: Colors.white,
           shape: const CircleBorder(side: BorderSide(color: ApawColors.sand)),
           clipBehavior: Clip.antiAlias,
