@@ -281,7 +281,9 @@ class ApawSkin {
     ('africa', 'Africa', 'Earth pigments, savannah light and woven cloth'),
   ];
   // Egyptian is where this started and where most of the animals are, so it
-  // is what a new person sees until they choose otherwise (Ash, 6 Oct).
+  // is what a new person sees until they choose otherwise (Ash, 6 Oct). This
+  // is a hand change to a generated file: the 7 Oct kit was meant to carry it
+  // in the generator, but that refresh never reached the repo.
   static final current = ValueNotifier<String>('eg');
   static bool _loaded = false;
 
@@ -955,6 +957,16 @@ class _ApawFrontDoorState extends State<ApawFrontDoor> {
           .signUp(email: _email.text.trim(), password: _password.text, emailRedirectTo: _apawConfirmedUrl);
       if (res.session != null) {
         await _home();
+        return;
+      }
+      // An email that already has an account: Supabase answers "ok" but sends
+      // nothing and returns a user with no identities. Say so and go to sign in.
+      final ids = res.user?.identities;
+      if (ids != null && ids.isEmpty) {
+        _busy = false;
+        _go(_ApawDoor.signIn);
+        setState(() => _error =
+            'You already have an a-Paw account with this email. Sign in with your password, or tap Forgot your password.');
         return;
       }
       setState(() => _busy = false);
