@@ -5,8 +5,8 @@
   "file": "lib/flutterflow_project.dart",
   "status": "fresh",
   "generatorVersion": 3,
-  "generatedAt": "2026-10-06T11:39:49.547407Z",
-  "projectUpdatedAtMs": 1791286788097,
+  "generatedAt": "2026-10-06T12:00:41.803756Z",
+  "projectUpdatedAtMs": 1791288039062,
   "files": {
     "project": {
       "path": "lib/flutterflow_project/project.dart",
@@ -14,7 +14,7 @@
     },
     "schemas": {
       "path": "lib/flutterflow_project/schemas.dart",
-      "sha": "402f6164068bcb237b75629be85a8e2b20ac08b2303ecd56ed4610b55e36adf7"
+      "sha": "3b121c230bc720a43838d0f440bce1d9236a13d8cd16b895276221968d90db2a"
     },
     "app_state": {
       "path": "lib/flutterflow_project/app_state.dart",
@@ -42,7 +42,7 @@
     },
     "page:Scaffold_pg7c44kz": {
       "path": "lib/flutterflow_project/pages/pickup_page.dart",
-      "sha": "c8fac1cce5771d6302882c69cf16aa72e2d6ceb87c6d8aacc26d9c50d248a2f7"
+      "sha": "fb86661d842e4bf53f7049f026f87a1ed475a10642b543802a0c96aaa4b30068"
     },
     "page:Scaffold_9is36mmq": {
       "path": "lib/flutterflow_project/pages/sign_in_page.dart",
@@ -50,7 +50,7 @@
     },
     "page:Scaffold_lj0lvf5k": {
       "path": "lib/flutterflow_project/pages/stop_page.dart",
-      "sha": "1b7590942d9eba8492d512ba3275a08122cbfed9a6496bf14ee1c8e0cdc6eb0b"
+      "sha": "0f9746edf1341f6cad2e5ac27d6fd310dc6a9fe8bf5a023c6d4d9c23923ff00a"
     },
     "page:Scaffold_sh31n4cg": {
       "path": "lib/flutterflow_project/pages/stories_page.dart",

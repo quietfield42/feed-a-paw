@@ -1515,6 +1515,10 @@ abstract final class CustomWidgets {
     name: "FeedTonightPhotos",
     key: "42okyypu",
   );
+  static const feedTopBar = ffai.ProjectCustomWidgetHandle(
+    name: "FeedTopBar",
+    key: "qvvxnu2c",
+  );
   static const all = <ffai.ProjectCustomWidgetHandle>[
     feedAccount,
     feedAuthPanel,
@@ -1526,6 +1530,7 @@ abstract final class CustomWidgets {
     feedSkin,
     feedStoryList,
     feedTonightPhotos,
+    feedTopBar,
   ];
 }
 
@@ -1545,6 +1550,7 @@ abstract final class CustomCode {
     "FeedSkin",
     "FeedStoryList",
     "FeedTonightPhotos",
+    "FeedTopBar",
   ];
 }
 

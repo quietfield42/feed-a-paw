@@ -1,0 +1,165 @@
+{
+  "version": 1,
+  "runId": "lgF1d7cwhvT78NhtA0uh",
+  "projectId": "feeda-paw-hc0hpt",
+  "startedAt": "2026-10-06T12:00:31.356066Z",
+  "finishedAt": "2026-10-06T12:00:41.947331Z",
+  "flutterFlowAIVersion": "0.0.41",
+  "dartVersion": "3.10.7",
+  "environment": {
+    "os": "windows",
+    "cwd": "[REDACTED_PATH]",
+    "dryRun": false,
+    "pushed": true,
+    "refreshContext": true,
+    "preFlightFreshness": false,
+    "baseUrl": "[REDACTED_URL]"
+  },
+  "projectTarget": {
+    "type": "existing",
+    "requestedProjectId": "feeda-paw-hc0hpt",
+    "resolvedProjectId": "feeda-paw-hc0hpt"
+  },
+  "source": {
+    "mode": "paths",
+    "fileCount": 1,
+    "files": [
+      "edit.dart"
+    ],
+    "explicitPaths": [
+      "[REDACTED_PATH]"
+    ],
+    "localArchivePath": ".flutterflow/history/lgF1d7cwhvT78NhtA0uh",
+    "uploaded": true,
+    "uploadCommitId": "lgF1d7cwhvT78NhtA0uh"
+  },
+  "tasks": [
+    {
+      "name": "compileDslApp",
+      "status": "passed",
+      "startedAt": "2026-10-06T12:00:32.408607Z",
+      "finishedAt": "2026-10-06T12:00:35.727304Z",
+      "durationMs": 925,
+      "validationErrors": [
+        "[symbol: stop-photo-upload] [action-key: stop-photo-upload] Set max height or width for image.",
+        "Go to SpotList.",
+        "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value."
+      ]
+    }
+  ],
+  "diagnostics": [
+    {
+      "code": "PREEXISTING_WIRING",
+      "message": "5 pre-existing wiring findings outside this edit; run `flutterflow ai review` to list them",
+      "severity": "warning",
+      "location": "",
+      "target": "wiring"
+    },
+    {
+      "code": "VALIDATION_UNBOUNDED_IMAGE",
+      "message": "Set max height or width for image.",
+      "severity": "warning",
+      "location": "Button 'StopPhotoButton' [key: stop-photo-button] [action-key: stop-photo-upload]",
+      "target": "action"
+    },
+    {
+      "code": "VALIDATION_HARDCODED_COLOR",
+      "message": "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
+      "severity": "warning",
+      "location": "Button 'StopPhotoButton' [key: stop-photo-button] item:  [item-key: literal-color-0]",
+      "target": "widget"
+    },
+    {
+      "code": "VALIDATION_LIST_VIEW_SHRINK_WRAP",
+      "message": "Go to SpotList.",
+      "severity": "warning",
+      "location": "ListView 'SpotList' [key: ListView_s17wb0qu]",
+      "target": "widget",
+      "suggestion": "Disable `shrinkWrap` on data-backed ListView widgets unless the list must live inside another scrollable. Prefer giving the list bounded space and leaving shrinkWrap off."
+    },
+    {
+      "code": "R19",
+      "message": "Dynamic ListView enables shrinkWrap, which triggers the same performance warning FlutterFlow shows for data-backed lists.",
+      "severity": "warning",
+      "location": "StopPage.SpotList",
+      "target": "wiring",
+      "suggestion": "Disable `shrinkWrap` on dynamic ListView widgets unless the list must live inside another scrollable. Prefer giving the list bounded space and leaving shrinkWrap off."
+    }
+  ],
+  "changeSummary": {
+    "modifiedPages": [
+      "PickupPage",
+      "StopPage"
+    ],
+    "modifiedCustomCode": [
+      "FeedTopBar"
+    ],
+    "structuralDeletions": [
+      "Removed: AppBar (existing)",
+      "Removed: AppBar (existing)",
+      "Removed: AppBar Title (existing)",
+      "Removed: AppBar Title (existing)"
+    ],
+    "customCodeDeltas": [
+      {
+        "name": "FeedTopBar",
+        "kind": "widget",
+        "file": "feed_top_bar.dart",
+        "addedLines": 74,
+        "removedLines": 0,
+        "codeChanged": true
+      }
+    ],
+    "diffs": [
+      {
+        "name": "StopPage",
+        "changeType": "modified",
+        "details": [
+          "Removed 1 widget(s)"
+        ]
+      },
+      {
+        "name": "PickupPage",
+        "changeType": "modified",
+        "details": [
+          "Removed 1 widget(s)"
+        ]
+      }
+    ]
+  },
+  "commit": {
+    "attempted": true,
+    "created": true,
+    "commitId": "lgF1d7cwhvT78NhtA0uh",
+    "commitMessage": "A back button you can see on every pushed page"
+  },
+  "workspaceStateSnapshot": {
+    "projectId": "feeda-paw-hc0hpt",
+    "lastUpdated": "2026-10-06T12:00:41.931324Z",
+    "lastRun": {
+      "timestamp": "2026-10-06T12:00:41.931324Z",
+      "tasks": [
+        {
+          "name": "compileDslApp",
+          "status": "passed"
+        }
+      ],
+      "pushed": true,
+      "commitId": "lgF1d7cwhvT78NhtA0uh"
+    },
+    "instructionBundle": {
+      "mode": "full",
+      "templateSha256": "fbb431c336275ad73c3045d0b890faca89e37aa16b004e1e3668d7ec16e50172",
+      "bytes": 40161,
+      "lines": 404
+    },
+    "pageDsl": false
+  },
+  "paths": {
+    "journalPath": ".flutterflow/runs.jsonl",
+    "lastRunArtifactPath": ".flutterflow/last_run.json",
+    "recoveryHintsPath": ".flutterflow/recovery.json",
+    "localSourceArchivePath": ".flutterflow/history/lgF1d7cwhvT78NhtA0uh",
+    "localPlanArchivePath": ".flutterflow/history/lgF1d7cwhvT78NhtA0uh/plan.md"
+  }
+}

@@ -53,25 +53,6 @@ abstract final class PickupPageWidgets {
       path: "PickupPage",
       name: "PickupPage",
       slots: <String, List<ffai.ProjectWidgetHandle>>{
-        "appBar": <ffai.ProjectWidgetHandle>[
-          ffai.ProjectWidgetHandle(
-            key: "AppBar_twmu0ua7",
-            type: "AppBar",
-            path: "PickupPage.appBar[0]",
-            name: "AppBar",
-            slots: <String, List<ffai.ProjectWidgetHandle>>{
-              "title": <ffai.ProjectWidgetHandle>[
-                ffai.ProjectWidgetHandle(
-                  key: "Text_qhtasw1t",
-                  type: "Text",
-                  path: "PickupPage.appBar[0].title[0]",
-                  name: "AppBar Title",
-                  text: "A pickup",
-                ),
-              ],
-            },
-          ),
-        ],
         "body": <ffai.ProjectWidgetHandle>[
           ffai.ProjectWidgetHandle(
             key: "pickup-skin",
@@ -104,16 +85,22 @@ abstract final class PickupPageWidgets {
                         name: "Column",
                         children: <ffai.ProjectWidgetHandle>[
                           ffai.ProjectWidgetHandle(
+                            key: "Container_3ycw0gzp",
+                            type: "Container",
+                            path: "PickupPage.body[0].children[1].children[0].children[0].children[0]",
+                            name: "TopBar",
+                          ),
+                          ffai.ProjectWidgetHandle(
                             key: "Text_55wecq7a",
                             type: "Text",
-                            path: "PickupPage.body[0].children[1].children[0].children[0].children[0]",
+                            path: "PickupPage.body[0].children[1].children[0].children[0].children[1]",
                             name: "PickupWords",
                             text: "What the butcher put aside this morning.",
                           ),
                           ffai.ProjectWidgetHandle(
                             key: "TextField_jailsc5x",
                             type: "TextField",
-                            path: "PickupPage.body[0].children[1].children[0].children[0].children[1]",
+                            path: "PickupPage.body[0].children[1].children[0].children[0].children[2]",
                             name: "ButcherField",
                             text: "Which butcher",
                             triggers: const <String>[
@@ -123,7 +110,7 @@ abstract final class PickupPageWidgets {
                           ffai.ProjectWidgetHandle(
                             key: "TextField_1r3kp90x",
                             type: "TextField",
-                            path: "PickupPage.body[0].children[1].children[0].children[0].children[2]",
+                            path: "PickupPage.body[0].children[1].children[0].children[0].children[3]",
                             name: "KilosField",
                             text: "Kilos",
                             triggers: const <String>[
@@ -133,7 +120,7 @@ abstract final class PickupPageWidgets {
                           ffai.ProjectWidgetHandle(
                             key: "TextField_75bgrwkw",
                             type: "TextField",
-                            path: "PickupPage.body[0].children[1].children[0].children[0].children[3]",
+                            path: "PickupPage.body[0].children[1].children[0].children[0].children[4]",
                             name: "PickupNoteField",
                             text: "Note",
                             triggers: const <String>[
@@ -143,7 +130,7 @@ abstract final class PickupPageWidgets {
                           ffai.ProjectWidgetHandle(
                             key: "Button_h50rc8xs",
                             type: "Button",
-                            path: "PickupPage.body[0].children[1].children[0].children[0].children[4]",
+                            path: "PickupPage.body[0].children[1].children[0].children[0].children[5]",
                             name: "SavePickupButton",
                             text: "Save the pickup",
                             triggers: const <String>[
