@@ -172,15 +172,39 @@ void _uploadToBucket(dynamic page, String nodeKey, String bucket) {
 }
 
 void buildStarterEditFlow(App app) {
-  // The pack icons the app already had and was not using (7 Oct 2026).
+  // The driver's round asked for a run that did not exist yet (7 Oct 2026).
   //
-  // From the Care agent's `ICON-GAP.md`, which found that Feed, Adopt and
-  // Mind each leave most of their own drawings unused. This is the batch that
-  // lands in widgets I draw myself; the rest are on FlutterFlow text buttons
-  // and follow as those pages move onto the kit.
+  // The page read tonight's stops with `run_id = <the current run>`, and
+  // before a driver has started one that is an empty string. Postgres cannot
+  // read an empty string as a uuid, so the read came back 400, the page-load
+  // chain died there, and the driver opened a blank round with no sign of why.
+  //
+  // The read only happens when there is a run to ask about. With no run the
+  // page simply shows nothing to do, which is the truth.
 
-  app.raw((project) {
-    updateCustomWidget(project, name: 'FeedCounts', code: _kit('feed_counts.dart'));
-    updateCustomWidget(project, name: 'FeedAccount', code: _kit('feed_account.dart'));
+  app.editPage(ff.Pages.driverPage, (page) {
+    page.removeTrigger(page.root, FFActionTriggerType.ON_INIT_STATE);
   });
+
+  app.editPageOnLoad(ff.Pages.driverPage, [
+    If(
+      Not(Equals(AppState(ff.AppState.currentRunId), '')),
+      then: [
+        PostgresRead(
+          ff.Tables.feedTonight,
+          outputAs: 'tonightsPlaces',
+          query: PostgresQuerySpec(
+            filters: [
+              PostgresFilter('run_id',
+                  relation: PostgresFilterRelation.equalTo,
+                  value: AppState(ff.AppState.currentRunId)),
+            ],
+            orderBys: [PostgresOrderBy('position', ascending: true)],
+          ),
+        ),
+        SetState(ff.Pages.driverPage.state.tonight,
+            const ActionOutput('tonightsPlaces')),
+      ],
+    ),
+  ]);
 }

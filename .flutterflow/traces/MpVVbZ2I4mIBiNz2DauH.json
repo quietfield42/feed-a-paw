@@ -1,0 +1,113 @@
+{
+  "version": 1,
+  "runId": "MpVVbZ2I4mIBiNz2DauH",
+  "projectId": "feeda-paw-hc0hpt",
+  "startedAt": "2026-10-06T20:28:36.876607Z",
+  "finishedAt": "2026-10-06T20:28:53.381552Z",
+  "flutterFlowAIVersion": "0.0.41",
+  "dartVersion": "3.10.7",
+  "environment": {
+    "os": "windows",
+    "cwd": "[REDACTED_PATH]",
+    "dryRun": false,
+    "pushed": true,
+    "refreshContext": true,
+    "preFlightFreshness": false,
+    "baseUrl": "[REDACTED_URL]"
+  },
+  "projectTarget": {
+    "type": "existing",
+    "requestedProjectId": "feeda-paw-hc0hpt",
+    "resolvedProjectId": "feeda-paw-hc0hpt"
+  },
+  "source": {
+    "mode": "paths",
+    "fileCount": 1,
+    "files": [
+      "edit.dart"
+    ],
+    "explicitPaths": [
+      "[REDACTED_PATH]"
+    ],
+    "localArchivePath": ".flutterflow/history/MpVVbZ2I4mIBiNz2DauH",
+    "uploaded": true,
+    "uploadCommitId": "MpVVbZ2I4mIBiNz2DauH"
+  },
+  "tasks": [
+    {
+      "name": "compileDslApp",
+      "status": "passed",
+      "startedAt": "2026-10-06T20:28:38.071771Z",
+      "finishedAt": "2026-10-06T20:28:47.132169Z",
+      "durationMs": 448
+    }
+  ],
+  "diagnostics": [
+    {
+      "code": "PREEXISTING_WIRING",
+      "message": "9 pre-existing wiring findings outside this edit; run `flutterflow ai review` to list them",
+      "severity": "warning",
+      "location": "",
+      "target": "wiring"
+    }
+  ],
+  "changeSummary": {
+    "modifiedCustomCode": [
+      "FeedAccount",
+      "FeedCounts"
+    ],
+    "customCodeDeltas": [
+      {
+        "name": "FeedCounts",
+        "kind": "widget",
+        "file": "feed_counts.dart",
+        "addedLines": 8,
+        "removedLines": 4,
+        "codeChanged": true
+      },
+      {
+        "name": "FeedAccount",
+        "kind": "widget",
+        "file": "feed_account.dart",
+        "addedLines": 2,
+        "removedLines": 2,
+        "codeChanged": true
+      }
+    ]
+  },
+  "commit": {
+    "attempted": true,
+    "created": true,
+    "commitId": "MpVVbZ2I4mIBiNz2DauH",
+    "commitMessage": "The pack icons the app already had and was not using"
+  },
+  "workspaceStateSnapshot": {
+    "projectId": "feeda-paw-hc0hpt",
+    "lastUpdated": "2026-10-06T20:28:53.343045Z",
+    "lastRun": {
+      "timestamp": "2026-10-06T20:28:53.343045Z",
+      "tasks": [
+        {
+          "name": "compileDslApp",
+          "status": "passed"
+        }
+      ],
+      "pushed": true,
+      "commitId": "MpVVbZ2I4mIBiNz2DauH"
+    },
+    "instructionBundle": {
+      "mode": "full",
+      "templateSha256": "fbb431c336275ad73c3045d0b890faca89e37aa16b004e1e3668d7ec16e50172",
+      "bytes": 40161,
+      "lines": 404
+    },
+    "pageDsl": false
+  },
+  "paths": {
+    "journalPath": ".flutterflow/runs.jsonl",
+    "lastRunArtifactPath": ".flutterflow/last_run.json",
+    "recoveryHintsPath": ".flutterflow/recovery.json",
+    "localSourceArchivePath": ".flutterflow/history/MpVVbZ2I4mIBiNz2DauH",
+    "localPlanArchivePath": ".flutterflow/history/MpVVbZ2I4mIBiNz2DauH/plan.md"
+  }
+}

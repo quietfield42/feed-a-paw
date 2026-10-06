@@ -1,5 +1,5 @@
 import '/custom_code/widgets/feed_icons.dart'
-    show apawCard, apawDisplay, apawText, ApawColors;
+    show apawCard, apawDisplay, apawIcon, apawText, ApawColors;
 
 /// The page's figures, as the family's own cards.
 ///
@@ -20,13 +20,17 @@ class FeedCounts extends StatelessWidget {
   /// Meals since the very first round.
   final int? mealsAllTime;
 
-  static Widget _one(String value, String label) => Expanded(
+  // The gap report asked for the pack's own drawing on each figure, so a
+  // glance tells you which number you are looking at.
+  static Widget _one(String value, String label, String icon) => Expanded(
         child: apawCard(
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
+              apawIcon(icon, size: 18, color: ApawColors.orange),
+              const SizedBox(height: 6),
               Text(value, maxLines: 1, style: apawDisplay(size: 26)),
               const SizedBox(height: 2),
               Text(label,
@@ -43,9 +47,9 @@ class FeedCounts extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _one('${mealsToday ?? 0}', 'Meals served today'),
+            _one('${mealsToday ?? 0}', 'Meals served today', 'feed-today-counter'),
             const SizedBox(width: 12),
-            _one('${mealsAllTime ?? 0}', 'Meals since the first round'),
+            _one('${mealsAllTime ?? 0}', 'Meals since the first round', 'common-meals-funded'),
           ],
         ),
       );

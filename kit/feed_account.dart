@@ -68,7 +68,7 @@ class _FeedAccountState extends State<FeedAccount> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 14, vertical: 12),
                       child: Row(children: [
-                        apawIconChip('common-settings', size: 40),
+                        apawIconChip('common-account', size: 40),
                         const SizedBox(width: 14),
                         Expanded(
                           child: Column(
@@ -101,7 +101,7 @@ class _FeedAccountState extends State<FeedAccount> {
                   // Look & feel, Manage account, Contact support, then ours.
                   apawSupportRow(context, app: 'feed'),
                   const SizedBox(height: 18),
-                  apawSecondary('Sign out', _signOut),
+                  apawSecondary('Sign out', _signOut, icon: 'common-sign-out'),
                 ],
               ),
             ),
