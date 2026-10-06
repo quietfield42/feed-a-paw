@@ -280,11 +280,9 @@ class ApawSkin {
     ('south-america', 'South America', 'Woven paper, rivers and highlands'),
     ('africa', 'Africa', 'Earth pigments, savannah light and woven cloth'),
   ];
-  // Egyptian is where this started and where most of the animals are, so it
-  // is what a new person sees until they choose otherwise (Ash, 6 Oct). This
-  // is a hand change to a generated file: the 7 Oct kit was meant to carry it
-  // in the generator, but that refresh never reached the repo.
-  static final current = ValueNotifier<String>('eg');
+  /// The family's default look: Egyptian (Ash, 7 Oct 2026). No Frills is a choice like any other.
+  static const fallback = 'eg';
+  static final current = ValueNotifier<String>(fallback);
   static bool _loaded = false;
 
   static String label(String key) =>
@@ -322,17 +320,21 @@ class ApawSkin {
   static Future<void> load() async {
     if (_loaded) return;
     _loaded = true;
+    var chosenHere = false;
     try {
       final prefs = await SharedPreferences.getInstance();
       final s = prefs.getString('apaw_skin');
-      if (s != null && s.isNotEmpty) current.value = _norm(s);
+      if (s != null && s.isNotEmpty) {
+        current.value = _norm(s);
+        chosenHere = true;
+      }
     } catch (_) {}
     try {
       final uid = SupaFlow.client.auth.currentUser?.id;
       if (uid == null) return;
       final r = await SupaFlow.client.from('profiles').select('skin').eq('id', uid).maybeSingle();
       final s = _norm((r?['skin'] ?? '').toString());
-      if (s == 'standard' && current.value != 'standard') {
+      if (s == fallback && chosenHere && current.value != fallback) {
         // Picked on this phone before the account could store it: keep it.
         await SupaFlow.client.from('profiles').update({'skin': current.value}).eq('id', uid);
       } else if (s.isNotEmpty && skins.any((k) => k.$1 == s) && s != current.value) {
@@ -405,7 +407,7 @@ class _ApawBackgroundState extends State<ApawBackground> {
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: [Color(0xE6F6F1E7), Color(0xA6F6F1E7), Color(0x99F6F1E7), Color(0xD9F6F1E7)],
+                  colors: [Color(0xB3F6F1E7), Color(0x59F6F1E7), Color(0x4DF6F1E7), Color(0xA6F6F1E7)],
                   stops: [0, .22, .6, 1],
                 ),
               ),
@@ -433,7 +435,7 @@ Future<void> showApawSkinPicker(BuildContext context) async {
         builder: (_, cur, __) => ListView(shrinkWrap: true, padding: const EdgeInsets.fromLTRB(20, 0, 20, 24), children: [
           Text('Look & feel', style: apawDisplay(size: 26)),
           const SizedBox(height: 4),
-          Text('Scenery from around the world behind your pages. Buttons stay the same. Works in every a-Paw app.',
+          Text('Scenery from around the world behind your pages. Tap one and it changes straight away, in every a-Paw app.',
               style: apawText(color: ApawColors.muted)),
           const SizedBox(height: 14),
           for (final s in ApawSkin.skins)
@@ -480,6 +482,8 @@ Future<void> showApawSkinPicker(BuildContext context) async {
                 ]),
               ),
             ),
+          const SizedBox(height: 6),
+          apawPrimary('Done', () => Navigator.pop(sheet)),
         ]),
       ),
     )),
@@ -571,6 +575,130 @@ Future<void> showApawAiReport(BuildContext context,
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(msg)));
   }
 }
+
+/// Contact support (every a-Paw app). Saves the message in support_requests;
+/// support-notify emails it to support@spot-a-paw.com with Reply-To = the
+/// person, so answering is just replying. app = 'care', 'track', 'snap', ...
+Future<void> showApawSupport(BuildContext context, {required String app}) async {
+  const cats = <(String, String)>[
+    ('problem', "Something isn't working"),
+    ('general', 'A question'),
+    ('account', 'Account and sign-in'),
+    ('payments', 'Payments and purchases'),
+    ('idea', 'An idea'),
+  ];
+  final email = SupaFlow.client.auth.currentUser?.email ?? '';
+  var cat = 'problem';
+  final msg = TextEditingController();
+  var busy = false;
+  var sent = false;
+  await showModalBottomSheet<void>(
+    context: context,
+    isScrollControlled: true,
+    backgroundColor: ApawColors.cream,
+    shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
+    builder: (sheet) => apawThemed(StatefulBuilder(
+      builder: (sheet, redraw) => Padding(
+        padding: EdgeInsets.fromLTRB(20, 18, 20, 20 + MediaQuery.of(sheet).viewInsets.bottom),
+        child: sent
+            ? Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start, children: [
+                apawIconChip('common-done', size: 48),
+                const SizedBox(height: 12),
+                Text('Thank you, it\'s sent', style: apawDisplay(size: 24)),
+                const SizedBox(height: 6),
+                Text('We\'ll reply to $email, usually within two days.',
+                    style: apawText(color: ApawColors.muted)),
+                const SizedBox(height: 16),
+                apawPrimary('Done', () => Navigator.pop(sheet)),
+              ])
+            : Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Text('Contact support', style: apawDisplay(size: 24)),
+                const SizedBox(height: 4),
+                Text('Tell us what happened or what you need. A real person reads every message.',
+                    style: apawText(size: 14, color: ApawColors.muted)),
+                const SizedBox(height: 14),
+                DropdownButtonFormField<String>(
+                  value: cat,
+                  decoration: const InputDecoration(labelText: 'What is it about?'),
+                  items: [for (final c in cats) DropdownMenuItem(value: c.$1, child: Text(c.$2))],
+                  onChanged: (v) => redraw(() => cat = v ?? 'general'),
+                ),
+                const SizedBox(height: 12),
+                TextField(
+                  controller: msg,
+                  minLines: 4,
+                  maxLines: 8,
+                  maxLength: 4000,
+                  textCapitalization: TextCapitalization.sentences,
+                  decoration: const InputDecoration(
+                      labelText: 'Your message', hintText: 'What were you doing, and what did you expect?'),
+                  onChanged: (_) => redraw(() {}),
+                ),
+                if (email.isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: Text('We\'ll reply to $email.', style: apawText(size: 13, color: ApawColors.muted)),
+                  ),
+                apawPrimary('Send', msg.text.trim().isEmpty || busy
+                    ? null
+                    : () async {
+                        redraw(() => busy = true);
+                        try {
+                          final row = await SupaFlow.client
+                              .from('support_requests')
+                              .insert({
+                                'user_id': SupaFlow.client.auth.currentUser?.id,
+                                'email': email,
+                                'app': app,
+                                'category': cat,
+                                'message': msg.text.trim(),
+                                'platform': Theme.of(sheet).platform.name,
+                              })
+                              .select('id')
+                              .single();
+                          try {
+                            await SupaFlow.client.functions.invoke('support-notify', body: {'id': row['id']});
+                          } catch (_) {}
+                          redraw(() {
+                            busy = false;
+                            sent = true;
+                          });
+                        } catch (e) {
+                          redraw(() => busy = false);
+                          if (sheet.mounted) {
+                            ScaffoldMessenger.of(sheet).showSnackBar(SnackBar(
+                                content: Text(e.toString().contains('too many')
+                                    ? 'You have sent a lot today. Please email support@spot-a-paw.com.'
+                                    : 'Could not send. Check your connection and try again.')));
+                          }
+                        }
+                      }, busy: busy),
+                const SizedBox(height: 8),
+                Center(
+                  child: Text('Or email support@spot-a-paw.com',
+                      style: apawText(size: 13, color: ApawColors.muted)),
+                ),
+              ]),
+      ),
+    )),
+  );
+}
+
+/// "Contact support" row for an Account screen.
+Widget apawSupportRow(BuildContext context, {required String app}) => apawCard(
+      onTap: () => showApawSupport(context, app: app),
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+      child: Row(children: [
+        apawIconChip('common-message', size: 40),
+        const SizedBox(width: 14),
+        Expanded(
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Text('Contact support', style: apawText(size: 16, color: ApawColors.forest, weight: FontWeight.w700)),
+          Text('Questions, problems or ideas', style: apawText(size: 13, color: ApawColors.muted)),
+        ])),
+        Transform.flip(flipX: true, child: apawIcon('common-back', color: ApawColors.muted, size: 18)),
+      ]),
+    );
 
 /// The one web page for every a-Paw account: password, email, delete account.
 const kApawAccountUrl = 'https://spotapaw.github.io/care-a-paw-site/account/';
@@ -732,6 +860,87 @@ Widget apawMeals(String text) => Container(
     );
 
 /// A section title inside a screen.
+/// A parchment panel in the person's region, the same three-piece paper as
+/// Spot a Paw (top roll, stretching body, bottom roll). Use it to group the
+/// fields of a form: [title] is written on the paper. [opacity] fades only the
+/// paper, so the scenery reads through and the ink stays full.
+Widget apawPaper({required Widget child, String? title, String? icon,
+        EdgeInsets padding = const EdgeInsets.fromLTRB(18, 2, 18, 8), double opacity = .92}) =>
+    ValueListenableBuilder<String>(
+      valueListenable: ApawSkin.current,
+      builder: (_, skin, __) {
+        final std = skin == 'standard';
+        String part(String p) => '${ApawSkin.base}/$skin/paper_card_$p.png';
+        Widget cap(String p, double aspect) => LayoutBuilder(builder: (_, c) {
+              final w = c.maxWidth.isFinite ? c.maxWidth : 360.0;
+              return SizedBox(
+                width: w,
+                height: w * aspect,
+                child: Opacity(
+                  opacity: opacity,
+                  child: Image.network(part(p), width: w, height: w * aspect, fit: BoxFit.fill,
+                      errorBuilder: (_, __, ___) => const SizedBox.shrink()),
+                ),
+              );
+            });
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 14),
+          child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+            cap('top', std ? 64 / 1080 : 0.0757),
+            Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(image: NetworkImage(part('body')), fit: BoxFit.fill, opacity: opacity),
+              ),
+              padding: padding,
+              child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+                if (title != null)
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: Row(children: [
+                      if (icon != null) ...[apawIcon(icon, color: ApawColors.orange, size: 20), const SizedBox(width: 8)],
+                      Text(title, style: apawDisplay(size: 18)),
+                    ]),
+                  ),
+                child,
+              ]),
+            ),
+            cap('bottom', std ? 64 / 1080 : 0.0826),
+          ]),
+        );
+      },
+    );
+
+/// Choice chips with an icon on each: a pack icon name (String) or a Material
+/// IconData. [options] maps value -> (label, icon).
+Widget apawIconChips<T>(Map<T, (String, Object?)> options, T value, void Function(T) onPick) => Wrap(
+      spacing: 8,
+      runSpacing: 8,
+      children: [
+        for (final e in options.entries)
+          Builder(builder: (context) {
+            final on = e.key == value;
+            final col = on ? Colors.white : ApawColors.forest;
+            final ic = e.value.$2;
+            return ChoiceChip(
+              showCheckmark: false,
+              avatar: ic == null
+                  ? null
+                  : ic is String
+                      ? apawIcon(ic, color: on ? ApawColors.orange : ApawColors.forest, size: 20)
+                      : Icon(ic as IconData, size: 20, color: on ? ApawColors.orange : ApawColors.forest),
+              label: Text(e.value.$1),
+              selected: on,
+              selectedColor: ApawColors.forest,
+              backgroundColor: Colors.white,
+              side: BorderSide(color: on ? ApawColors.forest : ApawColors.sand),
+              labelStyle: apawText(size: 14.5, color: col, weight: FontWeight.w700),
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+              onSelected: (_) => onPick(e.key),
+            );
+          }),
+      ],
+    );
+
 Widget apawSection(String title, {String? icon}) => Padding(
       padding: const EdgeInsets.fromLTRB(2, 18, 2, 10),
       child: Row(children: [

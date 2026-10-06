@@ -9,6 +9,7 @@ import '/custom_code/widgets/feed_icons.dart'
         apawIcon,
         apawIconChip,
         apawManageAccountRow,
+        apawSupportRow,
         apawSecondary,
         apawSkinRow,
         apawText,
@@ -96,6 +97,9 @@ class _FeedAccountState extends State<FeedAccount> {
                       style: apawText(size: 13, color: ApawColors.muted)),
                   const SizedBox(height: 10),
                   apawManageAccountRow(context),
+                  // Contact support, in the order the design standard sets:
+                  // Look & feel, Manage account, Contact support, then ours.
+                  apawSupportRow(context, app: 'feed'),
                   const SizedBox(height: 18),
                   apawSecondary('Sign out', _signOut),
                 ],
