@@ -280,7 +280,9 @@ class ApawSkin {
     ('south-america', 'South America', 'Woven paper, rivers and highlands'),
     ('africa', 'Africa', 'Earth pigments, savannah light and woven cloth'),
   ];
-  static final current = ValueNotifier<String>('standard');
+  // Egyptian is where this started and where most of the animals are, so it
+  // is what a new person sees until they choose otherwise (Ash, 6 Oct).
+  static final current = ValueNotifier<String>('eg');
   static bool _loaded = false;
 
   static String label(String key) =>
