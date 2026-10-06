@@ -76,52 +76,10 @@ abstract final class StoriesPageWidgets {
                         name: "StoriesEmpty",
                       ),
                       ffai.ProjectWidgetHandle(
-                        key: "ListView_u7012p90",
-                        type: "ListView",
+                        key: "Container_g2v8hpil",
+                        type: "Container",
                         path: "StoriesPage.body[0].children[1].children[0].children[2]",
                         name: "StoryList",
-                        children: <ffai.ProjectWidgetHandle>[
-                          ffai.ProjectWidgetHandle(
-                            key: "Card_7ztxja1d",
-                            type: "Card",
-                            path: "StoriesPage.body[0].children[1].children[0].children[2].children[0]",
-                            name: "Card",
-                            children: <ffai.ProjectWidgetHandle>[
-                              ffai.ProjectWidgetHandle(
-                                key: "Column_o809r5mb",
-                                type: "Column",
-                                path: "StoriesPage.body[0].children[1].children[0].children[2].children[0].children[0]",
-                                name: "Column",
-                                children: <ffai.ProjectWidgetHandle>[
-                                  ffai.ProjectWidgetHandle(
-                                    key: "Image_zqb4reg1",
-                                    type: "Image",
-                                    path: "StoriesPage.body[0].children[1].children[0].children[2].children[0].children[0].children[0]",
-                                    name: "Image",
-                                  ),
-                                  ffai.ProjectWidgetHandle(
-                                    key: "Text_4m5d2nds",
-                                    type: "Text",
-                                    path: "StoriesPage.body[0].children[1].children[0].children[2].children[0].children[0].children[1]",
-                                    name: "Text",
-                                  ),
-                                  ffai.ProjectWidgetHandle(
-                                    key: "Text_uaghrxhj",
-                                    type: "Text",
-                                    path: "StoriesPage.body[0].children[1].children[0].children[2].children[0].children[0].children[2]",
-                                    name: "Text",
-                                  ),
-                                  ffai.ProjectWidgetHandle(
-                                    key: "Text_rjb594rs",
-                                    type: "Text",
-                                    path: "StoriesPage.body[0].children[1].children[0].children[2].children[0].children[0].children[3]",
-                                    name: "Text",
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ],
                       ),
                     ],
                   ),
