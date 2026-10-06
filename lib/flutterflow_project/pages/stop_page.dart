@@ -76,9 +76,6 @@ abstract final class StopPageWidgets {
       type: "Scaffold",
       path: "StopPage",
       name: "StopPage",
-      triggers: const <String>[
-        "ON_INIT_STATE",
-      ],
       slots: <String, List<ffai.ProjectWidgetHandle>>{
         "body": <ffai.ProjectWidgetHandle>[
           ffai.ProjectWidgetHandle(
@@ -118,143 +115,10 @@ abstract final class StopPageWidgets {
                             name: "TopBar",
                           ),
                           ffai.ProjectWidgetHandle(
-                            key: "Text_pf1m4q4h",
-                            type: "Text",
+                            key: "Container_f8keifl1",
+                            type: "Container",
                             path: "StopPage.body[0].children[1].children[0].children[0].children[1]",
-                            name: "StopWords",
-                            text: "Log it as you leave, while it is fresh.",
-                          ),
-                          ffai.ProjectWidgetHandle(
-                            key: "Column_ly3096p1",
-                            type: "Column",
-                            path: "StopPage.body[0].children[1].children[0].children[0].children[2]",
-                            name: "SpotPicker",
-                            children: <ffai.ProjectWidgetHandle>[
-                              ffai.ProjectWidgetHandle(
-                                key: "Text_4ykgqp8q",
-                                type: "Text",
-                                path: "StopPage.body[0].children[1].children[0].children[0].children[2].children[0]",
-                                name: "SpotPickerLabel",
-                                text: "Which place",
-                              ),
-                              ffai.ProjectWidgetHandle(
-                                key: "Text_riacwrnp",
-                                type: "Text",
-                                path: "StopPage.body[0].children[1].children[0].children[0].children[2].children[1]",
-                                name: "ChosenSpotText",
-                              ),
-                              ffai.ProjectWidgetHandle(
-                                key: "Container_fjae0mn9",
-                                type: "Container",
-                                path: "StopPage.body[0].children[1].children[0].children[0].children[2].children[2]",
-                                name: "SpotListFrame",
-                                children: <ffai.ProjectWidgetHandle>[
-                                  ffai.ProjectWidgetHandle(
-                                    key: "ListView_s17wb0qu",
-                                    type: "ListView",
-                                    path: "StopPage.body[0].children[1].children[0].children[0].children[2].children[2].children[0]",
-                                    name: "SpotList",
-                                    children: <ffai.ProjectWidgetHandle>[
-                                      ffai.ProjectWidgetHandle(
-                                        key: "Card_jswv5k4b",
-                                        type: "Card",
-                                        path: "StopPage.body[0].children[1].children[0].children[0].children[2].children[2].children[0].children[0]",
-                                        name: "Card",
-                                        triggers: const <String>[
-                                          "ON_TAP",
-                                        ],
-                                        children: <ffai.ProjectWidgetHandle>[
-                                          ffai.ProjectWidgetHandle(
-                                            key: "Column_i5531kng",
-                                            type: "Column",
-                                            path: "StopPage.body[0].children[1].children[0].children[0].children[2].children[2].children[0].children[0].children[0]",
-                                            name: "Column",
-                                            children: <ffai.ProjectWidgetHandle>[
-                                              ffai.ProjectWidgetHandle(
-                                                key: "Text_6n5vu99b",
-                                                type: "Text",
-                                                path: "StopPage.body[0].children[1].children[0].children[0].children[2].children[2].children[0].children[0].children[0].children[0]",
-                                                name: "Text",
-                                              ),
-                                              ffai.ProjectWidgetHandle(
-                                                key: "Text_962u8jnj",
-                                                type: "Text",
-                                                path: "StopPage.body[0].children[1].children[0].children[0].children[2].children[2].children[0].children[0].children[0].children[1]",
-                                                name: "Text",
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                          ffai.ProjectWidgetHandle(
-                            key: "TextField_m5vakewf",
-                            type: "TextField",
-                            path: "StopPage.body[0].children[1].children[0].children[0].children[3]",
-                            name: "MealsField",
-                            text: "Meals served",
-                            triggers: const <String>[
-                              "ON_TEXTFIELD_CHANGE",
-                            ],
-                          ),
-                          ffai.ProjectWidgetHandle(
-                            key: "TextField_52bnrxaw",
-                            type: "TextField",
-                            path: "StopPage.body[0].children[1].children[0].children[0].children[4]",
-                            name: "SeenField",
-                            text: "Animals seen",
-                            triggers: const <String>[
-                              "ON_TEXTFIELD_CHANGE",
-                            ],
-                          ),
-                          ffai.ProjectWidgetHandle(
-                            key: "TextField_ssq6gd8i",
-                            type: "TextField",
-                            path: "StopPage.body[0].children[1].children[0].children[0].children[5]",
-                            name: "StopNoteField",
-                            text: "Anything worth saying",
-                            triggers: const <String>[
-                              "ON_TEXTFIELD_CHANGE",
-                            ],
-                          ),
-                          ffai.ProjectWidgetHandle(
-                            key: "stop-photograph-block",
-                            type: "Column",
-                            path: "StopPage.body[0].children[1].children[0].children[0].children[6]",
-                            name: "StopPhotographBlock",
-                            children: <ffai.ProjectWidgetHandle>[
-                              ffai.ProjectWidgetHandle(
-                                key: "stop-photo-preview",
-                                type: "Image",
-                                path: "StopPage.body[0].children[1].children[0].children[0].children[6].children[0]",
-                                name: "StopPhotoPreview",
-                              ),
-                              ffai.ProjectWidgetHandle(
-                                key: "stop-photo-button",
-                                type: "Button",
-                                path: "StopPage.body[0].children[1].children[0].children[0].children[6].children[1]",
-                                name: "StopPhotoButton",
-                                text: "Take a photograph",
-                                triggers: const <String>[
-                                  "ON_TAP",
-                                ],
-                              ),
-                            ],
-                          ),
-                          ffai.ProjectWidgetHandle(
-                            key: "Button_6xdknv8c",
-                            type: "Button",
-                            path: "StopPage.body[0].children[1].children[0].children[0].children[7]",
-                            name: "SaveStopButton",
-                            text: "Save this stop",
-                            triggers: const <String>[
-                              "ON_TAP",
-                            ],
+                            name: "StopForm",
                           ),
                         ],
                       ),

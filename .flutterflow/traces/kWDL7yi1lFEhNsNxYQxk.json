@@ -1,0 +1,159 @@
+{
+  "version": 1,
+  "runId": "kWDL7yi1lFEhNsNxYQxk",
+  "projectId": "feeda-paw-hc0hpt",
+  "startedAt": "2026-10-06T20:59:55.533330Z",
+  "finishedAt": "2026-10-06T21:00:07.883896Z",
+  "flutterFlowAIVersion": "0.0.41",
+  "dartVersion": "3.10.7",
+  "environment": {
+    "os": "windows",
+    "cwd": "[REDACTED_PATH]",
+    "dryRun": false,
+    "pushed": true,
+    "refreshContext": true,
+    "preFlightFreshness": false,
+    "baseUrl": "[REDACTED_URL]"
+  },
+  "projectTarget": {
+    "type": "existing",
+    "requestedProjectId": "feeda-paw-hc0hpt",
+    "resolvedProjectId": "feeda-paw-hc0hpt"
+  },
+  "source": {
+    "mode": "paths",
+    "fileCount": 1,
+    "files": [
+      "edit.dart"
+    ],
+    "explicitPaths": [
+      "[REDACTED_PATH]"
+    ],
+    "localArchivePath": ".flutterflow/history/kWDL7yi1lFEhNsNxYQxk",
+    "uploaded": true,
+    "uploadCommitId": "kWDL7yi1lFEhNsNxYQxk"
+  },
+  "tasks": [
+    {
+      "name": "compileDslApp",
+      "status": "passed",
+      "startedAt": "2026-10-06T20:59:57.368218Z",
+      "finishedAt": "2026-10-06T21:00:01.498436Z",
+      "durationMs": 2349
+    }
+  ],
+  "diagnostics": [
+    {
+      "code": "PREEXISTING_WIRING",
+      "message": "5 pre-existing wiring findings outside this edit; run `flutterflow ai review` to list them",
+      "severity": "warning",
+      "location": "",
+      "target": "wiring"
+    }
+  ],
+  "changeSummary": {
+    "modifiedPages": [
+      "PickupPage",
+      "StopPage"
+    ],
+    "modifiedCustomCode": [
+      "FeedPickupForm",
+      "FeedStopForm"
+    ],
+    "structuralDeletions": [
+      "Removed: ButcherField (existing)",
+      "Removed: Card (existing)",
+      "Removed: ChosenSpotText (existing)",
+      "Removed: Column (existing)",
+      "Removed: KilosField (existing)",
+      "Removed: MealsField (existing)",
+      "Removed: PickupNoteField (existing)",
+      "Removed: PickupWords (existing)",
+      "Removed: SavePickupButton (existing)",
+      "Removed: SaveStopButton (existing)",
+      "Removed: SeenField (existing)",
+      "Removed: SpotList (existing)",
+      "Removed: SpotListFrame (existing)",
+      "Removed: SpotPicker (existing)",
+      "Removed: SpotPickerLabel (existing)",
+      "Removed: StopNoteField (existing)",
+      "Removed: StopPhotoButton (existing)",
+      "Removed: StopPhotoPreview (existing)",
+      "Removed: StopPhotographBlock (existing)",
+      "Removed: StopWords (existing)",
+      "Removed: Text (existing)",
+      "Removed: Text (existing)"
+    ],
+    "customCodeDeltas": [
+      {
+        "name": "FeedStopForm",
+        "kind": "widget",
+        "file": "feed_stop_form.dart",
+        "addedLines": 273,
+        "removedLines": 0,
+        "codeChanged": true
+      },
+      {
+        "name": "FeedPickupForm",
+        "kind": "widget",
+        "file": "feed_pickup_form.dart",
+        "addedLines": 135,
+        "removedLines": 0,
+        "codeChanged": true
+      }
+    ],
+    "diffs": [
+      {
+        "name": "StopPage",
+        "changeType": "modified",
+        "details": [
+          "Removed 16 widget(s)",
+          "Removed 7 action trigger(s)"
+        ]
+      },
+      {
+        "name": "PickupPage",
+        "changeType": "modified",
+        "details": [
+          "Removed 4 widget(s)",
+          "Removed 4 action trigger(s)"
+        ]
+      }
+    ]
+  },
+  "commit": {
+    "attempted": true,
+    "created": true,
+    "commitId": "kWDL7yi1lFEhNsNxYQxk",
+    "commitMessage": "Feed: a stop and a pickup on the region's paper"
+  },
+  "workspaceStateSnapshot": {
+    "projectId": "feeda-paw-hc0hpt",
+    "lastUpdated": "2026-10-06T21:00:07.870540Z",
+    "lastRun": {
+      "timestamp": "2026-10-06T21:00:07.870540Z",
+      "tasks": [
+        {
+          "name": "compileDslApp",
+          "status": "passed"
+        }
+      ],
+      "pushed": true,
+      "commitId": "kWDL7yi1lFEhNsNxYQxk"
+    },
+    "instructionBundle": {
+      "mode": "full",
+      "templateSha256": "fbb431c336275ad73c3045d0b890faca89e37aa16b004e1e3668d7ec16e50172",
+      "bytes": 40161,
+      "lines": 404
+    },
+    "pageDsl": false
+  },
+  "paths": {
+    "journalPath": ".flutterflow/runs.jsonl",
+    "lastRunArtifactPath": ".flutterflow/last_run.json",
+    "recoveryHintsPath": ".flutterflow/recovery.json",
+    "localSourceArchivePath": ".flutterflow/history/kWDL7yi1lFEhNsNxYQxk",
+    "localPlanArchivePath": ".flutterflow/history/kWDL7yi1lFEhNsNxYQxk/plan.md"
+  }
+}
