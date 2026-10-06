@@ -1,0 +1,94 @@
+{
+  "version": 1,
+  "runId": "jkRunDg5aubO7QmBypKf",
+  "projectId": "feeda-paw-hc0hpt",
+  "startedAt": "2026-10-06T12:31:16.100350Z",
+  "finishedAt": "2026-10-06T12:31:27.044805Z",
+  "flutterFlowAIVersion": "0.0.41",
+  "dartVersion": "3.10.7",
+  "environment": {
+    "os": "windows",
+    "cwd": "[REDACTED_PATH]",
+    "dryRun": false,
+    "pushed": true,
+    "refreshContext": true,
+    "preFlightFreshness": false,
+    "baseUrl": "[REDACTED_URL]"
+  },
+  "projectTarget": {
+    "type": "existing",
+    "requestedProjectId": "feeda-paw-hc0hpt",
+    "resolvedProjectId": "feeda-paw-hc0hpt"
+  },
+  "source": {
+    "mode": "paths",
+    "fileCount": 1,
+    "files": [
+      "edit.dart"
+    ],
+    "explicitPaths": [
+      "[REDACTED_PATH]"
+    ],
+    "localArchivePath": ".flutterflow/history/jkRunDg5aubO7QmBypKf",
+    "uploaded": true,
+    "uploadCommitId": "jkRunDg5aubO7QmBypKf"
+  },
+  "tasks": [
+    {
+      "name": "compileDslApp",
+      "status": "passed",
+      "startedAt": "2026-10-06T12:31:18.770899Z",
+      "finishedAt": "2026-10-06T12:31:21.394828Z",
+      "durationMs": 141
+    }
+  ],
+  "diagnostics": [
+    {
+      "code": "PREEXISTING_WIRING",
+      "message": "9 pre-existing wiring findings outside this edit; run `flutterflow ai review` to list them",
+      "severity": "warning",
+      "location": "",
+      "target": "wiring"
+    },
+    {
+      "code": "NO_OP",
+      "message": "All tasks completed but no project changes were detected. The project proto is identical before and after task execution.",
+      "severity": "info"
+    }
+  ],
+  "commit": {
+    "attempted": true,
+    "created": true,
+    "commitId": "jkRunDg5aubO7QmBypKf",
+    "commitMessage": "Nothing on a page starts out missing"
+  },
+  "workspaceStateSnapshot": {
+    "projectId": "feeda-paw-hc0hpt",
+    "lastUpdated": "2026-10-06T12:31:27.037265Z",
+    "lastRun": {
+      "timestamp": "2026-10-06T12:31:27.037265Z",
+      "tasks": [
+        {
+          "name": "compileDslApp",
+          "status": "passed"
+        }
+      ],
+      "pushed": true,
+      "commitId": "jkRunDg5aubO7QmBypKf"
+    },
+    "instructionBundle": {
+      "mode": "full",
+      "templateSha256": "fbb431c336275ad73c3045d0b890faca89e37aa16b004e1e3668d7ec16e50172",
+      "bytes": 40161,
+      "lines": 404
+    },
+    "pageDsl": false
+  },
+  "paths": {
+    "journalPath": ".flutterflow/runs.jsonl",
+    "lastRunArtifactPath": ".flutterflow/last_run.json",
+    "recoveryHintsPath": ".flutterflow/recovery.json",
+    "localSourceArchivePath": ".flutterflow/history/jkRunDg5aubO7QmBypKf",
+    "localPlanArchivePath": ".flutterflow/history/jkRunDg5aubO7QmBypKf/plan.md"
+  }
+}
