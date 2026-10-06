@@ -1,38 +1,28 @@
 {
   "version": 1,
-  "timestamp": "2026-10-06T12:42:12.450155Z",
+  "timestamp": "2026-10-06T12:55:28.175032Z",
   "projectId": "feeda-paw-hc0hpt",
   "success": true,
   "noOp": false,
   "pushed": true,
   "dryRun": false,
-  "commitId": "9PfDkwYYdTIpIXNByLri",
-  "commitMessage": "The figures become the family's own card, so they follow the skin",
+  "commitId": "0c11TYkDYxetKju5njR2",
+  "commitMessage": "The kit's buttons wear the family's theme, not Material's",
   "tasks": [
     {
       "name": "compileDslApp",
       "success": true,
       "skipped": false,
-      "durationMs": 614,
-      "validationErrors": [
-        "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value."
-      ]
+      "durationMs": 289
     }
   ],
   "diagnostics": [
     {
       "code": "PREEXISTING_WIRING",
-      "message": "8 pre-existing wiring findings outside this edit; run `flutterflow ai review` to list them",
+      "message": "9 pre-existing wiring findings outside this edit; run `flutterflow ai review` to list them",
       "severity": "warning",
       "location": "",
       "target": "wiring"
-    },
-    {
-      "code": "VALIDATION_HARDCODED_COLOR",
-      "message": "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
-      "severity": "warning",
-      "location": "Button 'AboutButton' [key: Button_ikvt4ilc] item:  [item-key: literal-color-0]",
-      "target": "widget"
     }
   ]
 }

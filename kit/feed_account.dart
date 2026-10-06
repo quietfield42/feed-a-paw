@@ -12,6 +12,7 @@ import '/custom_code/widgets/feed_icons.dart'
         apawSecondary,
         apawSkinRow,
         apawText,
+        apawThemed,
         ApawColors;
 
 /// Your account: the look and feel, and the way out.
@@ -44,7 +45,11 @@ class _FeedAccountState extends State<FeedAccount> {
   @override
   Widget build(BuildContext context) {
     final email = SupaFlow.client.auth.currentUser?.email ?? '';
-    return apawBackground(
+    // Wrapped in the family's own theme: a FlutterFlow page carries
+    // FlutterFlow's theme, and the kit's buttons and fields take their
+    // colours from the theme above them — so without this the orange
+    // button comes out Material blue.
+    return apawThemed(apawBackground(
       scene: 'paws',
       child: Stack(children: [
       SafeArea(
@@ -101,6 +106,6 @@ class _FeedAccountState extends State<FeedAccount> {
       ),
       const FeedNavBar(current: 'AccountPage'),
       ]),
-    );
+    ));
   }
 }
