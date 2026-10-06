@@ -30,8 +30,10 @@ class FeedTopBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final sub = subtitle;
+    // The page's own padding already holds this off the edge, so the bar
+    // takes none of its own on the sides and lines up with what follows.
     return Padding(
-      padding: const EdgeInsets.fromLTRB(12, 8, 16, 6),
+      padding: const EdgeInsets.only(bottom: 10),
       child: Row(children: [
         Material(
           color: Colors.white,

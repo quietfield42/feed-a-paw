@@ -1,63 +1,28 @@
 {
   "version": 1,
-  "timestamp": "2026-10-06T12:00:41.939322Z",
+  "timestamp": "2026-10-06T12:07:57.322773Z",
   "projectId": "feeda-paw-hc0hpt",
   "success": true,
   "noOp": false,
   "pushed": true,
   "dryRun": false,
-  "commitId": "lgF1d7cwhvT78NhtA0uh",
-  "commitMessage": "A back button you can see on every pushed page",
+  "commitId": "P1j2goQMQ0VrsyR69l1C",
+  "commitMessage": "The back button lines up with the page",
   "tasks": [
     {
       "name": "compileDslApp",
       "success": true,
       "skipped": false,
-      "durationMs": 925,
-      "validationErrors": [
-        "Set max height or width for image.",
-        "Go to SpotList.",
-        "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value."
-      ]
+      "durationMs": 370
     }
   ],
   "diagnostics": [
     {
       "code": "PREEXISTING_WIRING",
-      "message": "5 pre-existing wiring findings outside this edit; run `flutterflow ai review` to list them",
+      "message": "9 pre-existing wiring findings outside this edit; run `flutterflow ai review` to list them",
       "severity": "warning",
       "location": "",
       "target": "wiring"
-    },
-    {
-      "code": "VALIDATION_UNBOUNDED_IMAGE",
-      "message": "Set max height or width for image.",
-      "severity": "warning",
-      "location": "Button 'StopPhotoButton' [key: stop-photo-button] [action-key: stop-photo-upload]",
-      "target": "action"
-    },
-    {
-      "code": "VALIDATION_HARDCODED_COLOR",
-      "message": "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
-      "severity": "warning",
-      "location": "Button 'StopPhotoButton' [key: stop-photo-button] item:  [item-key: literal-color-0]",
-      "target": "widget"
-    },
-    {
-      "code": "VALIDATION_LIST_VIEW_SHRINK_WRAP",
-      "message": "Go to SpotList.",
-      "severity": "warning",
-      "location": "ListView 'SpotList' [key: ListView_s17wb0qu]",
-      "target": "widget",
-      "suggestion": "Disable `shrinkWrap` on data-backed ListView widgets unless the list must live inside another scrollable. Prefer giving the list bounded space and leaving shrinkWrap off."
-    },
-    {
-      "code": "R19",
-      "message": "Dynamic ListView enables shrinkWrap, which triggers the same performance warning FlutterFlow shows for data-backed lists.",
-      "severity": "warning",
-      "location": "StopPage.SpotList",
-      "target": "wiring",
-      "suggestion": "Disable `shrinkWrap` on dynamic ListView widgets unless the list must live inside another scrollable. Prefer giving the list bounded space and leaving shrinkWrap off."
     }
   ]
 }
