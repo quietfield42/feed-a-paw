@@ -100,6 +100,63 @@ class _FeedAccountState extends State<FeedAccount> {
                   // Contact support, in the order the design standard sets:
                   // Look & feel, Manage account, Contact support, then ours.
                   apawSupportRow(context, app: 'feed'),
+                  const SizedBox(height: 10),
+                  // Both stores want the policy reachable from inside the app,
+                  // not only from the listing. These are the app's own pages.
+                  apawCard(
+                    onTap: () => launchURL('https://spotapaw.github.io/care-a-paw-site/feed/privacy.html'),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                    child: Row(children: [
+                      apawIconChip('common-privacy', size: 40),
+                      const SizedBox(width: 14),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('Privacy',
+                                style: apawText(
+                                    size: 16,
+                                    color: ApawColors.forest,
+                                    weight: FontWeight.w700)),
+                            Text('What we keep, and what we never do',
+                                style: apawText(
+                                    size: 13, color: ApawColors.muted)),
+                          ],
+                        ),
+                      ),
+                      apawIcon('common-open-website',
+                          color: ApawColors.muted, size: 18),
+                    ]),
+                  ),
+                  const SizedBox(height: 10),
+                  apawCard(
+                    onTap: () => launchURL('https://spotapaw.github.io/care-a-paw-site/feed/terms.html'),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                    child: Row(children: [
+                      apawIconChip('common-info', size: 40),
+                      const SizedBox(width: 14),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('Terms of use',
+                                style: apawText(
+                                    size: 16,
+                                    color: ApawColors.forest,
+                                    weight: FontWeight.w700)),
+                            Text('What the app is, and what it is not',
+                                style: apawText(
+                                    size: 13, color: ApawColors.muted)),
+                          ],
+                        ),
+                      ),
+                      apawIcon('common-open-website',
+                          color: ApawColors.muted, size: 18),
+                    ]),
+                  ),
+                  const SizedBox(height: 10),
                   const SizedBox(height: 18),
                   apawSecondary('Sign out', _signOut, icon: 'common-sign-out'),
                 ],
