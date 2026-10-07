@@ -1,54 +1,33 @@
 {
   "version": 1,
-  "timestamp": "2026-10-07T12:17:04.372027Z",
+  "timestamp": "2026-10-07T22:55:18.736623Z",
   "projectId": "feeda-paw-hc0hpt",
   "success": true,
-  "noOp": false,
+  "noOp": true,
   "pushed": true,
   "dryRun": false,
-  "commitId": "Pv2BjTeGChn29kADqJmB",
-  "commitMessage": "Feed: Start the round, where a driver looks for it",
+  "commitId": "ZjP9xHPsyJv2kLqweakN",
+  "commitMessage": "Check write access after the team conversion",
   "tasks": [
     {
       "name": "compileDslApp",
       "success": true,
       "skipped": false,
-      "durationMs": 178,
-      "validationErrors": [
-        "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
-        "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
-        "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value."
-      ]
+      "durationMs": 152
     }
   ],
   "diagnostics": [
     {
       "code": "PREEXISTING_WIRING",
-      "message": "2 pre-existing wiring findings outside this edit; run `flutterflow ai review` to list them",
+      "message": "5 pre-existing wiring findings outside this edit; run `flutterflow ai review` to list them",
       "severity": "warning",
       "location": "",
       "target": "wiring"
     },
     {
-      "code": "VALIDATION_HARDCODED_COLOR",
-      "message": "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
-      "severity": "warning",
-      "location": "Button 'LogPickupButton' [key: Button_zmdjnht0] item:  [item-key: literal-color-0]",
-      "target": "widget"
-    },
-    {
-      "code": "VALIDATION_HARDCODED_COLOR",
-      "message": "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
-      "severity": "warning",
-      "location": "Button 'LogStopButton' [key: Button_2fog88v7] item:  [item-key: literal-color-0]",
-      "target": "widget"
-    },
-    {
-      "code": "VALIDATION_HARDCODED_COLOR",
-      "message": "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
-      "severity": "warning",
-      "location": "Button 'RoundSummaryDone' [key: Button_dmsrpz2w] item:  [item-key: literal-color-0]",
-      "target": "widget"
+      "code": "NO_OP",
+      "message": "All tasks completed but no project changes were detected. The project proto is identical before and after task execution.",
+      "severity": "info"
     }
   ]
 }
