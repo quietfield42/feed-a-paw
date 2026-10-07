@@ -173,10 +173,10 @@ void buildFeedTests(App app) {
     tests: [
       app.qaTest('Anyone can look without an account',
           id: 'JNLnhMIQ9HnSPrdU22P6',
-          instructions: 'On the welcome screen tap "Look around first". Wait for the Today screen and read it.',
+          instructions: 'On the welcome screen tap "Look around first". Wait for the Tonight screen and read it.',
           expectedOutcome: 'Today opens without asking anyone to sign in. It shows two cards of figures, '
-              '"Meals served today" and "Meals since the first round", each with a number, and a bottom bar with '
-              'Today, Stories, Driver and About. No blank screen and no error.',
+              '"Meals served today" and "Meals since the first round", each with a number, and a bottom bar. '
+              'No blank screen and no error.',
           restartBeforeTest: true),
       app.qaTest('Stories open',
           id: 'T7oovl7ghmBCjE1SrejG',
@@ -193,7 +193,7 @@ void buildFeedTests(App app) {
           restartBeforeTest: true),
       app.qaTest('The driver round opens for a signed-in person',
           id: '85vvPr7lOUlgJCXgyiaT',
-          instructions: '$signIn In the bottom bar tap "Driver".',
+          instructions: '$signIn In the bottom bar tap "Round".',
           expectedOutcome: 'The driver screen opens with a round to start, or tonight\'s stops if one is already '
               'running. It is not blank and shows no error.',
           restartBeforeTest: true),
