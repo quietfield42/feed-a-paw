@@ -174,22 +174,39 @@ void _uploadToBucket(dynamic page, String nodeKey, String bucket) {
 }
 
 void buildStarterEditFlow(App app) {
-  // Start the round, where a driver looks for it (8 Oct 2026).
+  // A stranger who signs up is told so, instead of pressing a dead button
+  // (8 Oct 2026).
   //
-  // Test Pilot signed in as a driver, opened Round, saw "No round tonight"
-  // and reported there was no way to start one. The button was there — it sat
-  // below the empty picture, the plan box, the tally and the photographs, so
-  // nobody scrolling the screen would find it. That is the lesson the Care
-  // agent already wrote down: "looked for a way to add something, gave up —
-  // the add button lived only inside another page".
+  // Every writable Feed table and the photograph bucket are gated on
+  // `feed_is_team()`, and only a lead can add somebody to `feed_team`. So a
+  // person who signs up out of interest can read everything and publish
+  // nothing — which is right. What was wrong is that nothing said so. The
+  // Round screen offered "Start the round", the insert was refused by the
+  // database, the action chain stopped at that line, and the button did
+  // nothing at all. No message, no error, no clue.
   //
-  // It moves to just under the route list: pick tonight's route, then start.
+  // `FeedTeamGate` asks the database whether this person is on the team and,
+  // only when the answer is no, says so above the button. It draws nothing
+  // while it is asking and nothing for somebody on the team, so the screen is
+  // unchanged for everyone who belongs there.
+  //
+  // The previous run's `ensureMovedTo` is deliberately not repeated: it pins
+  // the button to index 3, which is where the panel now goes, and re-running
+  // it would put the button back above its own explanation.
+
+  final teamGate = app.customWidget(
+    'FeedTeamGate',
+    parameters: const <String, Object>{},
+    description:
+        'Says so when somebody is signed in but not on the feeding team, so '
+        'the round controls are explained rather than silently dead.',
+    code: _kit('feed_team_gate.dart'),
+  );
 
   app.editPage(ff.Pages.driverPage, (page) {
-    page.ensureMovedTo(
+    page.ensureInsertedBefore(
       page.findByKey('Button_ox047bt4'),
-      page.findByKey('Column_bxzx0cg4'),
-      index: 3,
+      teamGate(name: 'TeamGate'),
     );
   });
 }
