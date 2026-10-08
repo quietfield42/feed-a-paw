@@ -219,11 +219,21 @@ void buildLocalStateCrudApp(App app) {
                             size: 20,
                             color: Colors.error,
                             onTap: [
-                              // KEY PATTERN: removeAtIndex + item.index deletes
-                              // the specific item the user tapped on.
-                              UpdateAppState.removeAtIndex(
-                                'items',
-                                listItem.index,
+                              // KEY PATTERN: actions that need the user's
+                              // confirmation go in onConfirm. An action placed
+                              // after a branchless ConfirmDialog would run on
+                              // cancel too, so that is a compile error.
+                              ConfirmDialog(
+                                title: 'Delete item?',
+                                message: 'This cannot be undone.',
+                                onConfirm: [
+                                  // KEY PATTERN: removeAtIndex + item.index
+                                  // deletes the specific item the user tapped.
+                                  UpdateAppState.removeAtIndex(
+                                    'items',
+                                    listItem.index,
+                                  ),
+                                ],
                               ),
                             ],
                           ),

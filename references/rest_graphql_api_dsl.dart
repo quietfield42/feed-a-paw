@@ -247,17 +247,18 @@ query ($login: String!) {
   // ---------------------------------------------------------------------------
   // 6. Streaming + private API — advanced settings
   // ---------------------------------------------------------------------------
-  // Server-sent events. Pair with the streaming-response action (out of scope
-  // for this reference).
-  app.api(
-    Endpoint.get(
-      'StreamCompletions',
-      'https://api.example.com/v1/stream',
-      variables: {'token': string},
-      headers: const {'Authorization': 'Bearer <token>'},
-      settings: const EndpointSettings(streaming: true, decodeUtf8: true),
-    ),
+  // Server-sent events. Call it with ApiCall(onMessage: [...]) and read each
+  // message with StreamMessage.dataText (or .dataJson / .event / .id);
+  // onError, onClose and subscriptionKey are optional. See the
+  // 'Stream a completion' button below.
+  final streamCompletions = Endpoint.get(
+    'StreamCompletions',
+    'https://api.example.com/v1/stream',
+    variables: {'token': string},
+    headers: const {'Authorization': 'Bearer <token>'},
+    settings: const EndpointSettings(streaming: true, decodeUtf8: true),
   );
+  app.api(streamCompletions);
 
   // Private API → deployed as a Firebase Cloud Function so secrets stay off
   // the client.
@@ -290,7 +291,12 @@ query ($login: String!) {
     route: '/',
     isInitial: true,
     description: 'Demonstrates REST + GraphQL endpoints.',
-    state: {'currentIp': string, 'posts': listOf(post), 'githubUser': user},
+    state: {
+      'currentIp': string,
+      'posts': listOf(post),
+      'githubUser': user,
+      'streamedReply': string,
+    },
     onLoad: [
       ApiCall(
         getIp,
@@ -330,6 +336,23 @@ query ($login: String!) {
             ),
           ),
           Text(State('githubUser')['name'], style: Styles.titleMedium),
+
+          Divider(),
+
+          // KEY PATTERN: a streaming response is only readable inside
+          // onMessage, once per message. Calling a streaming endpoint without
+          // onMessage is a compile error.
+          Button(
+            'Stream a completion',
+            onTap: ApiCall(
+              streamCompletions,
+              outputAs: 'completionStream',
+              params: {'token': State('currentIp')},
+              onMessage: [SetState('streamedReply', StreamMessage.dataText)],
+              onError: [Snackbar('Stream failed')],
+            ),
+          ),
+          Text(State('streamedReply'), style: Styles.bodyLarge),
 
           Divider(),
 

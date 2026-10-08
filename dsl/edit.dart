@@ -196,7 +196,6 @@ void buildStarterEditFlow(App app) {
 
   final teamGate = app.customWidget(
     'FeedTeamGate',
-    parameters: const <String, Object>{},
     description:
         'Says so when somebody is signed in but not on the feeding team, so '
         'the round controls are explained rather than silently dead.',
@@ -209,4 +208,27 @@ void buildStarterEditFlow(App app) {
       teamGate(name: 'TeamGate'),
     );
   });
+  // Every long form in the family was clipped (8 Oct 2026).
+  //
+  // Found from Ash's note that Mind's new-client form would not scroll. It is
+  // not one screen: all six form pages across Feed, Adopt and Mind are a Stack
+  // holding a double.infinity Container, a Padding and a Column, with no
+  // scroll view anywhere. Whatever does not fit the screen simply cannot be
+  // reached — on Feed that is the note and the Save button at the bottom of a
+  // stop.
+  //
+  // FlutterFlow's Column carries its own `scrollable`, which codegen turns
+  // into the SingleChildScrollView the page should have had. Setting it on the
+  // page's Column is a smaller and safer change than wrapping the tree.
+  for (final (page, column) in [
+    (ff.Pages.stopPage, 'Column_m8c03tk5'),
+    (ff.Pages.pickupPage, 'Column_i93rfsuo'),
+    (ff.Pages.aboutPage, 'Column_grza0aw7'),
+  ]) {
+    app.editPage(page, (p) {
+      p.mutateNode(p.findByKey(column), (node) {
+        node.props.column.scrollable = true;
+      });
+    });
+  }
 }

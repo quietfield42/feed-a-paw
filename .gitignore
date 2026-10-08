@@ -3,3 +3,25 @@ generated_code/
 .flutterflow/.env
 .dart_tool/
 build/
+
+# FlutterFlow AI managed
+.env
+.flutterflow/page-dsl/
+.flutterflow/runs.jsonl
+.flutterflow/history/
+.flutterflow/traces/
+.flutterflow/backups/
+.flutterflow/support/
+.flutterflow/workspace.json
+.flutterflow/last_run.json
+.flutterflow/recovery.json
+.flutterflow/plan.md
+.flutterflow/project_sdk_meta.json
+.flutterflow/generated_code_state.json
+.generated_code_tmp-*/
+.generated_code_old-*/
+libraries/*/generated_code/
+libraries/*/.flutterflow/
+libraries/*/dsl_json/
+.ffai_staging/
+.packages

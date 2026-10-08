@@ -1,22 +1,25 @@
 {
-  "projectId": "feeda-paw-hc0hpt",
-  "lastUpdated": "2026-10-07T22:55:18.736623Z",
-  "lastRun": {
-    "timestamp": "2026-10-07T22:55:18.736623Z",
-    "tasks": [
-      {
-        "name": "compileDslApp",
-        "status": "passed"
-      }
-    ],
-    "pushed": true,
-    "commitId": "ZjP9xHPsyJv2kLqweakN"
+  "schemaVersion": 2,
+  "primaryProjectId": "feeda-paw-hc0hpt",
+  "lastUpdated": "2026-10-08T11:18:22.524096Z",
+  "lastRunByProjectId": {
+    "feeda-paw-hc0hpt": {
+      "timestamp": "2026-10-08T11:18:22.524096Z",
+      "tasks": [
+        {
+          "name": "compileDslApp",
+          "status": "passed"
+        }
+      ],
+      "pushed": true,
+      "commitId": "9HYdA0UTYvqVQtLyR1v2"
+    }
   },
   "instructionBundle": {
     "mode": "full",
-    "templateSha256": "fbb431c336275ad73c3045d0b890faca89e37aa16b004e1e3668d7ec16e50172",
-    "bytes": 40161,
-    "lines": 404
+    "templateSha256": "4588dec4ad651b29eb6e2ee29a8e6ec11be7011c53097d99e5735e8897b01cfe",
+    "bytes": 41175,
+    "lines": 418
   },
   "pageDsl": false
 }

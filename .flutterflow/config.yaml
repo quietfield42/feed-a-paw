@@ -1,5 +1,5 @@
 env: prod
-flutterflow_ai_build: 9e246f84
-flutterflow_ai_version: 0.0.41
+flutterflow_ai_build: 11037fb8
+flutterflow_ai_version: 0.0.41+1
 api_base_url: https://api.flutterflow.io/v2
 main_project_id: feeda-paw-hc0hpt

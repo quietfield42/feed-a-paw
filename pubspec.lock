@@ -119,7 +119,7 @@ packages:
       path: ".flutterflow/sdk/flutterflow_ai"
       relative: true
     source: path
-    version: "0.0.41"
+    version: "0.0.41+1"
   frontend_server_client:
     dependency: transitive
     description:
