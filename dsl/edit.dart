@@ -308,4 +308,19 @@ void buildStarterEditFlow(App app) {
   app.editCustomWidget(ff.CustomWidgets.feedPickupForm, (widget) {
     widget.replaceCode(_kit('feed_pickup_form.dart'));
   });
+
+  // The project carries its own icon (10 Oct 2026).
+  //
+  // Feed-a-Paw's launcher icon was still FlutterFlow's default, so the app on a
+  // home screen — and the icon in the FlutterFlow editor — was not the app.
+  // The Care agent's pack has had a 1024 master for each of the seven since
+  // 30 Sep; the web builds have been using it, and only the projects
+  // themselves were never told.
+  //
+  // Set through the proto because `appIconPath` has no typed helper. It takes
+  // the storage path an upload returns, never a Flutter bundle path.
+  app.raw((project) {
+    project.appSettings.appIconPath =
+        'projects/feeda-paw-hc0hpt/assets/po0v9hx0it5q/feed-app-1024.png';
+  });
 }
