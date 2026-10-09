@@ -40,6 +40,9 @@ class _FeedStopFormState extends State<FeedStopForm> {
   final _note = TextEditingController();
   String _photo = '';
   bool _looking = true;
+
+  /// Spots already logged on tonight's run.
+  Set<String> _fed = <String>{};
   bool _uploading = false;
   bool _saving = false;
   String _error = '';
@@ -58,16 +61,65 @@ class _FeedStopFormState extends State<FeedStopForm> {
     super.dispose();
   }
 
+  /// Which spots this driver is being asked about tonight.
+  ///
+  /// Picking a route on the driver screen loads its stops in order and sets
+  /// `currentRouteId`, and this form then ignored all of it and offered every
+  /// active spot in the city, alphabetically. The empty state on that screen
+  /// promises "Pick a route and start a round, and the places will tick off as
+  /// they are fed"; nothing ticked off and the route was decoration.
+  ///
+  /// Now it asks the route plan for tonight's spots **in the order they are
+  /// driven**, and marks the ones already logged on this run. Without a route
+  /// it falls back to every active spot, which is what a driver running an
+  /// unplanned round needs.
   Future<void> _loadSpots() async {
+    final route = FFAppState().currentRouteId;
     try {
-      final got = await SupaFlow.client
-          .from('feed_spots')
-          .select('id, name')
-          .eq('active', true)
-          .order('name', ascending: true);
+      List<Map<String, dynamic>> spots;
+      if (route.isNotEmpty) {
+        final got = await SupaFlow.client
+            .from('feed_route_plan')
+            .select('spot_id, spot_name, position')
+            .eq('route_id', route)
+            .order('position', ascending: true);
+        spots = [
+          for (final r in got)
+            {'id': r['spot_id'], 'name': r['spot_name']}
+        ];
+      } else {
+        final got = await SupaFlow.client
+            .from('feed_spots')
+            .select('id, name')
+            .eq('active', true)
+            .order('name', ascending: true);
+        spots = [for (final r in got) Map<String, dynamic>.from(r)];
+      }
+
+      // The ones already fed tonight, so a driver can see what is left
+      // without remembering it.
+      var done = <String>{};
+      final run = FFAppState().currentRunId;
+      if (run.isNotEmpty) {
+        try {
+          final got = await SupaFlow.client
+              .from('feed_run_stops')
+              .select('spot_id')
+              .eq('run_id', run);
+          done = {
+            for (final r in got)
+              if ((r['spot_id'] ?? '').toString().isNotEmpty)
+                r['spot_id'].toString()
+          };
+        } catch (_) {
+          // A tick missing is better than a form that will not open.
+        }
+      }
+
       if (mounted) {
         setState(() {
-          _spots = [for (final r in got) Map<String, dynamic>.from(r)];
+          _spots = spots;
+          _fed = done;
           _looking = false;
         });
       }
@@ -186,14 +238,26 @@ class _FeedStopFormState extends State<FeedStopForm> {
           child: Padding(
             padding: const EdgeInsets.only(bottom: 10),
             child: _spots.isEmpty
-                ? Text('No feeding spots yet.',
+                ? Text(
+                    FFAppState().currentRouteId.isEmpty
+                        ? 'No feeding spots yet.'
+                        : 'This route has no spots on it yet.',
                     style: apawText(size: 13.5, color: ApawColors.muted))
                 : apawIconChips<String>(
                     {
+                      // A spot already logged tonight carries the finished
+                      // drawing and says so, so a driver can see what is left
+                      // without holding the round in their head. Still
+                      // tappable: a stop sometimes has to be logged twice,
+                      // and refusing would be worse than a duplicate.
                       for (final s in _spots)
                         s['id'].toString(): (
-                          (s['name'] ?? '').toString(),
-                          'feed-map-feeding-spot' as Object?
+                          _fed.contains(s['id'].toString())
+                              ? '${(s['name'] ?? '').toString()} · fed'
+                              : (s['name'] ?? '').toString(),
+                          (_fed.contains(s['id'].toString())
+                              ? 'feed-team-finish-filled'
+                              : 'feed-map-feeding-spot') as Object?
                         )
                     },
                     _spotId,

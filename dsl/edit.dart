@@ -231,4 +231,23 @@ void buildStarterEditFlow(App app) {
       });
     });
   }
+
+  // A round follows the route the driver picked (9 Oct 2026).
+  //
+  // Picking a route on the driver screen already loads its stops in order and
+  // sets `currentRouteId` — and the stop form ignored all of it and offered
+  // every active spot in the city, alphabetically. The empty state on that
+  // same screen promises "Pick a route and start a round, and the places will
+  // tick off as they are fed". Nothing ticked off, and the route was
+  // decoration.
+  //
+  // The form now asks `feed_route_plan` for tonight's spots in the order they
+  // are driven, and marks the ones already logged on this run so a driver can
+  // see what is left without holding the round in their head. A marked spot
+  // stays tappable: a stop sometimes has to be logged twice, and refusing
+  // would be worse than a duplicate. With no route it falls back to every
+  // active spot, which is what an unplanned round needs.
+  app.editCustomWidget(ff.CustomWidgets.feedStopForm, (widget) {
+    widget.replaceCode(_kit('feed_stop_form.dart'));
+  });
 }
