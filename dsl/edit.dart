@@ -285,4 +285,27 @@ void buildStarterEditFlow(App app) {
       volunteerForm(name: 'VolunteerFeed'),
     );
   });
+
+  // A pickup records WHICH butcher, not a retyped name (9 Oct 2026).
+  //
+  // `feed_collections.butcher_id` has existed since the first migration and
+  // every pickup left it null, because the form only ever asked for a typed
+  // name. So `feed_butchers` — a table with its own policies and grants —
+  // stayed permanently empty, "Hassan", "hassan butcher" and "Hassan's"
+  // became three different suppliers, and nobody could answer the one
+  // question worth asking of an operation running on donated meat: how much
+  // does each butcher actually give us.
+  //
+  // The known butchers are chips now, with "Somebody new" revealing the text
+  // field and adding them to the list, so the second pickup from the same
+  // place is a tap rather than a retype. An empty list opens straight into
+  // typing, because making somebody tap "Somebody new" first when there is no
+  // list is a step for nothing.
+  //
+  // `butcher_name` is still written alongside the id on purpose: it is a
+  // snapshot, and a butcher renamed next year should not rewrite what last
+  // winter's pickups say.
+  app.editCustomWidget(ff.CustomWidgets.feedPickupForm, (widget) {
+    widget.replaceCode(_kit('feed_pickup_form.dart'));
+  });
 }
