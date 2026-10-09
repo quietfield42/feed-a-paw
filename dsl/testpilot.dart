@@ -188,14 +188,21 @@ void buildFeedTests(App app) {
           id: 'nYXxRPyUXkxv5fsy4pBk',
           instructions: 'On the welcome screen tap "Look around first". In the bottom bar tap "About" and read '
               'the whole page, scrolling to the bottom.',
-          expectedOutcome: 'About explains the rounds and says to follow the truck on onetailonemeal.com. '
+          expectedOutcome: 'About SCROLLS all the way to the bottom — nothing is cut off at the screen edge. '
+              'It explains the rounds and says to follow the truck on onetailonemeal.com. '
               'Nowhere does it ask for money, and the words donation, charity and tax deductible do not appear.',
           restartBeforeTest: true),
       app.qaTest('The driver round opens for a signed-in person',
           id: '85vvPr7lOUlgJCXgyiaT',
-          instructions: '$signIn In the bottom bar tap "Round".',
-          expectedOutcome: 'The driver screen opens with a round to start, or tonight\'s stops if one is already '
-              'running. It is not blank and shows no error.',
+          instructions: '$signIn In the bottom bar tap "Round". Read the WHOLE screen, scrolling to the '
+              'bottom, and say exactly what panels you can see.',
+          expectedOutcome: 'ONE of two things, and say which. EITHER this account is on the feeding team, and '
+              'the screen offers a round to start (or the stops for tonight if one is running) and, lower down, a '
+              'panel headed "Fed some animals yourself?" with a spot chooser, Meals and Animals seen boxes and '
+              'a "Count this feed" button. OR this account is NOT on the team, and a panel says so in words — '
+              '"You are not on the feeding team yet" — explaining that a lead adds people and that starting a '
+              'round here will not do anything. The second is correct behaviour, not a failure: what would be '
+              'wrong is a Start button that silently does nothing. The page scrolls either way.',
           restartBeforeTest: true),
       app.qaTest('Account tools work',
           id: 'X6hIL4AFnFzwnaH5gbYa',
