@@ -250,4 +250,39 @@ void buildStarterEditFlow(App app) {
   app.editCustomWidget(ff.CustomWidgets.feedStopForm, (widget) {
     widget.replaceCode(_kit('feed_stop_form.dart'));
   });
+
+  // A meal given out away from the truck is counted (9 Oct 2026).
+  //
+  // `feed_volunteer_feeds` has been in the schema since the first migration,
+  // with insert, update and delete policies and a `feeder` role in
+  // `feed_team`, and nothing in the app has ever written a row. Somebody
+  // could be made a feeder and then had nothing whatever to do — the same
+  // shape as Adopt inviting people to foster animals it never showed.
+  //
+  // It is worse than an idle table. `feed_meals_daily`, which the public
+  // counter on Tonight is built from, is a UNION of the round's stops and the
+  // volunteers' feeds. The number the whole app is built around was designed
+  // to include meals handed out away from the truck, and that half has always
+  // been zero. Every such meal went uncounted, which is the opposite of what
+  // Feed-a-Paw is for.
+  //
+  // The form sits under the round controls rather than on a page of its own:
+  // the people who do this are the same people who drive, and a new tab for
+  // one panel is a tab nobody looks at. It draws nothing at all for somebody
+  // who is not on the team — the round screen already explains that once, and
+  // the database would refuse the write anyway.
+  final volunteerForm = app.customWidget(
+    'FeedVolunteerForm',
+    description:
+        'Records a feed somebody did away from the truck, so it counts '
+        'towards the day the same as a stop on a round.',
+    code: _kit('feed_volunteer_form.dart'),
+  );
+
+  app.editPage(ff.Pages.driverPage, (page) {
+    page.ensureInsertedAfter(
+      page.findByKey('Button_ox047bt4'),
+      volunteerForm(name: 'VolunteerFeed'),
+    );
+  });
 }
