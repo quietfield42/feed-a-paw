@@ -1,21 +1,20 @@
 {
   "version": 1,
-  "timestamp": "2026-10-10T05:35:27.936821Z",
+  "timestamp": "2026-10-10T08:35:54.745616Z",
   "projectId": "feeda-paw-hc0hpt",
   "success": true,
   "noOp": false,
   "pushed": true,
   "dryRun": false,
-  "commitId": "mMALx1bJBlp27OMHt1Ax",
-  "commitMessage": "The kit carries the unified paw and the 45 drawings",
+  "commitId": "yyD6FIUVa71j9fkKyu82",
+  "commitMessage": "A driver can start a round",
   "tasks": [
     {
       "name": "compileDslApp",
       "success": true,
       "skipped": false,
-      "durationMs": 2668,
+      "durationMs": 641,
       "validationErrors": [
-        "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
         "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
         "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
         "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value."
@@ -25,17 +24,10 @@
   "diagnostics": [
     {
       "code": "PREEXISTING_WIRING",
-      "message": "1 pre-existing wiring findings outside this edit; run `flutterflow ai review` to list them",
+      "message": "2 pre-existing wiring findings outside this edit; run `flutterflow ai review` to list them",
       "severity": "warning",
       "location": "",
       "target": "wiring"
-    },
-    {
-      "code": "VALIDATION_HARDCODED_COLOR",
-      "message": "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
-      "severity": "warning",
-      "location": "Button 'GiveButton' [key: Button_j0a5kwkc] item:  [item-key: literal-color-0]",
-      "target": "widget"
     },
     {
       "code": "VALIDATION_HARDCODED_COLOR",

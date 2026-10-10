@@ -174,164 +174,102 @@ void _uploadToBucket(dynamic page, String nodeKey, String bucket) {
 }
 
 void buildStarterEditFlow(App app) {
-  // A stranger who signs up is told so, instead of pressing a dead button
-  // (8 Oct 2026).
+  // Nobody has ever been able to start a round (10 Oct 2026).
   //
-  // Every writable Feed table and the photograph bucket are gated on
-  // `feed_is_team()`, and only a lead can add somebody to `feed_team`. So a
-  // person who signs up out of interest can read everything and publish
-  // nothing — which is right. What was wrong is that nothing said so. The
-  // Round screen offered "Start the round", the insert was refused by the
-  // database, the action chain stopped at that line, and the button did
-  // nothing at all. No message, no error, no clue.
+  // Found by sweeping all three apps for local state that is read but never
+  // assigned, after that fault turned out to be hiding the whole rescue half
+  // of Adopt. On the Driver page it is worse than hiding a button: the list of
+  // rounds, `routes`, was never loaded, and tapping a round in that list is
+  // the **only** place in the entire app that sets `currentRunId`.
   //
-  // `FeedTeamGate` asks the database whether this person is on the team and,
-  // only when the answer is no, says so above the button. It draws nothing
-  // while it is asking and nothing for somebody on the team, so the screen is
-  // unchanged for everyone who belongs there.
-  //
-  // The previous run's `ensureMovedTo` is deliberately not repeated: it pins
-  // the button to index 3, which is where the panel now goes, and re-running
-  // it would put the button back above its own explanation.
-
-  final teamGate = app.customWidget(
-    'FeedTeamGate',
-    description:
-        'Says so when somebody is signed in but not on the feeding team, so '
-        'the round controls are explained rather than silently dead.',
-    code: _kit('feed_team_gate.dart'),
-  );
-
-  app.editPage(ff.Pages.driverPage, (page) {
-    page.ensureInsertedBefore(
-      page.findByKey('Button_ox047bt4'),
-      teamGate(name: 'TeamGate'),
-    );
-  });
-  // Every long form in the family was clipped (8 Oct 2026).
-  //
-  // Found from Ash's note that Mind's new-client form would not scroll. It is
-  // not one screen: all six form pages across Feed, Adopt and Mind are a Stack
-  // holding a double.infinity Container, a Padding and a Column, with no
-  // scroll view anywhere. Whatever does not fit the screen simply cannot be
-  // reached — on Feed that is the note and the Save button at the bottom of a
-  // stop.
-  //
-  // FlutterFlow's Column carries its own `scrollable`, which codegen turns
-  // into the SingleChildScrollView the page should have had. Setting it on the
-  // page's Column is a smaller and safer change than wrapping the tree.
-  for (final (page, column) in [
-    (ff.Pages.stopPage, 'Column_m8c03tk5'),
-    (ff.Pages.pickupPage, 'Column_i93rfsuo'),
-    (ff.Pages.aboutPage, 'Column_grza0aw7'),
-  ]) {
-    app.editPage(page, (p) {
-      p.mutateNode(p.findByKey(column), (node) {
-        node.props.column.scrollable = true;
-      });
-    });
-  }
-
-  // A round follows the route the driver picked (9 Oct 2026).
-  //
-  // Picking a route on the driver screen already loads its stops in order and
-  // sets `currentRouteId` — and the stop form ignored all of it and offered
-  // every active spot in the city, alphabetically. The empty state on that
-  // same screen promises "Pick a route and start a round, and the places will
-  // tick off as they are fed". Nothing ticked off, and the route was
-  // decoration.
-  //
-  // The form now asks `feed_route_plan` for tonight's spots in the order they
-  // are driven, and marks the ones already logged on this run so a driver can
-  // see what is left without holding the round in their head. A marked spot
-  // stays tappable: a stop sometimes has to be logged twice, and refusing
-  // would be worse than a duplicate. With no route it falls back to every
-  // active spot, which is what an unplanned round needs.
-  app.editCustomWidget(ff.CustomWidgets.feedStopForm, (widget) {
-    widget.replaceCode(_kit('feed_stop_form.dart'));
-  });
-
-  // A meal given out away from the truck is counted (9 Oct 2026).
-  //
-  // `feed_volunteer_feeds` has been in the schema since the first migration,
-  // with insert, update and delete policies and a `feeder` role in
-  // `feed_team`, and nothing in the app has ever written a row. Somebody
-  // could be made a feeder and then had nothing whatever to do — the same
-  // shape as Adopt inviting people to foster animals it never showed.
-  //
-  // It is worse than an idle table. `feed_meals_daily`, which the public
-  // counter on Tonight is built from, is a UNION of the round's stops and the
-  // volunteers' feeds. The number the whole app is built around was designed
-  // to include meals handed out away from the truck, and that half has always
-  // been zero. Every such meal went uncounted, which is the opposite of what
+  // So the page showed its "no rounds yet" state to everybody, forever, and
+  // everything behind it — the places in order, logging a stop, the photos,
+  // "Round finished. Thank you." — was unreachable. The feeding round is what
   // Feed-a-Paw is for.
   //
-  // The form sits under the round controls rather than on a page of its own:
-  // the people who do this are the same people who drive, and a new tab for
-  // one panel is a tab nobody looks at. It draws nothing at all for somebody
-  // who is not on the team — the round screen already explains that once, and
-  // the database would refuse the write anyway.
-  final volunteerForm = app.customWidget(
-    'FeedVolunteerForm',
-    description:
-        'Records a feed somebody did away from the truck, so it counts '
-        'towards the day the same as a stop on a round.',
-    code: _kit('feed_volunteer_form.dart'),
-  );
+  // `feed_routes` has been sitting there with active, name and area, which is
+  // exactly what the round card draws. Nothing ever read it.
+  //
+  // Two counters above the list, `stopsToday` and `mealsToday`, were in the
+  // same state — read, never assigned, so permanently "0". `feed_run_totals`
+  // already carries stops, meals and animals per run; the end-of-round
+  // summary reads it correctly, which is how the live counters should have.
 
   app.editPage(ff.Pages.driverPage, (page) {
-    page.ensureInsertedAfter(
-      page.findByKey('Button_ox047bt4'),
-      volunteerForm(name: 'VolunteerFeed'),
-    );
+    page.removeTrigger(page.root, FFActionTriggerType.ON_INIT_STATE);
   });
 
-  // A pickup records WHICH butcher, not a retyped name (9 Oct 2026).
-  //
-  // `feed_collections.butcher_id` has existed since the first migration and
-  // every pickup left it null, because the form only ever asked for a typed
-  // name. So `feed_butchers` — a table with its own policies and grants —
-  // stayed permanently empty, "Hassan", "hassan butcher" and "Hassan's"
-  // became three different suppliers, and nobody could answer the one
-  // question worth asking of an operation running on donated meat: how much
-  // does each butcher actually give us.
-  //
-  // The known butchers are chips now, with "Somebody new" revealing the text
-  // field and adding them to the list, so the second pickup from the same
-  // place is a tap rather than a retype. An empty list opens straight into
-  // typing, because making somebody tap "Somebody new" first when there is no
-  // list is a step for nothing.
-  //
-  // `butcher_name` is still written alongside the id on purpose: it is a
-  // snapshot, and a butcher renamed next year should not rewrite what last
-  // winter's pickups say.
-  app.editCustomWidget(ff.CustomWidgets.feedPickupForm, (widget) {
-    widget.replaceCode(_kit('feed_pickup_form.dart'));
-  });
+  app.editPageOnLoad(ff.Pages.driverPage, [
+    // The rounds somebody can drive tonight.
+    PostgresQuery(
+      ff.Tables.feedRoutes,
+      key: 'read-routes',
+      outputAs: 'allRoutes',
+      query: PostgresQuerySpec(
+        filters: [
+          PostgresFilter('active',
+              relation: PostgresFilterRelation.equalTo, value: true),
+        ],
+        orderBys: const [PostgresOrderBy('name')],
+      ),
+    ),
+    SetState(ff.Pages.driverPage.state.routes, const ActionOutput('allRoutes'),
+        key: 'keep-routes'),
 
-  // The project carries the unified paw (10 Oct 2026).
-  //
-  // Feed-a-Paw's launcher icon was still FlutterFlow's default, so the app on a
-  // home screen — and the icon in the FlutterFlow editor — was not the app.
-  // The Care agent's pack has had a 1024 master for each of the seven since
-  // 30 Sep; the web builds have been using it, and only the projects
-  // themselves were never told.
-  //
-  // Set through the proto because `appIconPath` has no typed helper. It takes
-  // the storage path an upload returns, never a Flutter bundle path.
-  app.raw((project) {
-    project.appSettings.appIconPath =
-        'projects/feeda-paw-hc0hpt/assets/61ef550ad0a62a8e/feed-app-icon-unified.png';
-  });
+    // Pick up a round already in progress rather than offering to start a
+    // second one. `onTheRoad` is page state, so it resets to false every time
+    // the page is opened — a driver whose phone locked mid-round came back to
+    // the picker, and tapping a round there would have opened a *new* run and
+    // orphaned the half-finished one.
+    SetState(ff.Pages.driverPage.state.runId,
+        AppState(ff.AppState.currentRunId),
+        key: 'keep-run-id'),
+    SetState(
+      ff.Pages.driverPage.state.onTheRoad,
+      CodeExpression(
+        r'runId.isNotEmpty',
+        args: {'runId': AppState(ff.AppState.currentRunId)},
+        returns: bool_,
+      ),
+      key: 'keep-on-the-road',
+    ),
 
-  // The kit carries Ash's unified paw, and the 45 drawings at last
-  // (10 Oct 2026).
-  //
-  // The Care agent regenerated `briefs/design-kit/*_icons.dart` from the new
-  // pack and asked for it to be recopied. It is not only the paw: the 45
-  // glyphs that have been in the pack since 7 Oct are finally **embedded**,
-  // which is what `apawIcon` reads. feed goes from {OLD} to {NEW} glyphs.
-  app.editCustomWidget(ff.CustomWidgets.feedIcons, (widget) {
-    widget.replaceCode(_kit('feed_icons.dart'));
-  });
+    // Tonight so far, for the two counters at the top.
+    PostgresRead(
+      ff.Tables.feedRunTotals,
+      key: 'read-live-totals',
+      outputAs: 'liveTotals',
+      query: PostgresQuerySpec(
+        filters: [
+          PostgresFilter('run_id',
+              relation: PostgresFilterRelation.equalTo,
+              value: AppState(ff.AppState.currentRunId)),
+        ],
+      ),
+    ),
+    SetState(ff.Pages.driverPage.state.stopsToday,
+        const ActionOutput('liveTotals')['stops'],
+        key: 'keep-stops-today'),
+    SetState(ff.Pages.driverPage.state.mealsToday,
+        const ActionOutput('liveTotals')['meals'],
+        key: 'keep-meals-today'),
+
+    // Unchanged: the places on tonight's round, in order.
+    PostgresQuery(
+      ff.Tables.feedTonight,
+      key: 'read-tonight',
+      outputAs: 'tonightsPlaces',
+      query: PostgresQuerySpec(
+        filters: [
+          PostgresFilter('run_id',
+              relation: PostgresFilterRelation.equalTo,
+              value: AppState(ff.AppState.currentRunId)),
+        ],
+        orderBys: const [PostgresOrderBy('position')],
+      ),
+    ),
+    SetState(ff.Pages.driverPage.state.tonight,
+        const ActionOutput('tonightsPlaces'),
+        key: 'keep-tonight'),
+  ]);
 }
