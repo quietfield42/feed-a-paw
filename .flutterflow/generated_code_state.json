@@ -6,9 +6,9 @@
       "projectId": "feeda-paw-hc0hpt",
       "status": "fresh",
       "manifestPresent": true,
-      "lastExportedAt": "2026-10-10T08:36:07.244842Z",
-      "lastExportStartedAt": "2026-10-10T08:35:55.798994Z",
-      "lastRefreshAttemptAt": "2026-10-10T08:36:07.244842Z",
+      "lastExportedAt": "2026-10-10T23:22:57.713101Z",
+      "lastExportStartedAt": "2026-10-10T23:22:39.497331Z",
+      "lastRefreshAttemptAt": "2026-10-10T23:22:57.713101Z",
       "lastRefreshStatus": "succeeded",
       "lastRefreshMessage": "Exported generated code snapshot to generated_code/."
     }

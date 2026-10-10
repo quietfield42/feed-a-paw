@@ -1,19 +1,19 @@
 {
   "version": 1,
-  "timestamp": "2026-10-10T08:35:54.745616Z",
+  "timestamp": "2026-10-10T23:22:07.653719Z",
   "projectId": "feeda-paw-hc0hpt",
   "success": true,
   "noOp": false,
   "pushed": true,
   "dryRun": false,
-  "commitId": "yyD6FIUVa71j9fkKyu82",
-  "commitMessage": "A driver can start a round",
+  "commitId": "wmJIgnZ4RdD5AeSgmeCE",
+  "commitMessage": "Make the visibility expression null-safe so it compiles",
   "tasks": [
     {
       "name": "compileDslApp",
       "success": true,
       "skipped": false,
-      "durationMs": 641,
+      "durationMs": 997,
       "validationErrors": [
         "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
         "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
