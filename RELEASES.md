@@ -17,6 +17,26 @@ flutterflow ai branch checkout main          # back to current
 Pushing while a branch is checked out writes to that branch, not to main —
 check `flutterflow ai branch current` if unsure.
 
+## 10 October 2026 — nobody had ever been able to start a round
+
+Found by sweeping for page state that is read but never assigned, after that
+fault turned out to be hiding the rescue half of Adopt.
+
+| What | Roll back to |
+|---|---|
+| **A driver can start a round.** `routes` was never loaded, and tapping a round in that list is the only place in the whole app that sets `currentRunId` — so the page showed "no rounds yet" forever and everything behind it (the places in order, logging a stop, the photos, the summary) was unreachable | `feed-volunteer-feeds-9oct` (9 Oct — the last one taken) |
+| The two counters above the list, `stopsToday` and `mealsToday`, read 0 forever; they now come from `feed_run_totals`, which the end-of-round summary was already reading correctly | `feed-volunteer-feeds-9oct` (9 Oct — the last one taken) |
+| A round already in progress is picked up again instead of offering to start a second one — `onTheRoad` reset on every open, so a driver whose phone locked came back to the picker and would have orphaned the half-finished run | `feed-volunteer-feeds-9oct` (9 Oct — the last one taken) |
+
+No SQL. `feed_routes` has carried two active rounds, with its grant and its
+`feed_is_team()` policy, the whole time.
+
+**No snapshot was taken before this work, which breaks the rule at the bottom
+of this page — my fault.** The nearest branch is `feed-volunteer-feeds-9oct`, from 9 October, so going back there also undoes that day's work and the icon pack. So the roll-back column above names the
+nearest honest fallback, not a snapshot of the state just before these
+changes. A branch of the state *after* them, `feed-driver-fixed-10oct`,
+protects the next piece of work but not this one.
+
 ## 9 October 2026
 
 | What | Roll back to |
