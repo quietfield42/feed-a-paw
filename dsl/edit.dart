@@ -309,7 +309,7 @@ void buildStarterEditFlow(App app) {
     widget.replaceCode(_kit('feed_pickup_form.dart'));
   });
 
-  // The project carries its own icon (10 Oct 2026).
+  // The project carries the unified paw (10 Oct 2026).
   //
   // Feed-a-Paw's launcher icon was still FlutterFlow's default, so the app on a
   // home screen — and the icon in the FlutterFlow editor — was not the app.
@@ -321,6 +321,6 @@ void buildStarterEditFlow(App app) {
   // the storage path an upload returns, never a Flutter bundle path.
   app.raw((project) {
     project.appSettings.appIconPath =
-        'projects/feeda-paw-hc0hpt/assets/po0v9hx0it5q/feed-app-1024.png';
+        'projects/feeda-paw-hc0hpt/assets/61ef550ad0a62a8e/feed-app-icon-unified.png';
   });
 }
