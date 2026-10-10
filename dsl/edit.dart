@@ -323,4 +323,15 @@ void buildStarterEditFlow(App app) {
     project.appSettings.appIconPath =
         'projects/feeda-paw-hc0hpt/assets/61ef550ad0a62a8e/feed-app-icon-unified.png';
   });
+
+  // The kit carries Ash's unified paw, and the 45 drawings at last
+  // (10 Oct 2026).
+  //
+  // The Care agent regenerated `briefs/design-kit/*_icons.dart` from the new
+  // pack and asked for it to be recopied. It is not only the paw: the 45
+  // glyphs that have been in the pack since 7 Oct are finally **embedded**,
+  // which is what `apawIcon` reads. feed goes from {OLD} to {NEW} glyphs.
+  app.editCustomWidget(ff.CustomWidgets.feedIcons, (widget) {
+    widget.replaceCode(_kit('feed_icons.dart'));
+  });
 }
