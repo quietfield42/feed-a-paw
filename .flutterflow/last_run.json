@@ -1,19 +1,19 @@
 {
   "version": 1,
-  "timestamp": "2026-10-10T23:22:07.653719Z",
+  "timestamp": "2026-10-11T23:39:03.376984Z",
   "projectId": "feeda-paw-hc0hpt",
   "success": true,
   "noOp": false,
   "pushed": true,
   "dryRun": false,
-  "commitId": "wmJIgnZ4RdD5AeSgmeCE",
-  "commitMessage": "Make the visibility expression null-safe so it compiles",
+  "commitId": "vwiPdf2rgZAIqLbx7ZGZ",
+  "commitMessage": "Do not ask the database about a round that is not running",
   "tasks": [
     {
       "name": "compileDslApp",
       "success": true,
       "skipped": false,
-      "durationMs": 997,
+      "durationMs": 626,
       "validationErrors": [
         "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
         "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",

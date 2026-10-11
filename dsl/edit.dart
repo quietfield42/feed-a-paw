@@ -174,56 +174,108 @@ void _uploadToBucket(dynamic page, String nodeKey, String bucket) {
 }
 
 void buildStarterEditFlow(App app) {
-  // The round page offered a button it had just said would do nothing
-  // (11 Oct 2026).
+  // A 400 on every open of the Round tab, and I put it there (12 Oct 2026).
   //
-  // Seen by driving the live build and looking at the screen, signed in as the
-  // family demo account — which is not on the feeding team. The page reads:
+  // Caught by listening to the network while driving the live build, not by
+  // anything the screen showed:
   //
-  //     Tonight you are driving
-  //     [ a tall empty gap where the rounds would be ]
-  //     "You are not on the feeding team yet ... until somebody adds you,
-  //      starting a round here will not do anything."
-  //     [ Start the round ]
+  //   HTTP 400  /rest/v1/feed_run_totals?select=*&run_id=eq.
+  //             invalid input syntax for type uuid: ""
   //
-  // So the gate explains, in words, that the button below it is dead — and
-  // then the button is drawn anyway. That is the exact dead control the gate
-  // was built to replace. The heading has the same problem from the other
-  // side: it announces a list that is not there.
+  // That is the `read-live-totals` query added on 10 Oct to fill the two
+  // counters. With no round running, `currentRunId` is the empty string, and
+  // Postgres will not read `''` as a uuid. Mind's own setup panel carries a
+  // comment about exactly this shape — "every screen asked the database for
+  // `minder_id = ''` ... so every screen came back 400 and empty" — and I
+  // reintroduced it here.
   //
-  // Both now depend on there being a round to drive. `routes` is empty for
-  // anybody not on the team, because `feed_routes` is gated by
-  // `feed_is_team()` in its own policy — so this needs no new query and no new
-  // idea of who is on the team; it reuses the answer the database already
-  // gave.
+  // Nothing visible broke, because the only thing the failed query would have
+  // filled is counters for a round that is not running. But a thrown query
+  // ends the whole page-load chain, so the tonight list never loaded either,
+  // and a 400 on every open is not something to leave in a build going to a
+  // store reviewer.
   //
-  // The button keeps its existing condition as well: it must still disappear
-  // once a round is running, which is what `onTheRoad` was already doing.
-  // `bindVisible` replaces a condition rather than adding to it, so that part
-  // is written into the expression instead of being lost.
+  // The two queries that need a run now sit behind a condition. The route
+  // list, the run id and `onTheRoad` stay outside it: they are what the page
+  // needs in order to START a round, so they must run when there is none.
 
-  final hasRounds = CodeExpression(
-    r'rounds.isNotEmpty',
-    args: {'rounds': State(ff.Pages.driverPage.state.routes)},
-    returns: bool_,
-  );
-
-  final canStart = CodeExpression(
-    // Both arrive nullable in the generated code, whatever their declared
-    // type on the page — the first attempt used `rounds.isNotEmpty` and
-    // FlutterFlow accepted the push while the Dart would not compile
-    // ("The property 'isNotEmpty' can't be unconditionally accessed because
-    // the receiver can be 'null'"). So both are handled null-safely here.
-    r'(onRoad != true) && (rounds?.isNotEmpty ?? false)',
-    args: {
-      'onRoad': State(ff.Pages.driverPage.state.onTheRoad),
-      'rounds': State(ff.Pages.driverPage.state.routes),
-    },
+  final hasRun = CodeExpression(
+    // AppState is a declared value, so unlike a loop item it has a type the
+    // DSL can infer. It still arrives nullable, hence the `?? ''`.
+    r"(runId ?? '').isNotEmpty",
+    args: {'runId': AppState(ff.AppState.currentRunId)},
     returns: bool_,
   );
 
   app.editPage(ff.Pages.driverPage, (page) {
-    page.bindVisible(page.findByKey('Text_rd5xgy0b'), hasRounds);   // the heading
-    page.bindVisible(page.findByKey('Button_ox047bt4'), canStart);  // Start the round
+    page.removeTrigger(page.root, FFActionTriggerType.ON_INIT_STATE);
   });
+
+  app.editPageOnLoad(ff.Pages.driverPage, [
+    // Always: the rounds somebody could drive tonight.
+    PostgresQuery(
+      ff.Tables.feedRoutes,
+      key: 'read-routes',
+      outputAs: 'allRoutes',
+      query: PostgresQuerySpec(
+        filters: [
+          PostgresFilter('active',
+              relation: PostgresFilterRelation.equalTo, value: true),
+        ],
+        orderBys: const [PostgresOrderBy('name')],
+      ),
+    ),
+    SetState(ff.Pages.driverPage.state.routes, const ActionOutput('allRoutes'),
+        key: 'keep-routes'),
+
+    // Always: pick up a round already in progress rather than offering to
+    // start a second one.
+    SetState(ff.Pages.driverPage.state.runId,
+        AppState(ff.AppState.currentRunId),
+        key: 'keep-run-id'),
+    SetState(ff.Pages.driverPage.state.onTheRoad, hasRun,
+        key: 'keep-on-the-road'),
+
+    // Only when there IS a round: anything keyed by its id.
+    If(
+      hasRun,
+      key: 'only-if-running',
+      then: [
+        PostgresRead(
+          ff.Tables.feedRunTotals,
+          key: 'read-live-totals',
+          outputAs: 'liveTotals',
+          query: PostgresQuerySpec(
+            filters: [
+              PostgresFilter('run_id',
+                  relation: PostgresFilterRelation.equalTo,
+                  value: AppState(ff.AppState.currentRunId)),
+            ],
+          ),
+        ),
+        SetState(ff.Pages.driverPage.state.stopsToday,
+            const ActionOutput('liveTotals')['stops'],
+            key: 'keep-stops-today'),
+        SetState(ff.Pages.driverPage.state.mealsToday,
+            const ActionOutput('liveTotals')['meals'],
+            key: 'keep-meals-today'),
+        PostgresQuery(
+          ff.Tables.feedTonight,
+          key: 'read-tonight',
+          outputAs: 'tonightsPlaces',
+          query: PostgresQuerySpec(
+            filters: [
+              PostgresFilter('run_id',
+                  relation: PostgresFilterRelation.equalTo,
+                  value: AppState(ff.AppState.currentRunId)),
+            ],
+            orderBys: const [PostgresOrderBy('position')],
+          ),
+        ),
+        SetState(ff.Pages.driverPage.state.tonight,
+            const ActionOutput('tonightsPlaces'),
+            key: 'keep-tonight'),
+      ],
+    ),
+  ]);
 }
