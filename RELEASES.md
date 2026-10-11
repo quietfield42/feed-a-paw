@@ -17,6 +17,17 @@ flutterflow ai branch checkout main          # back to current
 Pushing while a branch is checked out writes to that branch, not to main —
 check `flutterflow ai branch current` if unsure.
 
+## 12 October 2026 — a 400 on every open of the Round tab, and I put it there
+
+| What | Roll back to |
+|---|---|
+| The two queries keyed by `currentRunId` now run only when a round is actually running. With none, that id is empty and Postgres answered `invalid input syntax for type uuid: ""` — a 400 on every open, which also ended the chain so the tonight list never loaded either. The route list, the run id and `onTheRoad` stay outside the guard, because they are what the page needs in order to *start* a round | `feed-driver-fixed-10oct` |
+
+Introduced by the 10 Oct counter work and caught on 12 Oct by listening to the
+network. The page error that had been showing in the capture logs since 11 Oct
+was this, and it is now gone — verified with a clean run: no HTTP errors, no
+page errors.
+
 ## 10 October 2026 — nobody had ever been able to start a round
 
 Found by sweeping for page state that is read but never assigned, after that
