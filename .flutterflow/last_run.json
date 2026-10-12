@@ -1,28 +1,55 @@
 {
   "version": 1,
-  "timestamp": "2026-10-12T03:47:31.285357Z",
+  "timestamp": "2026-10-12T08:49:39.499177Z",
   "projectId": "feeda-paw-hc0hpt",
   "success": true,
   "noOp": false,
   "pushed": true,
   "dryRun": false,
-  "commitId": "fNtEX9WQ7TwFk7K3nv1w",
-  "commitMessage": "The a-Paw loader, and photos decoded at the size they are drawn",
+  "commitId": "cfw6ol8Hjvlbq0KgxJOc",
+  "commitMessage": "Splash on forest, lists that draw, counters that count",
   "tasks": [
     {
       "name": "compileDslApp",
       "success": true,
       "skipped": false,
-      "durationMs": 3525
+      "durationMs": 1538,
+      "validationErrors": [
+        "Go to ListView.",
+        "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value."
+      ]
     }
   ],
   "diagnostics": [
     {
       "code": "PREEXISTING_WIRING",
-      "message": "5 pre-existing wiring findings outside this edit; run `flutterflow ai review` to list them",
+      "message": "4 pre-existing wiring findings outside this edit; run `flutterflow ai review` to list them",
       "severity": "warning",
       "location": "",
       "target": "wiring"
+    },
+    {
+      "code": "VALIDATION_HARDCODED_COLOR",
+      "message": "This color could use the theme's \"Secondary Background\" color instead of a hardcoded value.",
+      "severity": "warning",
+      "location": "Button 'AboutButton' [key: Button_ikvt4ilc] item:  [item-key: literal-color-0]",
+      "target": "widget"
+    },
+    {
+      "code": "VALIDATION_LIST_VIEW_SHRINK_WRAP",
+      "message": "Go to ListView.",
+      "severity": "warning",
+      "location": "ListView 'ListView' [key: ListView_6t3c5h99]",
+      "target": "widget",
+      "suggestion": "Disable `shrinkWrap` on data-backed ListView widgets unless the list must live inside another scrollable. Prefer giving the list bounded space and leaving shrinkWrap off."
+    },
+    {
+      "code": "R19",
+      "message": "Dynamic ListView enables shrinkWrap, which triggers the same performance warning FlutterFlow shows for data-backed lists.",
+      "severity": "warning",
+      "location": "TodayPage.ListView",
+      "target": "wiring",
+      "suggestion": "Disable `shrinkWrap` on dynamic ListView widgets unless the list must live inside another scrollable. Prefer giving the list bounded space and leaving shrinkWrap off."
     }
   ]
 }

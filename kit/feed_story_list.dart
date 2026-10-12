@@ -47,11 +47,25 @@ class FeedStoryList extends StatelessWidget {
     return '${d.day} ${_months[d.month - 1]}';
   }
 
+  /// F4: this list is dropped into a Column that does not bound its height,
+  /// and a ListView with nothing to measure against throws a RenderFlex error
+  /// and draws nothing — a blank Stories page whenever there is a story to
+  /// show. With no stories it looked fine, which is why it lasted.
+  ///
+  /// The same widget also sits in bounded parents, where shrink-wrapping would
+  /// overflow instead, so the height it was actually given decides: a lazy
+  /// scrolling list when bounded, a measured non-scrolling one when not, with
+  /// the page doing the scrolling.
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) =>
+      LayoutBuilder(builder: (context, c) => _build(c.maxHeight.isFinite));
+
+  Widget _build(bool bounded) {
     final rows = items ?? const [];
     if (rows.isEmpty) return const SizedBox.shrink();
     return ListView.separated(
+      shrinkWrap: !bounded,
+      physics: bounded ? null : const NeverScrollableScrollPhysics(),
       padding: const EdgeInsets.fromLTRB(16, 4, 16, 24),
       itemCount: rows.length,
       separatorBuilder: (_, __) => const SizedBox(height: 14),
