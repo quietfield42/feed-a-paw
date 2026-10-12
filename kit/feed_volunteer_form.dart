@@ -5,6 +5,8 @@ import 'package:image_picker/image_picker.dart';
 import '/backend/supabase/supabase.dart';
 import '/custom_code/widgets/feed_icons.dart'
     show
+        
+        apawBusy,
         apawIconChips,
         apawPaper,
         apawPrimary,
@@ -109,10 +111,14 @@ class _FeedVolunteerFormState extends State<FeedVolunteerForm> {
     if (_uploading) return;
     try {
       final picked = await ImagePicker()
-          .pickImage(source: ImageSource.camera, maxWidth: 1600);
+          .pickImage(
+              source: ImageSource.camera, maxWidth: 1600, imageQuality: 80);
       final shot = picked ??
           await ImagePicker()
-              .pickImage(source: ImageSource.gallery, maxWidth: 1600);
+              .pickImage(
+                  source: ImageSource.gallery,
+                  maxWidth: 1600,
+                  imageQuality: 80);
       if (shot == null) return;
       setState(() {
         _uploading = true;
@@ -163,14 +169,16 @@ class _FeedVolunteerFormState extends State<FeedVolunteerForm> {
       _error = '';
     });
     try {
-      await SupaFlow.client.from('feed_volunteer_feeds').insert({
-        'spot_id': _spotId,
-        'fed_by': me,
-        'meals_served': meals,
-        'animals_seen': int.tryParse(_seen.text.trim()) ?? 0,
-        'note': _note.text.trim(),
-        if (_photo.isNotEmpty) 'photo_path': _photo,
-      });
+      await apawBusy(context, () async {
+        await SupaFlow.client.from('feed_volunteer_feeds').insert({
+          'spot_id': _spotId,
+          'fed_by': me,
+          'meals_served': meals,
+          'animals_seen': int.tryParse(_seen.text.trim()) ?? 0,
+          'note': _note.text.trim(),
+          if (_photo.isNotEmpty) 'photo_path': _photo,
+        });
+      }, label: 'Saving');
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
             content: Text('Counted. Thank you for going out.')));

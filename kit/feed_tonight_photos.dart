@@ -83,6 +83,9 @@ class _FeedTonightPhotosState extends State<FeedTonightPhotos> {
             itemBuilder: (context, i) => ClipRRect(
               borderRadius: BorderRadius.circular(12),
               child: Image.network(
+                // F1: 140 px thumbnails were decoding 1600 px originals —
+                // about 150 MB across twenty stops on one round.
+                cacheWidth: 420,
                 _photos[i],
                 width: 140,
                 height: 120,

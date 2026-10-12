@@ -1,7 +1,7 @@
 import '/app_state.dart';
 import '/backend/supabase/supabase.dart';
 import '/custom_code/widgets/feed_icons.dart'
-    show apawIconChips, apawPaper, apawPrimary, apawText, apawThemed, ApawColors;
+    show  apawBusy, apawIconChips, apawPaper, apawPrimary, apawText, apawThemed, ApawColors;
 
 /// Logging a pickup from a butcher, on the region's paper.
 ///
@@ -114,14 +114,16 @@ class _FeedPickupFormState extends State<FeedPickupForm> {
             .toString();
       }
 
-      await SupaFlow.client.from('feed_collections').insert({
-        'run_id': run,
-        if (id.isNotEmpty) 'butcher_id': id,
-        'butcher_name': name,
-        'kilos': num.tryParse(_kilos.text.trim()) ?? 0,
-        'collected_by': SupaFlow.client.auth.currentUser?.id,
-        'note': _note.text.trim(),
-      });
+      await apawBusy(context, () async {
+        await SupaFlow.client.from('feed_collections').insert({
+          'run_id': run,
+          if (id.isNotEmpty) 'butcher_id': id,
+          'butcher_name': name,
+          'kilos': num.tryParse(_kilos.text.trim()) ?? 0,
+          'collected_by': SupaFlow.client.auth.currentUser?.id,
+          'note': _note.text.trim(),
+        });
+      }, label: 'Saving');
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Pickup logged.')));

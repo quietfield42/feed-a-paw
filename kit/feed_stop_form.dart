@@ -6,13 +6,17 @@ import '/app_state.dart';
 import '/backend/supabase/supabase.dart';
 import '/custom_code/widgets/feed_icons.dart'
     show
+        
+        
+        apawBusy,
         apawIconChips,
         apawPaper,
         apawPrimary,
         apawSecondary,
         apawText,
         apawThemed,
-        ApawColors;
+        ApawColors,
+        ApawLoader;
 
 /// Logging a stop on the round, on the region's paper.
 ///
@@ -132,10 +136,16 @@ class _FeedStopFormState extends State<FeedStopForm> {
     if (_uploading) return;
     try {
       final picked = await ImagePicker()
-          .pickImage(source: ImageSource.camera, maxWidth: 1600);
+          .pickImage(
+              // F5: no quality setting meant 3-4x the bytes over a
+              // driver's mobile data, out on a round.
+              source: ImageSource.camera, maxWidth: 1600, imageQuality: 80);
       final shot = picked ??
           await ImagePicker()
-              .pickImage(source: ImageSource.gallery, maxWidth: 1600);
+              .pickImage(
+                  source: ImageSource.gallery,
+                  maxWidth: 1600,
+                  imageQuality: 80);
       if (shot == null) return;
       setState(() {
         _uploading = true;
@@ -181,15 +191,17 @@ class _FeedStopFormState extends State<FeedStopForm> {
       _error = '';
     });
     try {
-      await SupaFlow.client.from('feed_run_stops').insert({
-        'run_id': run,
-        'spot_id': _spotId,
-        'meals_served': int.tryParse(_meals.text.trim()) ?? 0,
-        'animals_seen': int.tryParse(_seen.text.trim()) ?? 0,
-        'note': _note.text.trim(),
-        'photo_path': _photo,
-        'arrived_at': DateTime.now().toUtc().toIso8601String(),
-      });
+      await apawBusy(context, () async {
+        await SupaFlow.client.from('feed_run_stops').insert({
+          'run_id': run,
+          'spot_id': _spotId,
+          'meals_served': int.tryParse(_meals.text.trim()) ?? 0,
+          'animals_seen': int.tryParse(_seen.text.trim()) ?? 0,
+          'note': _note.text.trim(),
+          'photo_path': _photo,
+          'arrived_at': DateTime.now().toUtc().toIso8601String(),
+        });
+      }, label: 'Saving');
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Stop logged.')));
@@ -224,7 +236,7 @@ class _FeedStopFormState extends State<FeedStopForm> {
         padding: EdgeInsets.all(24),
         child: Center(
           child: SizedBox(
-              width: 22, height: 22, child: CircularProgressIndicator()),
+              width: 26, height: 26, child: ApawLoader(size: 26, showCount: false)),
         ),
       );
     }

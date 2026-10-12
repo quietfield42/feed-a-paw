@@ -73,6 +73,7 @@ class FeedStoryList extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(12),
                     child: Image.network(
+                      cacheWidth: 1100,   // F2: drawn 180 px high
                       photo,
                       height: 180,
                       width: double.infinity,

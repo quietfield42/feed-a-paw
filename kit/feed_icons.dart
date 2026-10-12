@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
 import 'dart:async';
+import 'dart:math' as math;
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -568,13 +569,16 @@ Future<void> showApawAiReport(BuildContext context,
   if (ok != true || reason == null) return;
   String msg;
   try {
-    await Supabase.instance.client.from('content_reports').insert({
-      'app': app,
-      'target_type': targetType,
-      'target_id': targetId,
-      'reason': reason,
-      'details': note.text.trim().isEmpty ? null : note.text.trim(),
-    });
+    await apawBusy(
+        context,
+        () => Supabase.instance.client.from('content_reports').insert({
+              'app': app,
+              'target_type': targetType,
+              'target_id': targetId,
+              'reason': reason,
+              'details': note.text.trim().isEmpty ? null : note.text.trim(),
+            }),
+        label: 'Sending');
     msg = 'Thank you. We will look at it.';
   } on PostgrestException catch (e) {
     msg = e.code == '23505' ? 'You have already reported this portrait.' : 'Could not send the report. Try again.';
@@ -803,6 +807,175 @@ Widget apawIconChip(String icon, {double size = 44, Color bg = ApawColors.peach,
   );
 }
 
+/// The a-Paw loader (Ash, 12 Oct 2026): the clawed paw stays still, a seconds
+/// counter ticks in its big pad, and a white dot zips once round the outside
+/// every second. Use it for anything that takes more than a moment.
+///   ApawLoader()                       a section that is loading
+///   apawLoading(label: 'Loading')      the same, centred, with a caption
+///   apawBusy(context, () => save())    full-screen over the page while
+///                                      saving or posting (after 0.5 s)
+///   ApawLoader(size: 26, showCount: false)   inside a button
+const _apawLoaderPaw = r'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#FF7900"><path d="M12 10.9 C9.8 10.9 8.5 13.1 6.8 15.5 C5.5 17.3 4.7 18.1 4.8 19.5 C4.9 21.7 6.5 22.7 8.5 22.2 C10.1 21.8 10.8 21.6 12 21.6 C13.2 21.6 13.9 21.8 15.5 22.2 C17.5 22.7 19.1 21.7 19.2 19.5 C19.3 18.1 18.5 17.3 17.2 15.5 C15.5 13.1 14.2 10.9 12 10.9 Z"/><path d="M5 8 C2.2 8 2.2 14 5 14 C7.8 14 7.8 8 5 8 Z"/><path d="M9.3 5 C6.5 5 6.5 11 9.3 11 C12.1 11 12.1 5 9.3 5 Z"/><path d="M14.7 5 C11.9 5 11.9 11 14.7 11 C17.5 11 17.5 5 14.7 5 Z"/><path d="M19 8 C16.2 8 16.2 14 19 14 C21.8 14 21.8 8 19 8 Z"/><path d="M4.95 5 C4.1 6.1 3.9 7 3.6 8.1 Q4.1 7.6 4.8 7.65 Q4.65 6.4 4.95 5 Z"/><path d="M5.15 5 Q5.1 6.4 5.3 7.65 Q5.9 7.7 6.4 8.1 C6 6.8 5.7 5.7 5.15 5 Z"/><path d="M9.25 2 C8.4 3.1 8.2 4 7.9 5.1 Q8.4 4.6 9.1 4.65 Q8.95 3.4 9.25 2 Z"/><path d="M9.45 2 Q9.4 3.4 9.6 4.65 Q10.2 4.7 10.7 5.1 C10.3 3.8 10 2.7 9.45 2 Z"/><path d="M14.65 2 C13.8 3.1 13.6 4 13.3 5.1 Q13.8 4.6 14.5 4.65 Q14.35 3.4 14.65 2 Z"/><path d="M14.85 2 Q14.8 3.4 15 4.65 Q15.6 4.7 16.1 5.1 C15.7 3.8 15.4 2.7 14.85 2 Z"/><path d="M18.95 5 C18.1 6.1 17.9 7 17.6 8.1 Q18.1 7.6 18.8 7.65 Q18.65 6.4 18.95 5 Z"/><path d="M19.15 5 Q19.1 6.4 19.3 7.65 Q19.9 7.7 20.4 8.1 C20 6.8 19.7 5.7 19.15 5 Z"/></svg>''';
+
+class ApawLoader extends StatefulWidget {
+  const ApawLoader({super.key, this.size = 88, this.showCount = true});
+  final double size;
+  final bool showCount;
+
+  @override
+  State<ApawLoader> createState() => _ApawLoaderState();
+}
+
+class _ApawLoaderState extends State<ApawLoader> with SingleTickerProviderStateMixin {
+  late final AnimationController _orbit =
+      AnimationController(vsync: this, duration: const Duration(seconds: 1));
+  final _start = DateTime.now();
+  Timer? _tick;
+  int _secs = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.showCount) {
+      _tick = Timer.periodic(const Duration(milliseconds: 250), (_) {
+        final s = DateTime.now().difference(_start).inSeconds;
+        if (s != _secs && mounted) setState(() => _secs = s);
+      });
+    }
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // "Reduce motion" on the phone: the dot goes round slowly instead.
+    final slow = MediaQuery.maybeDisableAnimationsOf(context) ?? false;
+    _orbit.duration = Duration(seconds: slow ? 3 : 1);
+    _orbit
+      ..stop()
+      ..repeat();
+  }
+
+  @override
+  void dispose() {
+    _tick?.cancel();
+    _orbit.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final s = widget.size;
+    final k = s / 31.2; // the drawing is 31.2 units across; the paw is 24
+    final f = (_secs >= 100 ? 4.4 : _secs >= 10 ? 5.4 : 6.2) * k;
+    return Semantics(
+      label: 'Working',
+      child: SizedBox(
+        width: s,
+        height: s,
+        child: Stack(clipBehavior: Clip.none, children: [
+          Positioned(
+            left: s / 2 - 12 * k,
+            top: s / 2 - 12.4 * k,
+            width: 24 * k,
+            height: 24 * k,
+            child: SvgPicture.string(_apawLoaderPaw, width: 24 * k, height: 24 * k, excludeFromSemantics: true),
+          ),
+          if (widget.showCount)
+            Positioned(
+              left: 0,
+              right: 0,
+              top: s / 2 + 4.8 * k - f * .55,
+              child: Text('$_secs',
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.figtree(
+                      fontSize: f, fontWeight: FontWeight.w800, color: Colors.white, height: 1.1)),
+            ),
+          Positioned.fill(
+            child: AnimatedBuilder(
+              animation: _orbit,
+              builder: (_, __) => CustomPaint(painter: _ApawOrbit(_orbit.value, k)),
+            ),
+          ),
+        ]),
+      ),
+    );
+  }
+}
+
+class _ApawOrbit extends CustomPainter {
+  _ApawOrbit(this.t, this.k);
+  final double t;
+  final double k;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final c = Offset(size.width / 2, size.height / 2);
+    final r = 13.2 * k;
+    Offset at(double a) => c + Offset(r * math.sin(a), -r * math.cos(a));
+    final a = t * 2 * math.pi; // clockwise from the top
+    const tail = [(0.55, 1.25), (0.32, 0.97), (0.16, 0.69)];
+    for (var i = 0; i < tail.length; i++) {
+      canvas.drawCircle(at(a - (i + 1) * 0.2), tail[i].$2 * k,
+          Paint()..color = Colors.white.withOpacity(tail[i].$1));
+    }
+    final dot = at(a);
+    canvas.drawCircle(dot, 1.5 * k, Paint()..color = Colors.white);
+    canvas.drawCircle(
+        dot,
+        1.5 * k,
+        Paint()
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = .35 * k
+          ..color = const Color(0x591F5148));
+  }
+
+  @override
+  bool shouldRepaint(_ApawOrbit old) => old.t != t || old.k != k;
+}
+
+/// A loading section: the loader, centred, with an optional caption.
+Widget apawLoading({String? label, double size = 88}) => Center(
+      child: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Column(mainAxisSize: MainAxisSize.min, children: [
+          ApawLoader(size: size),
+          if (label != null) ...[
+            const SizedBox(height: 12),
+            Text(label, textAlign: TextAlign.center, style: apawText(size: 14.5, weight: FontWeight.w600)),
+          ],
+        ]),
+      ),
+    );
+
+/// Runs [work]; if it takes longer than half a second, the loader covers the
+/// screen (and blocks taps, so nothing is sent twice) until it finishes.
+Future<T> apawBusy<T>(BuildContext context, Future<T> Function() work, {String label = 'Working'}) async {
+  OverlayEntry? entry;
+  final overlay = Overlay.maybeOf(context, rootOverlay: true);
+  final timer = Timer(const Duration(milliseconds: 500), () {
+    if (overlay == null || !overlay.mounted) return;
+    entry = OverlayEntry(
+      builder: (_) => Material(
+        color: Colors.black.withOpacity(.45),
+        child: Center(
+          child: Column(mainAxisSize: MainAxisSize.min, children: [
+            const ApawLoader(size: 96),
+            const SizedBox(height: 12),
+            Text(label, style: apawText(size: 15, weight: FontWeight.w700, color: Colors.white)),
+          ]),
+        ),
+      ),
+    );
+    overlay.insert(entry!);
+  });
+  try {
+    return await work();
+  } finally {
+    timer.cancel();
+    entry?.remove();
+  }
+}
+
 /// The main call to action: orange, forest bold text.
 Widget apawPrimary(String label, VoidCallback? onTap, {bool busy = false, String? icon}) => SizedBox(
       height: 54,
@@ -810,7 +983,7 @@ Widget apawPrimary(String label, VoidCallback? onTap, {bool busy = false, String
       child: FilledButton(
         onPressed: busy ? null : onTap,
         child: busy
-            ? const SizedBox(width: 22, height: 22, child: CircularProgressIndicator(strokeWidth: 2.4, color: ApawColors.forest))
+            ? const ApawLoader(size: 30, showCount: false)
             : Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 if (icon != null) ...[apawIcon(icon, color: ApawColors.forest, size: 22), const SizedBox(width: 8)],
                 Flexible(child: Text(label, overflow: TextOverflow.ellipsis, style: GoogleFonts.figtree(fontSize: 17, fontWeight: FontWeight.w800))),

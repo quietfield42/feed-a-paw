@@ -174,108 +174,39 @@ void _uploadToBucket(dynamic page, String nodeKey, String bucket) {
 }
 
 void buildStarterEditFlow(App app) {
-  // A 400 on every open of the Round tab, and I put it there (12 Oct 2026).
+  // The a-Paw loader, and the photo fixes from the 12 Oct review.
   //
-  // Caught by listening to the network while driving the live build, not by
-  // anything the screen showed:
+  // Loader (Ash approved, rolling out across the family today): the Material
+  // spinner in the stop form is now the clawed paw, and every save a driver
+  // waits on is wrapped in `apawBusy`, which covers the screen only if the
+  // work takes longer than half a second. Pickers are deliberately NOT wrapped
+  // — only the network part after the photograph has been taken — and every
+  // try/catch, message and mounted guard is untouched.
   //
-  //   HTTP 400  /rest/v1/feed_run_totals?select=*&run_id=eq.
-  //             invalid input syntax for type uuid: ""
+  // Photos (F1, F2, F5 in briefs/PERFORMANCE-REVIEW-12-OCT.md). The worst was
+  // F1: the stop thumbnails are drawn 140 px wide and were decoding 1600 px
+  // originals, about 7.7 MB each — roughly 150 MB across twenty stops on one
+  // round, on a phone in a van. `cacheWidth` now matches what is drawn.
   //
-  // That is the `read-live-totals` query added on 10 Oct to fill the two
-  // counters. With no round running, `currentRunId` is the empty string, and
-  // Postgres will not read `''` as a uuid. Mind's own setup panel carries a
-  // comment about exactly this shape — "every screen asked the database for
-  // `minder_id = ''` ... so every screen came back 400 and empty" — and I
-  // reintroduced it here.
-  //
-  // Nothing visible broke, because the only thing the failed query would have
-  // filled is counters for a round that is not running. But a thrown query
-  // ends the whole page-load chain, so the tonight list never loaded either,
-  // and a 400 on every open is not something to leave in a build going to a
-  // store reviewer.
-  //
-  // The two queries that need a run now sit behind a condition. The route
-  // list, the run id and `onTheRoad` stay outside it: they are what the page
-  // needs in order to START a round, so they must run when there is none.
-
-  final hasRun = CodeExpression(
-    // AppState is a declared value, so unlike a loop item it has a type the
-    // DSL can infer. It still arrives nullable, hence the `?? ''`.
-    r"(runId ?? '').isNotEmpty",
-    args: {'runId': AppState(ff.AppState.currentRunId)},
-    returns: bool_,
-  );
-
-  app.editPage(ff.Pages.driverPage, (page) {
-    page.removeTrigger(page.root, FFActionTriggerType.ON_INIT_STATE);
+  // F5 matters for a different reason: `maxWidth` without `imageQuality` sent
+  // three to four times the bytes, over a driver's own mobile data, out on a
+  // round. Every pick now carries `imageQuality: 80`.
+  app.editCustomWidget(ff.CustomWidgets.feedIcons, (w) {
+    w.replaceCode(_kit('feed_icons.dart'));
   });
-
-  app.editPageOnLoad(ff.Pages.driverPage, [
-    // Always: the rounds somebody could drive tonight.
-    PostgresQuery(
-      ff.Tables.feedRoutes,
-      key: 'read-routes',
-      outputAs: 'allRoutes',
-      query: PostgresQuerySpec(
-        filters: [
-          PostgresFilter('active',
-              relation: PostgresFilterRelation.equalTo, value: true),
-        ],
-        orderBys: const [PostgresOrderBy('name')],
-      ),
-    ),
-    SetState(ff.Pages.driverPage.state.routes, const ActionOutput('allRoutes'),
-        key: 'keep-routes'),
-
-    // Always: pick up a round already in progress rather than offering to
-    // start a second one.
-    SetState(ff.Pages.driverPage.state.runId,
-        AppState(ff.AppState.currentRunId),
-        key: 'keep-run-id'),
-    SetState(ff.Pages.driverPage.state.onTheRoad, hasRun,
-        key: 'keep-on-the-road'),
-
-    // Only when there IS a round: anything keyed by its id.
-    If(
-      hasRun,
-      key: 'only-if-running',
-      then: [
-        PostgresRead(
-          ff.Tables.feedRunTotals,
-          key: 'read-live-totals',
-          outputAs: 'liveTotals',
-          query: PostgresQuerySpec(
-            filters: [
-              PostgresFilter('run_id',
-                  relation: PostgresFilterRelation.equalTo,
-                  value: AppState(ff.AppState.currentRunId)),
-            ],
-          ),
-        ),
-        SetState(ff.Pages.driverPage.state.stopsToday,
-            const ActionOutput('liveTotals')['stops'],
-            key: 'keep-stops-today'),
-        SetState(ff.Pages.driverPage.state.mealsToday,
-            const ActionOutput('liveTotals')['meals'],
-            key: 'keep-meals-today'),
-        PostgresQuery(
-          ff.Tables.feedTonight,
-          key: 'read-tonight',
-          outputAs: 'tonightsPlaces',
-          query: PostgresQuerySpec(
-            filters: [
-              PostgresFilter('run_id',
-                  relation: PostgresFilterRelation.equalTo,
-                  value: AppState(ff.AppState.currentRunId)),
-            ],
-            orderBys: const [PostgresOrderBy('position')],
-          ),
-        ),
-        SetState(ff.Pages.driverPage.state.tonight,
-            const ActionOutput('tonightsPlaces'),
-            key: 'keep-tonight'),
-      ],
-    ),
-  ]);
+  app.editCustomWidget(ff.CustomWidgets.feedTonightPhotos, (w) {
+    w.replaceCode(_kit('feed_tonight_photos.dart'));
+  });
+  app.editCustomWidget(ff.CustomWidgets.feedStoryList, (w) {
+    w.replaceCode(_kit('feed_story_list.dart'));
+  });
+  app.editCustomWidget(ff.CustomWidgets.feedStopForm, (w) {
+    w.replaceCode(_kit('feed_stop_form.dart'));
+  });
+  app.editCustomWidget(ff.CustomWidgets.feedVolunteerForm, (w) {
+    w.replaceCode(_kit('feed_volunteer_form.dart'));
+  });
+  app.editCustomWidget(ff.CustomWidgets.feedPickupForm, (w) {
+    w.replaceCode(_kit('feed_pickup_form.dart'));
+  });
 }
