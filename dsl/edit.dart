@@ -173,81 +173,25 @@ void _uploadToBucket(dynamic page, String nodeKey, String bucket) {
     }
   });
 }
-
 void buildStarterEditFlow(App app) {
-  // Splash: the app opens on its own paw (12 Oct 2026).
+  // S1, S2 and S3 from the 12 Oct review, now that they survive regeneration.
   //
-  // Ash noticed FlutterFlow's project cards showing a blank FlutterFlow
-  // picture — the card uses the app's splash image, and only Use It Fresh had
-  // one. Care, Track and Snap were done today; this is the same for Feed. The
-  // message is read-only, so it is copied, changed and assigned back.
-  app.raw((p) {
-    final settings = p.ensureAppSettings();
-    final s = settings.splashImage.deepCopy()
-      ..path = settings.appIconPath
-      ..fit = FFBoxFit.FF_BOX_FIT_CONTAIN
-      ..backgroundColor = FFColor(value: Int64(0xFF1F5148))
-      ..preLoadingColor = FFColor(value: Int64(0xFF1F5148));
-    settings.splashImage = s;
-  });
-
-  // F4: the lists that render blank, and F3: counters that always read 0.
+  // The Care agent has moved all three into `tool/apaw_kit.py`, so this is a
+  // straight recopy of the regenerated kit rather than an edit of a generated
+  // file — which is the whole point: anything patched into `*_icons.dart` by
+  // hand is lost the next time it is built.
   //
-  // Today holds a ListView inside a Column that does not bound its height, so
-  // it throws a RenderFlex error and draws nothing whenever there IS a story.
-  // The review asks for `Expanded`, which is the better answer because it
-  // keeps the list lazy — but the SDK has no way I can find to set that flag
-  // on a Column child (it is not in the exported DSL, the raw node props, or
-  // the docs). So the column scrolls and the list shrink-wraps, which is the
-  // shape already proven on Mind's Clients and Invoices, and the laziness
-  // concern is answered instead by F2's limit below: Today now asks for the
-  // twenty newest stories rather than every story ever written.
+  //   S1  the page background every screen sits on is now cached on disk and
+  //       decoded at the screen's size, instead of re-downloading and decoding
+  //       a full 1170x2600 picture on every cold start
+  //   S2  skin-picker thumbnails decode at 160px rather than six full-screen
+  //       photographs, so opening the sheet no longer spikes memory
+  //   S3  the theme is built once, not rebuilt on every setState of every form
+  //       and sheet that uses apawThemed
   //
-  // F3: `loadedTotals` was queried on every open and never read, so the two
-  // counters above the stories always showed 0. The query was already paid
-  // for; it is now used.
-  app.editPage(ff.Pages.todayPage, (page) {
-    page.mutateNode(page.findByKey('ListView_6t3c5h99'), (node) {
-      node.props.listView.shrinkWrapValue = FFBooleanValue(inputValue: true);
-    });
-    page.mutateNode(page.findByKey('Column_8vemqkot'), (node) {
-      node.props.column.scrollable = true;
-    });
-    page.removeTrigger(page.root, FFActionTriggerType.ON_INIT_STATE);
-  });
-
-  app.editPageOnLoad(ff.Pages.todayPage, [
-    PostgresRead(
-      ff.Tables.feedTotals,
-      key: 'read-totals',
-      outputAs: 'loadedTotals',
-      query: PostgresQuerySpec(),
-    ),
-    SetState(ff.Pages.todayPage.state.mealsToday,
-        const ActionOutput('loadedTotals')['meals_today'],
-        key: 'keep-meals-today'),
-    SetState(ff.Pages.todayPage.state.mealsAllTime,
-        const ActionOutput('loadedTotals')['meals_all_time'],
-        key: 'keep-meals-all-time'),
-    PostgresQuery(
-      ff.Tables.feedStories,
-      key: 'read-stories',
-      outputAs: 'loadedStories',
-      query: PostgresQuerySpec(
-        // F2: newest first and bounded. It was oldest-first and unbounded, so
-        // Today showed every story ever written, in the wrong order.
-        orderBys: [PostgresOrderBy('published_at', ascending: false)],
-        limit: 20,
-      ),
-    ),
-    SetState(ff.Pages.todayPage.state.stories,
-        const ActionOutput('loadedStories'),
-        key: 'keep-stories'),
-  ]);
-
-  // Stories: the same blank-list bug, but this one lives in the kit widget,
-  // which now lays out for the height it is given.
-  app.editCustomWidget(ff.CustomWidgets.feedStoryList, (w) {
-    w.replaceCode(_kit('feed_story_list.dart'));
+  // Diffed against my copy before overwriting: exactly these three and nothing
+  // else, so the loader and today's other work are untouched.
+  app.editCustomWidget(ff.CustomWidgets.feedIcons, (w) {
+    w.replaceCode(_kit('feed_icons.dart'));
   });
 }

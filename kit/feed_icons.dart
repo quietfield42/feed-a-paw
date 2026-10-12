@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:math' as math;
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -221,7 +222,9 @@ ThemeData apawTheme() {
 }
 
 /// Wraps [child] in the a-Paw theme.
-Widget apawThemed(Widget child) => Theme(data: apawTheme(), child: child);
+// Built once, not on every redraw of every form and sheet (review S3).
+final ThemeData _apawThemeData = apawTheme();
+Widget apawThemed(Widget child) => Theme(data: _apawThemeData, child: child);
 
 /// A pack icon, tinted [color]. Unknown names draw nothing (never crash).
 Widget apawIcon(String name, {double size = 24, Color color = ApawColors.ink}) {
@@ -401,8 +404,15 @@ class _ApawBackgroundState extends State<ApawBackground> {
           }
           return Stack(fit: StackFit.expand, children: [
             const ColoredBox(color: ApawColors.ivory),
-            Image.network(
-              ApawSkin.bg(skin, widget.scene),
+            // Cached on disk (no re-download on every start) and decoded at
+            // the screen's size, not the full 1170x2600 picture (review S1).
+            Image(
+              image: ResizeImage(
+                CachedNetworkImageProvider(ApawSkin.bg(skin, widget.scene)),
+                width: (MediaQuery.sizeOf(context).width * MediaQuery.devicePixelRatioOf(context))
+                    .round()
+                    .clamp(320, 2600),
+              ),
               fit: BoxFit.cover,
               alignment: Alignment.center,
               gaplessPlayback: true,
@@ -465,6 +475,7 @@ Future<void> showApawSkinPicker(BuildContext context) async {
                                       end: Alignment.bottomCenter,
                                       colors: [Color(0xFFFBF7EF), Color(0xFFF1E6D3)])))
                           : Image.network(ApawSkin.bg(s.$1, 'onboarding'), fit: BoxFit.cover,
+                              cacheWidth: 160, // a 52x72 thumbnail (review S2)
                               errorBuilder: (_, __, ___) => const ColoredBox(color: ApawColors.sand)),
                     ),
                   ),
