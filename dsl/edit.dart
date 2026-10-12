@@ -174,24 +174,20 @@ void _uploadToBucket(dynamic page, String nodeKey, String bucket) {
   });
 }
 void buildStarterEditFlow(App app) {
-  // S1, S2 and S3 from the 12 Oct review, now that they survive regeneration.
+  // The Manage account and Contact support cards sat welded together
+  // (Ash, 13 Oct 2026).
   //
-  // The Care agent has moved all three into `tool/apaw_kit.py`, so this is a
-  // straight recopy of the regenerated kit rather than an edit of a generated
-  // file — which is the whole point: anything patched into `*_icons.dart` by
-  // hand is lost the next time it is built.
+  // Every other row in that column is followed by a 10pt gap; those two were
+  // not, because the comment had been written where the spacer should have
+  // been. Ash saw it on Adopt and Mind, and Feed had it too — the same three
+  // lines in all three account screens.
   //
-  //   S1  the page background every screen sits on is now cached on disk and
-  //       decoded at the screen's size, instead of re-downloading and decoding
-  //       a full 1170x2600 picture on every cold start
-  //   S2  skin-picker thumbnails decode at 160px rather than six full-screen
-  //       photographs, so opening the sheet no longer spikes memory
-  //   S3  the theme is built once, not rebuilt on every setState of every form
-  //       and sheet that uses apawThemed
-  //
-  // Diffed against my copy before overwriting: exactly these three and nothing
-  // else, so the loader and today's other work are untouched.
-  app.editCustomWidget(ff.CustomWidgets.feedIcons, (w) {
-    w.replaceCode(_kit('feed_icons.dart'));
+  // It reads as a wrapping bug, since "Password, email and your data, on the
+  // web" runs to two lines and makes the seam obvious, but the gap was never
+  // there at any width. The shared kit is innocent: `apawManageAccountRow` and
+  // `apawSupportRow` are plain cards with no margin, exactly like every other
+  // row, and the page supplies the spacing.
+  app.editCustomWidget(ff.CustomWidgets.feedAccount, (w) {
+    w.replaceCode(_kit('feed_account.dart'));
   });
 }

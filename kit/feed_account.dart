@@ -97,6 +97,14 @@ class _FeedAccountState extends State<FeedAccount> {
                       style: apawText(size: 13, color: ApawColors.muted)),
                   const SizedBox(height: 10),
                   apawManageAccountRow(context),
+                  // Every other row in this column is followed by a 10pt gap
+                  // and these two were not, so they sat welded together. The
+                  // comment below had been written where the spacer should
+                  // have gone. Ash spotted it on Adopt and Mind; Feed had it
+                  // too. It reads as a wrapping bug because "Password, email
+                  // and your data, on the web" runs to two lines and makes the
+                  // seam obvious, but the gap was never there at any width.
+                  const SizedBox(height: 10),
                   // Contact support, in the order the design standard sets:
                   // Look & feel, Manage account, Contact support, then ours.
                   apawSupportRow(context, app: 'feed'),
