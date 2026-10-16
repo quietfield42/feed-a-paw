@@ -190,4 +190,18 @@ void buildStarterEditFlow(App app) {
   app.editCustomWidget(ff.CustomWidgets.feedAccount, (w) {
     w.replaceCode(_kit('feed_account.dart'));
   });
+
+  // 16 Oct 2026: iPhone build. The pickers close the app on iPhone without
+  // these usage texts; iOS only, so Android keeps declaring no camera permission.
+  final plist = app.nativeFile(NativeFile.infoPlist);
+  plist..hook(NativeFileHook.infoPlistProperty, name: 'Camera usage',
+      content: '<key>NSCameraUsageDescription</key><string>Feed-a-Paw uses the camera to photograph the animals fed at a stop.</string>');
+  plist..hook(NativeFileHook.infoPlistProperty, name: 'Photo library usage',
+      content: '<key>NSPhotoLibraryUsageDescription</key><string>Feed-a-Paw lets you choose a photo of a stop from your library.</string>');
+  // TestFlight/App Store: HTTPS only, so the app is exempt from export rules.
+  plist..hook(NativeFileHook.infoPlistProperty, name: 'Export compliance',
+      content: '<key>ITSAppUsesNonExemptEncryption</key><false/>');
+  // Apple ITMS-90683 (16 Oct): a bundled library references location, so the key must exist.
+  plist..hook(NativeFileHook.infoPlistProperty, name: 'Location when in use',
+      content: '<key>NSLocationWhenInUseUsageDescription</key><string>Feed-a-Paw does not use your location.</string>');
 }
